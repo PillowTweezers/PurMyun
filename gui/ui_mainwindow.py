@@ -16,15 +16,16 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QDockWidget, QMainWindow, QMenu,
-    QMenuBar, QPushButton, QSizePolicy, QSpacerItem,
-    QStatusBar, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QDockWidget, QLineEdit,
+    QListView, QMainWindow, QMenu, QMenuBar,
+    QPushButton, QSizePolicy, QSpacerItem, QStatusBar,
+    QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(850, 570)
+        MainWindow.resize(920, 570)
         MainWindow.setAutoFillBackground(False)
         MainWindow.setStyleSheet(u"")
         self.actionCreate_Team = QAction(MainWindow)
@@ -44,7 +45,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 850, 23))
+        self.menubar.setGeometry(QRect(0, 0, 920, 23))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
         self.menuEfit = QMenu(self.menubar)
@@ -57,8 +58,8 @@ class Ui_MainWindow(object):
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
-        self.dockWidget = QDockWidget(MainWindow)
-        self.dockWidget.setObjectName(u"dockWidget")
+        self.controlsDock = QDockWidget(MainWindow)
+        self.controlsDock.setObjectName(u"controlsDock")
         self.dockWidgetContents = QWidget()
         self.dockWidgetContents.setObjectName(u"dockWidgetContents")
         self.verticalLayout = QVBoxLayout(self.dockWidgetContents)
@@ -83,8 +84,31 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addItem(self.verticalSpacer)
 
-        self.dockWidget.setWidget(self.dockWidgetContents)
-        MainWindow.addDockWidget(Qt.LeftDockWidgetArea, self.dockWidget)
+        self.controlsDock.setWidget(self.dockWidgetContents)
+        MainWindow.addDockWidget(Qt.LeftDockWidgetArea, self.controlsDock)
+        self.participantsDock = QDockWidget(MainWindow)
+        self.participantsDock.setObjectName(u"participantsDock")
+        self.participantsDock.setMinimumSize(QSize(228, 524))
+        self.dockWidgetContents_2 = QWidget()
+        self.dockWidgetContents_2.setObjectName(u"dockWidgetContents_2")
+        self.verticalLayout_2 = QVBoxLayout(self.dockWidgetContents_2)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.nameFilterEdt = QLineEdit(self.dockWidgetContents_2)
+        self.nameFilterEdt.setObjectName(u"nameFilterEdt")
+
+        self.verticalLayout_2.addWidget(self.nameFilterEdt)
+
+        self.listView = QListView(self.dockWidgetContents_2)
+        self.listView.setObjectName(u"listView")
+        self.listView.setMinimumSize(QSize(0, 454))
+        self.listView.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.listView.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.listView.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+
+        self.verticalLayout_2.addWidget(self.listView)
+
+        self.participantsDock.setWidget(self.dockWidgetContents_2)
+        MainWindow.addDockWidget(Qt.RightDockWidgetArea, self.participantsDock)
 
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuEfit.menuAction())
@@ -111,11 +135,15 @@ class Ui_MainWindow(object):
         self.menuEfit.setTitle(QCoreApplication.translate("MainWindow", u"Edit", None))
         self.menuView.setTitle(QCoreApplication.translate("MainWindow", u"View", None))
         self.menuHelp.setTitle(QCoreApplication.translate("MainWindow", u"Help", None))
+        self.controlsDock.setWindowTitle(QCoreApplication.translate("MainWindow", u"Controls", None))
         self.createTeamBtn.setText(QCoreApplication.translate("MainWindow", u"Create \n"
 "Team", None))
         self.createParticipantsBtn.setText(QCoreApplication.translate("MainWindow", u"Create \n"
 "Participant", None))
         self.loadParticipantsBtn.setText(QCoreApplication.translate("MainWindow", u"Load \n"
 "Participants File", None))
+        self.participantsDock.setWindowTitle(QCoreApplication.translate("MainWindow", u"Participants", None))
+        self.nameFilterEdt.setText("")
+        self.nameFilterEdt.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Filter", None))
     # retranslateUi
 
