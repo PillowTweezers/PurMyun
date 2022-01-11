@@ -1,4 +1,5 @@
 from PySide6 import QtCore, QtWidgets, QtGui
+from PySide6.QtCore import QSettings
 from PySide6.QtGui import QIcon, QAction
 from PySide6.QtWidgets import QToolBar
 from Team import Team
@@ -12,7 +13,17 @@ class MainWindow(QtWidgets.QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        self.settings = QSettings("settings.ini", QSettings.IniFormat)
+        self.restoreGeometry(self.settings.value("geometry"))
+        self.restoreState(self.settings.value("windowState"))
+
         self.statusBar().showMessage("Ready")
+
+    def closeEvent(self, event):
+        self.settings.setValue("geometry", self.saveGeometry())
+        self.settings.setValue("windowState", self.saveState())
+        event.accept()
 
 
 def main():
