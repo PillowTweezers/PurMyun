@@ -4,7 +4,7 @@ from Participant import Participant
 import csv
 import os
 import pickle
-
+from random import shuffle
 teams = []
 participants = []
 
@@ -39,6 +39,7 @@ def create_weights_object():
 def create_new_team():
     team_name = input("Enter new team's name:\n")
     team_weights = create_weights_object()
+    team_weights.name = team_name
     team = Team(name=team_name, weights=team_weights)
     teams.append(team)
     print("Team created successfully")
@@ -89,6 +90,7 @@ def assign_to_teams():
         participants_listings[team.name].sort(key=lambda par: par.calculateGrade(team.weights), reverse=True)
     running = True
     while running:
+        shuffle(teams)
         for team in teams:
             if len(participants_listings[team.name]) == 0:
                 running = False
@@ -146,7 +148,7 @@ def main():
         if option == 1:
             create_new_team()
         elif option == 2:
-            load_people_from_csv()
+            load_people_from_file()
         elif option == 3:
             change_team_weights()
         elif option == 4:

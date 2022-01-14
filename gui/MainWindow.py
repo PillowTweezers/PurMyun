@@ -74,9 +74,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.alert_text("Not implemented yet")
 
     def load_participants(self):
-        self.alert_text("Not implemented yet")
-        pass
-    
+        filePath, _ = QtWidgets.QFileDialog.getOpenFileName(self, str("Choose File"), "", str("*.csv"))
+        print(filePath)
+
     def alert_text(self, text: str):
         QtWidgets.QMessageBox.about(self, "Alert", text)
 
