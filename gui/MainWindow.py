@@ -5,6 +5,7 @@ from src import Client as client
 from ui_mainwindow import Ui_MainWindow
 import os
 
+
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
