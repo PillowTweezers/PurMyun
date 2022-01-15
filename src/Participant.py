@@ -1,6 +1,6 @@
 import math
 
-from Weights import Weights
+from src.Weights import Weights
 
 
 class Participant:

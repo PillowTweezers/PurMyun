@@ -1,6 +1,6 @@
-from Weights import Weights
-from Team import Team
-from Participant import Participant
+from src.Weights import Weights
+from src.Team import Team
+from src.Participant import Participant
 import csv
 import os
 import pickle

@@ -1,5 +1,5 @@
-from Weights import Weights
-from Participant import Participant
+from src.Weights import Weights
+from src.Participant import Participant
 
 
 class Team:

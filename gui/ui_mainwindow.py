@@ -98,14 +98,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.nameFilterEdt)
 
-        self.listView = QListView(self.dockWidgetContents_2)
-        self.listView.setObjectName(u"listView")
-        self.listView.setMinimumSize(QSize(0, 454))
-        self.listView.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.listView.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.listView.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.participantsListView = QListView(self.dockWidgetContents_2)
+        self.participantsListView.setObjectName(u"participantsListView")
+        self.participantsListView.setMinimumSize(QSize(0, 454))
+        self.participantsListView.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.participantsListView.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.participantsListView.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
 
-        self.verticalLayout_2.addWidget(self.listView)
+        self.verticalLayout_2.addWidget(self.participantsListView)
 
         self.participantsDock.setWidget(self.dockWidgetContents_2)
         MainWindow.addDockWidget(Qt.RightDockWidgetArea, self.participantsDock)
