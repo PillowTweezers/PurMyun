@@ -54,11 +54,12 @@ def load_people_from_file():
             break
         else:
             print("File not found")
+    global participants
+    participants = []
     with open(file_path, encoding='utf8') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             participants.append(Participant(row))
-    print_all_teams()
 
 
 def change_team_weights():
@@ -84,13 +85,17 @@ def remove_participant_from_list(participant, lst):
 
 
 def assign_to_teams():
+    if len(teams) == 0:
+        return
+    for team in teams:
+        team.clearParticipants()
     participants_listings = dict()
     for team in teams:
         participants_listings[team.name] = participants.copy()
         participants_listings[team.name].sort(key=lambda par: par.calculateGrade(team.weights), reverse=True)
     running = True
     while running:
-        shuffle(teams)
+        shuffle(teams, random=None)
         for team in teams:
             if len(participants_listings[team.name]) == 0:
                 running = False

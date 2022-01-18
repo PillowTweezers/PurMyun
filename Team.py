@@ -16,6 +16,9 @@ class Team:
     def add_participant(self, participant: Participant):
         self.participants.append(participant)
 
+    def clearParticipants(self):
+        self.participants = []
+
     def __str__(self):
         output = f"Team {self.name}:\n"
         for i in range(len(self.participants)):
