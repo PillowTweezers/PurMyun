@@ -31,7 +31,7 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="nameLbl">
         <property name="styleSheet">
          <string notr="true">font-size:16px;</string>
         </property>
@@ -51,7 +51,7 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QLabel" name="label_4">
+       <widget class="QLabel" name="teamLbl">
         <property name="styleSheet">
          <string notr="true">font-size:16px;</string>
         </property>
@@ -142,54 +142,54 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QProgressBar" name="progressBar">
+       <widget class="QProgressBar" name="presenceBar">
         <property name="layoutDirection">
          <enum>Qt::RightToLeft</enum>
         </property>
         <property name="value">
-         <number>24</number>
+         <number>0</number>
         </property>
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QProgressBar" name="progressBar_2">
+       <widget class="QProgressBar" name="squareBar">
         <property name="value">
-         <number>24</number>
+         <number>0</number>
         </property>
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QProgressBar" name="progressBar_3">
+       <widget class="QProgressBar" name="crossBar">
         <property name="value">
-         <number>24</number>
+         <number>0</number>
         </property>
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QProgressBar" name="progressBar_4">
+       <widget class="QProgressBar" name="parallelBar">
         <property name="value">
-         <number>24</number>
+         <number>0</number>
         </property>
        </widget>
       </item>
       <item row="4" column="1">
-       <widget class="QProgressBar" name="progressBar_5">
+       <widget class="QProgressBar" name="tripodBar">
         <property name="value">
-         <number>24</number>
+         <number>0</number>
         </property>
        </widget>
       </item>
       <item row="5" column="1">
-       <widget class="QProgressBar" name="progressBar_6">
+       <widget class="QProgressBar" name="anchoringBar">
         <property name="value">
-         <number>24</number>
+         <number>0</number>
         </property>
        </widget>
       </item>
       <item row="6" column="1">
-       <widget class="QProgressBar" name="progressBar_7">
+       <widget class="QProgressBar" name="macrameBar">
         <property name="value">
-         <number>24</number>
+         <number>0</number>
         </property>
        </widget>
       </item>

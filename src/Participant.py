@@ -2,6 +2,9 @@ import math
 
 from src.Weights import Weights
 
+MAX_PRESENCE = 10
+MAX_OTHER = 5
+
 
 class Participant:
     def __init__(self, data: dict):
@@ -19,6 +22,8 @@ class Participant:
         self.anchoring = int(data.get("מהי רמת עיגון היתרים שלך?"))
         self.macrame = int(data.get("מהי רמת המקרמה שלך?"))
         self.appearance = int(data.get("כמה אתם מעוניינים להיות בצוות חזות?"))
+        self.average = (self.square + self.cross + self.parallel + self.tripod + self.anchoring + self.macrame) / 6
+        self.team = None
 
     def calculateProfession(self, weights: Weights):
         score = 0

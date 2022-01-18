@@ -144,7 +144,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QListView" name="participantsListView">
+      <widget class="QTableWidget" name="participantsTableWidget">
        <property name="minimumSize">
         <size>
          <width>0</width>

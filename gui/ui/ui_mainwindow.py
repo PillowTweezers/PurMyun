@@ -16,10 +16,10 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QDockWidget, QLineEdit,
-    QListView, QMainWindow, QMenu, QMenuBar,
+from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QDockWidget, QHeaderView,
+    QLineEdit, QMainWindow, QMenu, QMenuBar,
     QPushButton, QSizePolicy, QSpacerItem, QStatusBar,
-    QVBoxLayout, QWidget)
+    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -101,14 +101,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.nameFilterEdt)
 
-        self.participantsListView = QListView(self.dockWidgetContents_2)
-        self.participantsListView.setObjectName(u"participantsListView")
-        self.participantsListView.setMinimumSize(QSize(0, 454))
-        self.participantsListView.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.participantsListView.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.participantsListView.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.participantsTableWidget = QTableWidget(self.dockWidgetContents_2)
+        self.participantsTableWidget.setObjectName(u"participantsTableWidget")
+        self.participantsTableWidget.setMinimumSize(QSize(0, 454))
+        self.participantsTableWidget.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.participantsTableWidget.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.participantsTableWidget.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
 
-        self.verticalLayout_2.addWidget(self.participantsListView)
+        self.verticalLayout_2.addWidget(self.participantsTableWidget)
 
         self.participantsDock.setWidget(self.dockWidgetContents_2)
         MainWindow.addDockWidget(Qt.LeftDockWidgetArea, self.participantsDock)

@@ -37,11 +37,11 @@ class Ui_ParticipantDialog(object):
 
         self.formLayout.setWidget(0, QFormLayout.LabelRole, self.label)
 
-        self.label_2 = QLabel(self.widget)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setStyleSheet(u"font-size:16px;")
+        self.nameLbl = QLabel(self.widget)
+        self.nameLbl.setObjectName(u"nameLbl")
+        self.nameLbl.setStyleSheet(u"font-size:16px;")
 
-        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.label_2)
+        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.nameLbl)
 
         self.label_3 = QLabel(self.widget)
         self.label_3.setObjectName(u"label_3")
@@ -49,11 +49,11 @@ class Ui_ParticipantDialog(object):
 
         self.formLayout.setWidget(1, QFormLayout.LabelRole, self.label_3)
 
-        self.label_4 = QLabel(self.widget)
-        self.label_4.setObjectName(u"label_4")
-        self.label_4.setStyleSheet(u"font-size:16px;")
+        self.teamLbl = QLabel(self.widget)
+        self.teamLbl.setObjectName(u"teamLbl")
+        self.teamLbl.setStyleSheet(u"font-size:16px;")
 
-        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.label_4)
+        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.teamLbl)
 
 
         self.verticalLayout.addWidget(self.widget)
@@ -106,48 +106,48 @@ class Ui_ParticipantDialog(object):
 
         self.gridLayout.addWidget(self.label_7, 2, 0, 1, 1)
 
-        self.progressBar = QProgressBar(self.groupBox)
-        self.progressBar.setObjectName(u"progressBar")
-        self.progressBar.setLayoutDirection(Qt.RightToLeft)
-        self.progressBar.setValue(24)
+        self.presenceBar = QProgressBar(self.groupBox)
+        self.presenceBar.setObjectName(u"presenceBar")
+        self.presenceBar.setLayoutDirection(Qt.RightToLeft)
+        self.presenceBar.setValue(0)
 
-        self.gridLayout.addWidget(self.progressBar, 0, 1, 1, 1)
+        self.gridLayout.addWidget(self.presenceBar, 0, 1, 1, 1)
 
-        self.progressBar_2 = QProgressBar(self.groupBox)
-        self.progressBar_2.setObjectName(u"progressBar_2")
-        self.progressBar_2.setValue(24)
+        self.squareBar = QProgressBar(self.groupBox)
+        self.squareBar.setObjectName(u"squareBar")
+        self.squareBar.setValue(0)
 
-        self.gridLayout.addWidget(self.progressBar_2, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.squareBar, 1, 1, 1, 1)
 
-        self.progressBar_3 = QProgressBar(self.groupBox)
-        self.progressBar_3.setObjectName(u"progressBar_3")
-        self.progressBar_3.setValue(24)
+        self.crossBar = QProgressBar(self.groupBox)
+        self.crossBar.setObjectName(u"crossBar")
+        self.crossBar.setValue(0)
 
-        self.gridLayout.addWidget(self.progressBar_3, 2, 1, 1, 1)
+        self.gridLayout.addWidget(self.crossBar, 2, 1, 1, 1)
 
-        self.progressBar_4 = QProgressBar(self.groupBox)
-        self.progressBar_4.setObjectName(u"progressBar_4")
-        self.progressBar_4.setValue(24)
+        self.parallelBar = QProgressBar(self.groupBox)
+        self.parallelBar.setObjectName(u"parallelBar")
+        self.parallelBar.setValue(0)
 
-        self.gridLayout.addWidget(self.progressBar_4, 3, 1, 1, 1)
+        self.gridLayout.addWidget(self.parallelBar, 3, 1, 1, 1)
 
-        self.progressBar_5 = QProgressBar(self.groupBox)
-        self.progressBar_5.setObjectName(u"progressBar_5")
-        self.progressBar_5.setValue(24)
+        self.tripodBar = QProgressBar(self.groupBox)
+        self.tripodBar.setObjectName(u"tripodBar")
+        self.tripodBar.setValue(0)
 
-        self.gridLayout.addWidget(self.progressBar_5, 4, 1, 1, 1)
+        self.gridLayout.addWidget(self.tripodBar, 4, 1, 1, 1)
 
-        self.progressBar_6 = QProgressBar(self.groupBox)
-        self.progressBar_6.setObjectName(u"progressBar_6")
-        self.progressBar_6.setValue(24)
+        self.anchoringBar = QProgressBar(self.groupBox)
+        self.anchoringBar.setObjectName(u"anchoringBar")
+        self.anchoringBar.setValue(0)
 
-        self.gridLayout.addWidget(self.progressBar_6, 5, 1, 1, 1)
+        self.gridLayout.addWidget(self.anchoringBar, 5, 1, 1, 1)
 
-        self.progressBar_7 = QProgressBar(self.groupBox)
-        self.progressBar_7.setObjectName(u"progressBar_7")
-        self.progressBar_7.setValue(24)
+        self.macrameBar = QProgressBar(self.groupBox)
+        self.macrameBar.setObjectName(u"macrameBar")
+        self.macrameBar.setValue(0)
 
-        self.gridLayout.addWidget(self.progressBar_7, 6, 1, 1, 1)
+        self.gridLayout.addWidget(self.macrameBar, 6, 1, 1, 1)
 
 
         self.verticalLayout.addWidget(self.groupBox)
@@ -161,9 +161,9 @@ class Ui_ParticipantDialog(object):
     def retranslateUi(self, ParticipantDialog):
         ParticipantDialog.setWindowTitle(QCoreApplication.translate("ParticipantDialog", u"Dialog", None))
         self.label.setText(QCoreApplication.translate("ParticipantDialog", u"\u05e9\u05dd:", None))
-        self.label_2.setText("")
+        self.nameLbl.setText("")
         self.label_3.setText(QCoreApplication.translate("ParticipantDialog", u"\u05e6\u05d5\u05d5\u05ea:", None))
-        self.label_4.setText("")
+        self.teamLbl.setText("")
         self.groupBox.setTitle(QCoreApplication.translate("ParticipantDialog", u"\u05de\u05d3\u05d3\u05d9\u05dd", None))
         self.label_8.setText(QCoreApplication.translate("ParticipantDialog", u"\u05db\u05e4\u05d9\u05ea\u05d4\n"
 "\u05de\u05e7\u05d1\u05d9\u05dc\u05d4", None))

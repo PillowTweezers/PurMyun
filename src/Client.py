@@ -49,6 +49,7 @@ def assign_to_teams():
                 break
             recruit = participants_listings[team.name].pop(0)
             team.add_participant(recruit)
+            recruit.team = team
             for participants_listing in participants_listings.values():
                 remove_participant_from_list(recruit, participants_listing)
 
@@ -64,6 +65,23 @@ def load_teams_from_file():
             global teams
             teams = pickle.load(f)
 
+
 def print_all_teams():
     for team in teams:
         print(str(team))
+
+
+def save_participants_to_file():
+    with open('participants.pickle', 'wb') as f:
+        pickle.dump(participants, f, pickle.HIGHEST_PROTOCOL)
+
+
+def save_project():
+    with open('project.pickle', 'wb') as f:
+        pickle.dump((participants, teams), f, pickle.HIGHEST_PROTOCOL)
+
+
+def load_project():
+    with open('project.pickle', 'rb') as f:
+        global participants, teams
+        participants, teams = pickle.load(f)
