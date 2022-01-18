@@ -25,6 +25,7 @@ class Ui_TeamCreationDialog(object):
         if not TeamCreationDialog.objectName():
             TeamCreationDialog.setObjectName(u"TeamCreationDialog")
         TeamCreationDialog.resize(700, 440)
+        TeamCreationDialog.setLayoutDirection(Qt.RightToLeft)
         self.verticalLayout = QVBoxLayout(TeamCreationDialog)
         self.verticalLayout.setSpacing(12)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -53,6 +54,7 @@ class Ui_TeamCreationDialog(object):
 
         self.label_9 = QLabel(TeamCreationDialog)
         self.label_9.setObjectName(u"label_9")
+        self.label_9.setStyleSheet(u"")
 
         self.formLayout.setWidget(2, QFormLayout.LabelRole, self.label_9)
 
@@ -198,6 +200,8 @@ class Ui_TeamCreationDialog(object):
 
         self.buttonBox = QDialogButtonBox(TeamCreationDialog)
         self.buttonBox.setObjectName(u"buttonBox")
+        self.buttonBox.setLayoutDirection(Qt.RightToLeft)
+        self.buttonBox.setStyleSheet(u"")
         self.buttonBox.setOrientation(Qt.Horizontal)
         self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
 
@@ -213,11 +217,12 @@ class Ui_TeamCreationDialog(object):
 
     def retranslateUi(self, TeamCreationDialog):
         TeamCreationDialog.setWindowTitle(QCoreApplication.translate("TeamCreationDialog", u"\u05d9\u05e6\u05d9\u05e8\u05ea \u05e6\u05d5\u05d5\u05ea", None))
-        self.label.setText(QCoreApplication.translate("TeamCreationDialog", u"Name:", None))
-        self.teamNameEdt.setPlaceholderText(QCoreApplication.translate("TeamCreationDialog", u"Team's Name", None))
-        self.label_2.setText(QCoreApplication.translate("TeamCreationDialog", u"Color:", None))
-        self.colorPickerBtn.setText(QCoreApplication.translate("TeamCreationDialog", u"Pick Color", None))
-        self.label_9.setText(QCoreApplication.translate("TeamCreationDialog", u"Levels:", None))
+        self.label.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05e9\u05dd:", None))
+        self.teamNameEdt.setPlaceholderText(QCoreApplication.translate("TeamCreationDialog", u"\u05e9\u05dd \u05d4\u05e7\u05d1\u05d5\u05e6\u05d4", None))
+        self.label_2.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05e6\u05d1\u05e2:", None))
+        self.colorPickerBtn.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05d1\u05d7\u05e8 \u05e6\u05d1\u05e2", None))
+        self.label_9.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05de\u05d3\u05d3\u05d9\n"
+"\u05d7\u05e9\u05d9\u05d1\u05d5\u05ea:", None))
         self.label_6.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05e2\u05d9\u05d2\u05d5\u05df\n"
 "\u05d9\u05ea\u05e8\u05d9\u05dd", None))
         self.label_8.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05db\u05e4\u05d9\u05ea\u05d4\n"

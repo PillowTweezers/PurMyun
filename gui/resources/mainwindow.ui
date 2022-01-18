@@ -7,11 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>920</width>
-    <height>570</height>
+    <height>571</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>פורמיון</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::RightToLeft</enum>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -30,27 +33,27 @@
      <x>0</x>
      <y>0</y>
      <width>920</width>
-     <height>23</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>קובץ</string>
     </property>
    </widget>
    <widget class="QMenu" name="menuEfit">
     <property name="title">
-     <string>Edit</string>
+     <string>עריכה</string>
     </property>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
-     <string>View</string>
+     <string>תצוגה</string>
     </property>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>Help</string>
+     <string>עזרה</string>
     </property>
    </widget>
    <addaction name="menuFile"/>
@@ -60,11 +63,14 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QDockWidget" name="controlsDock">
+   <property name="features">
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   </property>
    <property name="windowTitle">
-    <string>Controls</string>
+    <string>פעולות</string>
    </property>
    <attribute name="dockWidgetArea">
-    <number>1</number>
+    <number>2</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents">
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -74,24 +80,22 @@
      <item>
       <widget class="QPushButton" name="createTeamBtn">
        <property name="text">
-        <string>Create 
-Team</string>
+        <string>צור קבוצה</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="createParticipantsBtn">
        <property name="text">
-        <string>Create 
-Participant</string>
+        <string>צור משתתף</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="loadParticipantsBtn">
        <property name="text">
-        <string>Load 
-Participants File</string>
+        <string>טען קובץ
+משתתפים</string>
        </property>
       </widget>
      </item>
@@ -118,11 +122,14 @@ Participants File</string>
      <height>524</height>
     </size>
    </property>
+   <property name="features">
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   </property>
    <property name="windowTitle">
-    <string>Participants</string>
+    <string>משתתפים</string>
    </property>
    <attribute name="dockWidgetArea">
-    <number>2</number>
+    <number>1</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents_2">
     <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -132,7 +139,7 @@ Participants File</string>
         <string/>
        </property>
        <property name="placeholderText">
-        <string>Filter</string>
+        <string>פילטר</string>
        </property>
       </widget>
      </item>

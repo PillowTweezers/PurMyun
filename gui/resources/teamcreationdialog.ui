@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>יצירת צוות</string>
   </property>
+  <property name="layoutDirection">
+   <enum>Qt::RightToLeft</enum>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>12</number>
@@ -22,28 +25,28 @@
      <item row="0" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Name:</string>
+        <string>שם:</string>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
       <widget class="QLineEdit" name="teamNameEdt">
        <property name="placeholderText">
-        <string>Team's Name</string>
+        <string>שם הקבוצה</string>
        </property>
       </widget>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>Color:</string>
+        <string>צבע:</string>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
       <widget class="QPushButton" name="colorPickerBtn">
        <property name="text">
-        <string>Pick Color</string>
+        <string>בחר צבע</string>
        </property>
        <property name="flat">
         <bool>false</bool>
@@ -52,8 +55,12 @@
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="label_9">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <property name="text">
-        <string>Levels:</string>
+        <string>מדדי
+חשיבות:</string>
        </property>
       </widget>
      </item>
@@ -356,6 +363,12 @@
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>

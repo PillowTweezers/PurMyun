@@ -25,7 +25,8 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(920, 570)
+        MainWindow.resize(920, 571)
+        MainWindow.setLayoutDirection(Qt.RightToLeft)
         MainWindow.setAutoFillBackground(False)
         MainWindow.setStyleSheet(u"")
         self.actionCreate_Team = QAction(MainWindow)
@@ -45,7 +46,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 920, 23))
+        self.menubar.setGeometry(QRect(0, 0, 920, 24))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
         self.menuEfit = QMenu(self.menubar)
@@ -60,6 +61,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
         self.controlsDock = QDockWidget(MainWindow)
         self.controlsDock.setObjectName(u"controlsDock")
+        self.controlsDock.setFeatures(QDockWidget.DockWidgetFloatable|QDockWidget.DockWidgetMovable)
         self.dockWidgetContents = QWidget()
         self.dockWidgetContents.setObjectName(u"dockWidgetContents")
         self.verticalLayout = QVBoxLayout(self.dockWidgetContents)
@@ -85,10 +87,11 @@ class Ui_MainWindow(object):
         self.verticalLayout.addItem(self.verticalSpacer)
 
         self.controlsDock.setWidget(self.dockWidgetContents)
-        MainWindow.addDockWidget(Qt.LeftDockWidgetArea, self.controlsDock)
+        MainWindow.addDockWidget(Qt.RightDockWidgetArea, self.controlsDock)
         self.participantsDock = QDockWidget(MainWindow)
         self.participantsDock.setObjectName(u"participantsDock")
         self.participantsDock.setMinimumSize(QSize(228, 524))
+        self.participantsDock.setFeatures(QDockWidget.DockWidgetFloatable|QDockWidget.DockWidgetMovable)
         self.dockWidgetContents_2 = QWidget()
         self.dockWidgetContents_2.setObjectName(u"dockWidgetContents_2")
         self.verticalLayout_2 = QVBoxLayout(self.dockWidgetContents_2)
@@ -108,7 +111,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addWidget(self.participantsListView)
 
         self.participantsDock.setWidget(self.dockWidgetContents_2)
-        MainWindow.addDockWidget(Qt.RightDockWidgetArea, self.participantsDock)
+        MainWindow.addDockWidget(Qt.LeftDockWidgetArea, self.participantsDock)
 
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuEfit.menuAction())
@@ -131,19 +134,17 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(tooltip)
         self.actionLoad_Participants_File.setToolTip(QCoreApplication.translate("MainWindow", u"Load Participants File", None))
 #endif // QT_CONFIG(tooltip)
-        self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
-        self.menuEfit.setTitle(QCoreApplication.translate("MainWindow", u"Edit", None))
-        self.menuView.setTitle(QCoreApplication.translate("MainWindow", u"View", None))
-        self.menuHelp.setTitle(QCoreApplication.translate("MainWindow", u"Help", None))
-        self.controlsDock.setWindowTitle(QCoreApplication.translate("MainWindow", u"Controls", None))
-        self.createTeamBtn.setText(QCoreApplication.translate("MainWindow", u"Create \n"
-"Team", None))
-        self.createParticipantsBtn.setText(QCoreApplication.translate("MainWindow", u"Create \n"
-"Participant", None))
-        self.loadParticipantsBtn.setText(QCoreApplication.translate("MainWindow", u"Load \n"
-"Participants File", None))
-        self.participantsDock.setWindowTitle(QCoreApplication.translate("MainWindow", u"Participants", None))
+        self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"\u05e7\u05d5\u05d1\u05e5", None))
+        self.menuEfit.setTitle(QCoreApplication.translate("MainWindow", u"\u05e2\u05e8\u05d9\u05db\u05d4", None))
+        self.menuView.setTitle(QCoreApplication.translate("MainWindow", u"\u05ea\u05e6\u05d5\u05d2\u05d4", None))
+        self.menuHelp.setTitle(QCoreApplication.translate("MainWindow", u"\u05e2\u05d6\u05e8\u05d4", None))
+        self.controlsDock.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u05e4\u05e2\u05d5\u05dc\u05d5\u05ea", None))
+        self.createTeamBtn.setText(QCoreApplication.translate("MainWindow", u"\u05e6\u05d5\u05e8 \u05e7\u05d1\u05d5\u05e6\u05d4", None))
+        self.createParticipantsBtn.setText(QCoreApplication.translate("MainWindow", u"\u05e6\u05d5\u05e8 \u05de\u05e9\u05ea\u05ea\u05e3", None))
+        self.loadParticipantsBtn.setText(QCoreApplication.translate("MainWindow", u"\u05d8\u05e2\u05df \u05e7\u05d5\u05d1\u05e5\n"
+"\u05de\u05e9\u05ea\u05ea\u05e4\u05d9\u05dd", None))
+        self.participantsDock.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u05de\u05e9\u05ea\u05ea\u05e4\u05d9\u05dd", None))
         self.nameFilterEdt.setText("")
-        self.nameFilterEdt.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Filter", None))
+        self.nameFilterEdt.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u05e4\u05d9\u05dc\u05d8\u05e8", None))
     # retranslateUi
 
