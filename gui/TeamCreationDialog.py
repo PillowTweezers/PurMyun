@@ -1,7 +1,7 @@
 from PySide6 import QtWidgets
 
 from src.Weights import Weights
-from ui_teamcreationdialog import Ui_TeamCreationDialog
+from gui.ui.ui_teamcreationdialog import Ui_TeamCreationDialog
 from src import Client as client
 
 

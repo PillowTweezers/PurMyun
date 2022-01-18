@@ -2,8 +2,7 @@ from PySide6 import QtWidgets, QtGui
 from PySide6.QtCore import QSettings, Slot
 from gui.TeamCreationDialog import TeamCreationDialog
 from src import Client as client
-from ui_mainwindow import Ui_MainWindow
-import os
+from gui.ui.ui_mainwindow import Ui_MainWindow
 
 
 class MainWindow(QtWidgets.QMainWindow):
