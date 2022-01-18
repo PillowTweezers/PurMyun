@@ -11,6 +11,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        self.ui.controlsDock.setWindowTitle()
+
         self.ui.createTeamBtn.clicked.connect(self.create_team)
         self.ui.loadParticipantsBtn.clicked.connect(self.load_participants)
 
