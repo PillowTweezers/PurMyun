@@ -61,11 +61,11 @@ class MainWindow(QtWidgets.QMainWindow):
             if filename:
                 if client.save_project_as(filename=filename) == 0:
                     self.statusBar().showMessage("קובץ נשמר בהצלחה")
-                    return 0
+                    return True
                 else:
                     self.error_text("שגיאה בשמירת קובץ")
         self.statusBar().showMessage("שמירה בוטלה")
-        return -1
+        return False
 
     def save(self):
         self.statusBar().showMessage("שמירת קובץ...")
@@ -74,6 +74,11 @@ class MainWindow(QtWidgets.QMainWindow):
         else:
             if client.save_project() == 0:
                 self.statusBar().showMessage("קובץ נשמר בהצלחה")
+                return True
+            else:
+                self.error_text("שגיאה בשמירת קובץ")
+        self.statusBar().showMessage("שמירה בוטלה")
+        return False
 
     @Slot()
     def remove_participants(self):
@@ -154,9 +159,16 @@ class MainWindow(QtWidgets.QMainWindow):
         self.render_participants_table()
         self.statusBar().showMessage("משתתפים נטענו")
 
+    def closeEvent(self, event):
+        if self.can_exit():
+            event.accept()
+        else:
+            event.ignore()
+
     @Slot()
     def quit(self):
-        self.close()
+        if self.can_exit():
+            self.close()
 
     def render_participants_table(self):
         # This library seems to not work well with clearContents()
@@ -178,6 +190,34 @@ class MainWindow(QtWidgets.QMainWindow):
             if participant.team is not None:
                 item = QtWidgets.QTableWidgetItem(participant.team.name)
                 self.ui.participantsTableWidget.setItem(client.participants.index(participant), 3, item)
+
+    def can_exit(self):
+        if client.is_dirty:
+            confirm_dialog = QtWidgets.QMessageBox()
+            confirm_dialog.setLayout(QtWidgets.QVBoxLayout())
+            confirm_dialog.setText("הנתונים שלך עדיין לא נשמרו. האם אתה בטוח שברצונך לצאת?")
+            confirm_dialog.setStandardButtons(
+                QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No | QtWidgets.QMessageBox.Save)
+            yes_button = confirm_dialog.button(QtWidgets.QMessageBox.Yes)
+            yes_button.setStyleSheet("text-align: left;")
+            yes_button.setText("כן")
+            no_button = confirm_dialog.button(QtWidgets.QMessageBox.No)
+            no_button.setStyleSheet("text-align: left;")
+            no_button.setText("לא")
+            save_button = confirm_dialog.button(QtWidgets.QMessageBox.Save)
+            save_button.setStyleSheet("text-align: left;")
+            save_button.setText("שמור וצא")
+            confirm_dialog.setDefaultButton(QtWidgets.QMessageBox.No)
+            confirm_dialog.setIcon(QtWidgets.QMessageBox.Question)
+            confirm_dialog.setWindowTitle("אישור יציאה")
+            confirm_dialog.exec()
+            if confirm_dialog.result() == QtWidgets.QMessageBox.Yes:
+                return True
+            elif confirm_dialog.result() == QtWidgets.QMessageBox.Save:
+                if self.save():
+                    return True
+            return False
+        return True
 
     def alert_text(self, text: str):
         QtWidgets.QMessageBox.about(self, "Alert", text)

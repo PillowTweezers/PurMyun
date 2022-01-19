@@ -11,9 +11,12 @@ participants = []
 teams = []
 id_keeper = 0
 last_project_file = None
+is_dirty = False
 
 
 def load_participants(file_path):
+    global is_dirty
+    is_dirty = True
     global id_keeper
     if file_path == "":
         return [], 1
@@ -29,12 +32,16 @@ def load_participants(file_path):
 
 
 def create_team(team_name: str, team_weights: Weights):
+    global is_dirty
+    is_dirty = True
     team_weights.name = team_name
     team = Team(name=team_name, weights=team_weights)
     teams.append(team)
 
 
 def assign_to_teams():
+    global is_dirty
+    is_dirty = True
     def remove_participant_from_list(participant, lst):
         for i in range(len(lst)):
             if lst[i] == participant:
@@ -82,10 +89,12 @@ def save_participants_to_file(filename="participants.pickle"):
 
 
 def save_project_as(filename: str | None = "unnamed.pickle"):
+    global is_dirty
     global last_project_file
     try:
         with open(filename, 'wb') as f:
             pickle.dump((participants, teams), f, pickle.HIGHEST_PROTOCOL)
+        is_dirty = False
         last_project_file = filename
         return 0
     except PermissionError:
@@ -106,6 +115,8 @@ def load_project(filename="unnamed.pickle"):
 
 
 def add_participant(participant):
+    global is_dirty
+    is_dirty = True
     global id_keeper
     participant.id = id_keeper
     id_keeper += 1
@@ -113,6 +124,8 @@ def add_participant(participant):
 
 
 def remove_participant(participant_id):
+    global is_dirty
+    is_dirty = True
     for participant in participants:
         if participant.id == participant_id:
             participants.remove(participant)
