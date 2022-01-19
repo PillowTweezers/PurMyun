@@ -1,5 +1,8 @@
+import os
+
 from PySide6 import QtWidgets, QtCore
 from PySide6.QtCore import QSettings, Slot
+from PySide6.QtGui import QAction
 
 from gui.ParticipantCreationDialog import ParticipantCreationDialog
 from gui.ParticipantDialog import ParticipantDialog
@@ -10,11 +13,16 @@ from src.Participant import Participant
 
 
 class MainWindow(QtWidgets.QMainWindow):
+    MAX_RECENT_FILES = 4
+
     def __init__(self):
         super(MainWindow, self).__init__()
         # Load UI from compiled .ui file
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        # Local variables
+        self.recent_actions = []
 
         # Connect All Buttons to their corresponding slots
         self.ui.createTeamBtn.clicked.connect(self.create_team)
@@ -28,6 +36,13 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.quitAction.triggered.connect(self.quit)
         self.ui.openAction.triggered.connect(self.open_project)
         self.ui.newAction.triggered.connect(self.new_project)
+
+        # Create recent files menu actions
+        for i in range(self.MAX_RECENT_FILES):
+            self.recent_actions.append(
+                QAction(self, visible=False, triggered=self.open_recent_file))
+            self.ui.recentFilesMenu.insertAction(self.ui.quitAction, self.recent_actions[i])
+        self.update_recent_files_menu()
 
         # Init participants table
         self.ui.participantsTableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
@@ -70,6 +85,20 @@ class MainWindow(QtWidgets.QMainWindow):
             self.statusBar().showMessage("יצירת פרויקט בוטלה")
             return False
 
+    def open_recent_file(self):
+        if self.can_exit():
+            self.statusBar().showMessage("פותח פרויקט...")
+            if client.open_project(self.sender().data()) == 0:
+                self.render_participants_table()
+                self.statusBar().showMessage("פרויקט נטען")
+                self.update_current_file()
+                return True
+            else:
+                self.statusBar().showMessage("טעינת פרויקט נכשלה")
+        else:
+            self.statusBar().showMessage("פתיחת פרויקט בוטלה")
+        return False
+
     @Slot()
     def open_project(self):
         if self.can_exit():
@@ -85,6 +114,7 @@ class MainWindow(QtWidgets.QMainWindow):
                     if client.open_project(filename=filename) == 0:
                         self.statusBar().showMessage("קובץ נטען בהצלחה")
                         self.render_participants_table()
+                        self.update_current_file()
                         return True
                     else:
                         self.error_text("שגיאה בטעינת קובץ")
@@ -105,6 +135,7 @@ class MainWindow(QtWidgets.QMainWindow):
             if filename:
                 if client.save_project_as(filename=filename) == 0:
                     self.statusBar().showMessage("קובץ נשמר בהצלחה")
+                    self.update_current_file()
                     return True
                 else:
                     self.error_text("שגיאה בשמירת קובץ")
@@ -113,7 +144,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def save(self):
         self.statusBar().showMessage("שמירת קובץ...")
-        if client.last_project_file is None:
+        if client.current_file is None:
             return self.save_as()
         else:
             if client.save_project() == 0:
@@ -271,6 +302,45 @@ class MainWindow(QtWidgets.QMainWindow):
                     return True
             return False
         return True
+
+    def update_current_file(self):
+        settings = QtCore.QSettings('settings.ini', QtCore.QSettings.IniFormat)
+        files = settings.value('recentFileList', [])
+        if isinstance(files, str):
+            files = [files]
+
+        try:
+            files.remove(client.current_file)
+        except ValueError:
+            pass
+
+        files.insert(0, client.current_file)
+        del files[self.MAX_RECENT_FILES:]
+
+        settings.setValue('recentFileList', files)
+
+        self.update_recent_files_menu()
+
+    def update_recent_files_menu(self):
+        settings = QtCore.QSettings('settings.ini', QtCore.QSettings.IniFormat)
+        files = settings.value('recentFileList', [])
+        if isinstance(files, str):
+            files = [files]
+
+        files_no = 0
+        if files:
+            files_no = len(files)
+
+        num_recent_files = min(files_no, self.MAX_RECENT_FILES)
+
+        for i in range(num_recent_files):
+            text = "&{}. {}".format(i + 1, os.path.basename(files[i]))
+            self.recent_actions[i].setText(text)
+            self.recent_actions[i].setData(files[i])
+            self.recent_actions[i].setVisible(True)
+
+        for i in range(num_recent_files, self.MAX_RECENT_FILES):
+            self.recent_actions[i].setVisible(False)
 
     def alert_text(self, text: str):
         QtWidgets.QMessageBox.about(self, "Alert", text)

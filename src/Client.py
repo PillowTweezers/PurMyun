@@ -10,7 +10,7 @@ from src.Weights import Weights
 participants = []
 teams = []
 id_keeper = 0
-last_project_file = None
+current_file = None
 is_dirty = False
 
 
@@ -91,32 +91,32 @@ def save_participants_to_file(filename="participants.pickle"):
 
 def save_project_as(filename: str | None = "unnamed.pickle"):
     global is_dirty
-    global last_project_file
+    global current_file
     try:
         with open(filename, 'wb') as f:
             pickle.dump((participants, teams), f, pickle.HIGHEST_PROTOCOL)
         is_dirty = False
-        last_project_file = filename
+        current_file = filename
         return 0
     except PermissionError:
         return -1
 
 
 def save_project():
-    if last_project_file is not None:
-        return save_project_as(last_project_file)
+    if current_file is not None:
+        return save_project_as(current_file)
     else:
         return -1
 
 
 def open_project(filename="unnamed.pickle"):
     global is_dirty
-    global last_project_file
+    global current_file
     try:
         with open(filename, 'rb') as f:
             global participants, teams
             participants, teams = pickle.load(f)
-        last_project_file = filename
+        current_file = filename
         is_dirty = False
         return 0
     except FileNotFoundError:
@@ -151,5 +151,5 @@ def new_project():
     teams = []
     global id_keeper
     id_keeper = 0
-    global last_project_file
-    last_project_file = None
+    global current_file
+    current_file = None

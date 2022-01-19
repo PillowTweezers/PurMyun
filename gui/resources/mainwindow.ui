@@ -46,9 +46,18 @@
     <property name="title">
      <string>קובץ</string>
     </property>
+    <widget class="QMenu" name="recentFilesMenu">
+     <property name="title">
+      <string>פרויקטים אחרונים</string>
+     </property>
+     <property name="icon">
+      <iconset resource="mainwindow.qrc">
+       <normaloff>:/assets/recent.png</normaloff>:/assets/recent.png</iconset>
+     </property>
+    </widget>
     <addaction name="newAction"/>
     <addaction name="openAction"/>
-    <addaction name="recentAction"/>
+    <addaction name="recentFilesMenu"/>
     <addaction name="separator"/>
     <addaction name="saveAsAction"/>
     <addaction name="saveAction"/>
@@ -61,7 +70,6 @@
     <property name="title">
      <string>עריכה</string>
     </property>
-    <addaction name="action"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -274,15 +282,6 @@
     <string>Ctrl+O</string>
    </property>
   </action>
-  <action name="recentAction">
-   <property name="icon">
-    <iconset resource="mainwindow.qrc">
-     <normaloff>:/assets/recent.png</normaloff>:/assets/recent.png</iconset>
-   </property>
-   <property name="text">
-    <string>פרויקטים אחרונים</string>
-   </property>
-  </action>
   <action name="quitAction">
    <property name="icon">
     <iconset resource="mainwindow.qrc">
@@ -310,6 +309,38 @@
   <action name="action">
    <property name="text">
     <string>בדיקה</string>
+   </property>
+  </action>
+  <action name="recentAction1">
+   <property name="text">
+    <string>1</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="action_2">
+   <property name="text">
+    <string>2</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="recentAction3">
+   <property name="text">
+    <string>3</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="recentAction4">
+   <property name="text">
+    <string>4</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
    </property>
   </action>
  </widget>
