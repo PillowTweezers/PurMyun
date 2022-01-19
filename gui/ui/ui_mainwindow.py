@@ -22,7 +22,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(920, 571)
+        MainWindow.resize(920, 579)
         MainWindow.setLayoutDirection(Qt.RightToLeft)
         MainWindow.setAutoFillBackground(False)
         MainWindow.setStyleSheet(u"")
@@ -72,6 +72,8 @@ class Ui_MainWindow(object):
         icon6 = QIcon()
         icon6.addFile(u":/assets/new.png", QSize(), QIcon.Normal, QIcon.Off)
         self.newAction.setIcon(icon6)
+        self.action = QAction(MainWindow)
+        self.action.setObjectName(u"action")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setStyleSheet(u"background-color:rgb(139, 139, 139)")
@@ -172,6 +174,7 @@ class Ui_MainWindow(object):
         self.menuFile.addAction(self.loadParticipantsFileAction)
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.quitAction)
+        self.menuEfit.addAction(self.action)
 
         self.retranslateUi(MainWindow)
 
@@ -226,6 +229,7 @@ class Ui_MainWindow(object):
         # if QT_CONFIG(shortcut)
         self.newAction.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+N", None))
         # endif // QT_CONFIG(shortcut)
+        self.action.setText(QCoreApplication.translate("MainWindow", u"\u05d1\u05d3\u05d9\u05e7\u05d4", None))
         self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"\u05e7\u05d5\u05d1\u05e5", None))
         self.menuEfit.setTitle(QCoreApplication.translate("MainWindow", u"\u05e2\u05e8\u05d9\u05db\u05d4", None))
         self.menuView.setTitle(QCoreApplication.translate("MainWindow", u"\u05ea\u05e6\u05d5\u05d2\u05d4", None))

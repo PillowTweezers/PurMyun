@@ -153,4 +153,4 @@ class MainWindow(QtWidgets.QMainWindow):
         QtWidgets.QMessageBox.about(self, "Alert", text)
 
     def error_text(self, text: str):
-        QtWidgets.QMessageBox.critical(self, "Alert", text)
+        QtWidgets.QMessageBox.critical(self, "Error", text)

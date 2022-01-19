@@ -7,7 +7,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>920</width>
-                <height>571</height>
+                <height>579</height>
             </rect>
         </property>
         <property name="windowTitle">
@@ -61,6 +61,7 @@
                 <property name="title">
                     <string>עריכה</string>
                 </property>
+                <addaction name="action"/>
             </widget>
             <widget class="QMenu" name="menuView">
                 <property name="title">
@@ -313,6 +314,11 @@
             </property>
             <property name="shortcut">
                 <string>Ctrl+N</string>
+            </property>
+        </action>
+        <action name="action">
+            <property name="text">
+                <string>בדיקה</string>
             </property>
         </action>
     </widget>
