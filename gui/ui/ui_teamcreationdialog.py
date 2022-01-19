@@ -221,28 +221,21 @@ class Ui_TeamCreationDialog(object):
         self.colorPickerBtn.setText(
             QCoreApplication.translate("TeamCreationDialog", u"\u05d1\u05d7\u05e8 \u05e6\u05d1\u05e2", None))
         self.label_9.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05de\u05d3\u05d3\u05d9\n"
-                                                                              "                                    \u05d7\u05e9\u05d9\u05d1\u05d5\u05ea:\n"
-                                                                              "                                ", None))
-        self.label_6.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05e2\u05d9\u05d2\u05d5\u05df\n"
-                                                                              "                                            \u05d9\u05ea\u05e8\u05d9\u05dd\n"
-                                                                              "                                        ",
+                                                                              "\u05d7\u05e9\u05d9\u05d1\u05d5\u05ea:",
                                                         None))
+        self.label_6.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05e2\u05d9\u05d2\u05d5\u05df\n"
+                                                                              "\u05d9\u05ea\u05e8\u05d9\u05dd", None))
         self.label_8.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05db\u05e4\u05d9\u05ea\u05d4\n"
-                                                                              "                                            \u05de\u05e8\u05d5\u05d1\u05e2\u05ea\n"
-                                                                              "                                        ",
+                                                                              "\u05de\u05e8\u05d5\u05d1\u05e2\u05ea",
                                                         None))
         self.label_5.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05db\u05e4\u05d9\u05ea\u05d4\n"
-                                                                              "                                            \u05de\u05e7\u05d1\u05d9\u05dc\u05d4\n"
-                                                                              "                                        ",
+                                                                              "\u05de\u05e7\u05d1\u05d9\u05dc\u05d4",
                                                         None))
         self.label_4.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05db\u05e4\u05d9\u05ea\u05d4\n"
-                                                                              "                                            \u05de\u05d5\u05e6\u05dc\u05d1\u05ea\n"
-                                                                              "                                        ",
+                                                                              "\u05de\u05d5\u05e6\u05dc\u05d1\u05ea",
                                                         None))
         self.label_3.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05db\u05e4\u05d9\u05ea\u05ea\n"
-                                                                              "                                            \u05d7\u05e6\u05d5\u05d1\u05d4\n"
-                                                                              "                                        ",
-                                                        None))
+                                                                              "\u05d7\u05e6\u05d5\u05d1\u05d4", None))
         self.label_7.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05de\u05e7\u05e8\u05de\u05d4", None))
     # retranslateUi
 
