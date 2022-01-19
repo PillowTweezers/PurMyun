@@ -4,5 +4,11 @@
         <file>../../assets/remove.png</file>
         <file>../../assets/add.png</file>
         <file>../../assets/form.png</file>
+        <file>../../assets/new.png</file>
+        <file>../../assets/recent.png</file>
+        <file>../../assets/open.png</file>
+        <file>../../assets/save.png</file>
+        <file>../../assets/saveAs.png</file>
+        <file>../../assets/exit.png</file>
     </qresource>
 </RCC>

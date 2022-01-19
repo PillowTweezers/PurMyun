@@ -46,7 +46,16 @@
                 <property name="title">
                     <string>קובץ</string>
                 </property>
+                <addaction name="newAction"/>
+                <addaction name="openAction"/>
+                <addaction name="recentAction"/>
+                <addaction name="separator"/>
+                <addaction name="saveAsAction"/>
+                <addaction name="saveAction"/>
+                <addaction name="separator"/>
                 <addaction name="loadParticipantsFileAction"/>
+                <addaction name="separator"/>
+                <addaction name="quitAction"/>
             </widget>
             <widget class="QMenu" name="menuEfit">
                 <property name="title">
@@ -229,6 +238,81 @@
             </property>
             <property name="text">
                 <string>פתח קובץ משתמשים...</string>
+            </property>
+        </action>
+        <action name="saveAsAction">
+            <property name="icon">
+                <iconset resource="mainwindow.qrc">
+                    <normaloff>:/assets/saveAs.png</normaloff>:/assets/saveAs.png
+                </iconset>
+            </property>
+            <property name="text">
+                <string>שמור פרויקט בשם...</string>
+            </property>
+            <property name="shortcut">
+                <string>F12</string>
+            </property>
+        </action>
+        <action name="saveAction">
+            <property name="icon">
+                <iconset resource="mainwindow.qrc">
+                    <normaloff>:/assets/save.png</normaloff>:/assets/save.png
+                </iconset>
+            </property>
+            <property name="text">
+                <string>שמור פרויקט</string>
+            </property>
+            <property name="shortcut">
+                <string>Ctrl+S</string>
+            </property>
+        </action>
+        <action name="openAction">
+            <property name="icon">
+                <iconset resource="mainwindow.qrc">
+                    <normaloff>:/assets/open.png</normaloff>:/assets/open.png
+                </iconset>
+            </property>
+            <property name="text">
+                <string>פתח פרויקט...</string>
+            </property>
+            <property name="shortcut">
+                <string>Ctrl+O</string>
+            </property>
+        </action>
+        <action name="recentAction">
+            <property name="icon">
+                <iconset resource="mainwindow.qrc">
+                    <normaloff>:/assets/recent.png</normaloff>:/assets/recent.png
+                </iconset>
+            </property>
+            <property name="text">
+                <string>פרויקטים אחרונים</string>
+            </property>
+        </action>
+        <action name="quitAction">
+            <property name="icon">
+                <iconset resource="mainwindow.qrc">
+                    <normaloff>:/assets/exit.png</normaloff>:/assets/exit.png
+                </iconset>
+            </property>
+            <property name="text">
+                <string>צא</string>
+            </property>
+            <property name="shortcut">
+                <string>Ctrl+Q</string>
+            </property>
+        </action>
+        <action name="newAction">
+            <property name="icon">
+                <iconset resource="mainwindow.qrc">
+                    <normaloff>:/assets/new.png</normaloff>:/assets/new.png
+                </iconset>
+            </property>
+            <property name="text">
+                <string>צור פרויקט חדש...</string>
+            </property>
+            <property name="shortcut">
+                <string>Ctrl+N</string>
             </property>
         </action>
     </widget>

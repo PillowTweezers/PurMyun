@@ -42,6 +42,36 @@ class Ui_MainWindow(object):
         icon = QIcon()
         icon.addFile(u":/assets/form.png", QSize(), QIcon.Normal, QIcon.Off)
         self.loadParticipantsFileAction.setIcon(icon)
+        self.saveAsAction = QAction(MainWindow)
+        self.saveAsAction.setObjectName(u"saveAsAction")
+        icon1 = QIcon()
+        icon1.addFile(u":/assets/saveAs.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.saveAsAction.setIcon(icon1)
+        self.saveAction = QAction(MainWindow)
+        self.saveAction.setObjectName(u"saveAction")
+        icon2 = QIcon()
+        icon2.addFile(u":/assets/save.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.saveAction.setIcon(icon2)
+        self.openAction = QAction(MainWindow)
+        self.openAction.setObjectName(u"openAction")
+        icon3 = QIcon()
+        icon3.addFile(u":/assets/open.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.openAction.setIcon(icon3)
+        self.recentAction = QAction(MainWindow)
+        self.recentAction.setObjectName(u"recentAction")
+        icon4 = QIcon()
+        icon4.addFile(u":/assets/recent.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.recentAction.setIcon(icon4)
+        self.quitAction = QAction(MainWindow)
+        self.quitAction.setObjectName(u"quitAction")
+        icon5 = QIcon()
+        icon5.addFile(u":/assets/exit.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.quitAction.setIcon(icon5)
+        self.newAction = QAction(MainWindow)
+        self.newAction.setObjectName(u"newAction")
+        icon6 = QIcon()
+        icon6.addFile(u":/assets/new.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.newAction.setIcon(icon6)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setStyleSheet(u"background-color:rgb(139, 139, 139)")
@@ -99,20 +129,19 @@ class Ui_MainWindow(object):
 
         self.addParticipantBtn = QPushButton(self.dockWidgetContents_2)
         self.addParticipantBtn.setObjectName(u"addParticipantBtn")
-        icon1 = QIcon()
-        icon1.addFile(u":/assets/add.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.addParticipantBtn.setIcon(icon1)
+        icon7 = QIcon()
+        icon7.addFile(u":/assets/add.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.addParticipantBtn.setIcon(icon7)
 
         self.horizontalLayout.addWidget(self.addParticipantBtn)
 
         self.removeParticipantBtn = QPushButton(self.dockWidgetContents_2)
         self.removeParticipantBtn.setObjectName(u"removeParticipantBtn")
-        icon2 = QIcon()
-        icon2.addFile(u":/assets/remove.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.removeParticipantBtn.setIcon(icon2)
+        icon8 = QIcon()
+        icon8.addFile(u":/assets/remove.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.removeParticipantBtn.setIcon(icon8)
 
         self.horizontalLayout.addWidget(self.removeParticipantBtn)
-
 
         self.verticalLayout_2.addLayout(self.horizontalLayout)
 
@@ -132,7 +161,16 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuEfit.menuAction())
         self.menubar.addAction(self.menuView.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
+        self.menuFile.addAction(self.newAction)
+        self.menuFile.addAction(self.openAction)
+        self.menuFile.addAction(self.recentAction)
+        self.menuFile.addSeparator()
+        self.menuFile.addAction(self.saveAsAction)
+        self.menuFile.addAction(self.saveAction)
+        self.menuFile.addSeparator()
         self.menuFile.addAction(self.loadParticipantsFileAction)
+        self.menuFile.addSeparator()
+        self.menuFile.addAction(self.quitAction)
 
         self.retranslateUi(MainWindow)
 
@@ -156,6 +194,37 @@ class Ui_MainWindow(object):
         self.loadParticipantsFileAction.setText(QCoreApplication.translate("MainWindow",
                                                                            u"\u05e4\u05ea\u05d7 \u05e7\u05d5\u05d1\u05e5 \u05de\u05e9\u05ea\u05de\u05e9\u05d9\u05dd...",
                                                                            None))
+        self.saveAsAction.setText(QCoreApplication.translate("MainWindow",
+                                                             u"\u05e9\u05de\u05d5\u05e8 \u05e4\u05e8\u05d5\u05d9\u05e7\u05d8 \u05d1\u05e9\u05dd...",
+                                                             None))
+        # if QT_CONFIG(shortcut)
+        self.saveAsAction.setShortcut(QCoreApplication.translate("MainWindow", u"F12", None))
+        # endif // QT_CONFIG(shortcut)
+        self.saveAction.setText(
+            QCoreApplication.translate("MainWindow", u"\u05e9\u05de\u05d5\u05e8 \u05e4\u05e8\u05d5\u05d9\u05e7\u05d8",
+                                       None))
+        # if QT_CONFIG(shortcut)
+        self.saveAction.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+S", None))
+        # endif // QT_CONFIG(shortcut)
+        self.openAction.setText(
+            QCoreApplication.translate("MainWindow", u"\u05e4\u05ea\u05d7 \u05e4\u05e8\u05d5\u05d9\u05e7\u05d8...",
+                                       None))
+        # if QT_CONFIG(shortcut)
+        self.openAction.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+O", None))
+        # endif // QT_CONFIG(shortcut)
+        self.recentAction.setText(QCoreApplication.translate("MainWindow",
+                                                             u"\u05e4\u05e8\u05d5\u05d9\u05e7\u05d8\u05d9\u05dd \u05d0\u05d7\u05e8\u05d5\u05e0\u05d9\u05dd",
+                                                             None))
+        self.quitAction.setText(QCoreApplication.translate("MainWindow", u"\u05e6\u05d0", None))
+        # if QT_CONFIG(shortcut)
+        self.quitAction.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Q", None))
+        # endif // QT_CONFIG(shortcut)
+        self.newAction.setText(QCoreApplication.translate("MainWindow",
+                                                          u"\u05e6\u05d5\u05e8 \u05e4\u05e8\u05d5\u05d9\u05e7\u05d8 \u05d7\u05d3\u05e9...",
+                                                          None))
+        # if QT_CONFIG(shortcut)
+        self.newAction.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+N", None))
+        # endif // QT_CONFIG(shortcut)
         self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"\u05e7\u05d5\u05d1\u05e5", None))
         self.menuEfit.setTitle(QCoreApplication.translate("MainWindow", u"\u05e2\u05e8\u05d9\u05db\u05d4", None))
         self.menuView.setTitle(QCoreApplication.translate("MainWindow", u"\u05ea\u05e6\u05d5\u05d2\u05d4", None))

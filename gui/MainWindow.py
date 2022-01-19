@@ -20,6 +20,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.removeParticipantBtn.clicked.connect(self.remove_participants)
 
         self.ui.loadParticipantsFileAction.triggered.connect(self.load_participants_file)
+        self.ui.quitAction.triggered.connect(self.quit)
 
         self.ui.participantsTableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.ui.participantsTableWidget.setColumnCount(4)
@@ -122,6 +123,10 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.render_participants_table()
         self.statusBar().showMessage("משתתפים נטענו")
+
+    @Slot()
+    def quit(self):
+        self.close()
 
     def render_participants_table(self):
         # This library seems to not work well with clearContents()
