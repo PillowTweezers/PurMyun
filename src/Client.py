@@ -9,11 +9,11 @@ from src.Weights import Weights
 
 participants = []
 teams = []
-participant_id = 0
+id_keeper = 0
 
 
 def load_participants(file_path):
-    global participant_id
+    global id_keeper
     if file_path == "":
         return [], 1
     elif not (os.path.isfile(file_path) and os.access(file_path, mode=os.R_OK)):
@@ -21,8 +21,8 @@ def load_participants(file_path):
     with open(file_path, encoding='utf8') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            row['id'] = participant_id
-            participant_id += 1
+            row['id'] = id_keeper
+            id_keeper += 1
             participants.append(Participant(row))
     return participants.copy(), 0
 
@@ -92,4 +92,14 @@ def load_project():
 
 
 def add_participant(participant):
+    global id_keeper
+    participant.id = id_keeper
+    id_keeper += 1
     participants.append(participant)
+
+
+def remove_participant(participant_id):
+    for participant in participants:
+        if participant.id == participant_id:
+            participants.remove(participant)
+            break

@@ -17,7 +17,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.ui.createTeamBtn.clicked.connect(self.create_team)
         self.ui.loadParticipantsBtn.clicked.connect(self.load_participants)
-        self.ui.createParticipantsBtn.clicked.connect(self.create_participant)
+        self.ui.addParticipantBtn.clicked.connect(self.create_participant)
+        self.ui.removeParticipantBtn.clicked.connect(self.remove_participants)
 
         self.ui.participantsTableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.ui.participantsTableWidget.setColumnCount(4)
@@ -29,6 +30,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.participantsTableWidget.doubleClicked.connect(self.participants_double_clicked)
         self.ui.participantsTableWidget.setAlternatingRowColors(True)
         self.ui.participantsTableWidget.setSortingEnabled(True)
+        self.ui.participantsTableWidget.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
 
         self.settings = QSettings("settings.ini", QSettings.IniFormat)
         self.restoreGeometry(self.settings.value("geometry"))
@@ -40,6 +42,34 @@ class MainWindow(QtWidgets.QMainWindow):
         self.settings.setValue("geometry", self.saveGeometry())
         self.settings.setValue("windowState", self.saveState())
         event.accept()
+
+    @Slot()
+    def remove_participants(self):
+        self.statusBar().showMessage("מחיקת משתתפים...")
+        selected_items = self.ui.participantsTableWidget.selectedItems()
+        selected_rows = set()
+        for item in selected_items:
+            selected_rows.add(item.row())
+        if len(selected_rows) == 0:
+            self.alert_text("לא נבחרו משתתפים")
+            return
+        confirmation_box = QtWidgets.QMessageBox()
+        confirmation_box.setText("האם אתה בטוח שברצונך למחוק את המשתתפים שנבחרו?")
+        confirmation_box.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+        confirmation_box.setDefaultButton(QtWidgets.QMessageBox.No)
+        confirmation_box.setIcon(QtWidgets.QMessageBox.Question)
+        confirmation_box.setWindowTitle("אישור מחיקה")
+        if confirmation_box.exec() == QtWidgets.QMessageBox.Yes:
+            for row in sorted(selected_rows, reverse=True):
+                participant_id = self.ui.participantsTableWidget.item(row, 0).data(QtCore.Qt.UserRole)
+                client.remove_participant(participant_id)
+                print("removed participant with id: " + str(participant_id))
+                self.ui.participantsTableWidget.removeRow(row)
+                print("removed row: " + str(row))
+            self.statusBar().showMessage("משתתפים נמחקו")
+            self.ui.participantsTableWidget.clearSelection()
+        else:
+            self.statusBar().showMessage("מחיקת משתתפים בוטלה")
 
     @Slot()
     def create_participant(self):
@@ -95,6 +125,11 @@ class MainWindow(QtWidgets.QMainWindow):
         self.statusBar().showMessage("משתתפים נטענו")
 
     def render_participants_table(self):
+        # This library seems to not work well with clearContents()
+        # my guess is that it's asynchonous and the table is still rendering
+        # while the clearContents() is happening.
+        # You may want to figure out a way to wait for it to clear. Remember
+        # that this is only a guess.
         self.ui.participantsTableWidget.setRowCount(len(client.participants))
         for participant in client.participants:
             item = QtWidgets.QTableWidgetItem(participant.name)
@@ -115,14 +150,3 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def error_text(self, text: str):
         QtWidgets.QMessageBox.critical(self, "Alert", text)
-
-
-def main():
-    app = QtWidgets.QApplication([])
-    window = MainWindow()
-    window.show()
-    app.exec()
-
-
-if __name__ == "__main__":
-    main()

@@ -13,12 +13,11 @@ from PySide6.QtWidgets import (QFormLayout, QFrame,
                                QGridLayout, QGroupBox, QLabel, QProgressBar,
                                QSizePolicy, QVBoxLayout, QWidget)
 
-
 class Ui_ParticipantDialog(object):
     def setupUi(self, ParticipantDialog):
         if not ParticipantDialog.objectName():
             ParticipantDialog.setObjectName(u"ParticipantDialog")
-        ParticipantDialog.resize(491, 411)
+        ParticipantDialog.resize(496, 429)
         self.verticalLayout = QVBoxLayout(ParticipantDialog)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.widget = QWidget(ParticipantDialog)
@@ -49,6 +48,7 @@ class Ui_ParticipantDialog(object):
         self.teamLbl.setStyleSheet(u"font-size:16px;")
 
         self.formLayout.setWidget(1, QFormLayout.FieldRole, self.teamLbl)
+
 
         self.verticalLayout.addWidget(self.widget)
 
@@ -219,12 +219,13 @@ class Ui_ParticipantDialog(object):
 
         self.gridLayout.addWidget(self.line_3, 1, 2, 1, 1)
 
+
         self.verticalLayout.addWidget(self.groupBox)
+
 
         self.retranslateUi(ParticipantDialog)
 
         QMetaObject.connectSlotsByName(ParticipantDialog)
-
     # setupUi
 
     def retranslateUi(self, ParticipantDialog):
@@ -232,7 +233,9 @@ class Ui_ParticipantDialog(object):
         self.label.setText(QCoreApplication.translate("ParticipantDialog", u"\u05e9\u05dd:", None))
         self.nameLbl.setText("")
         self.label_3.setText(QCoreApplication.translate("ParticipantDialog", u"\u05e6\u05d5\u05d5\u05ea:", None))
-        self.teamLbl.setText("")
+        self.teamLbl.setText(
+            QCoreApplication.translate("ParticipantDialog", u"\u05d0\u05d9\u05e0\u05d5 \u05de\u05e6\u05d5\u05d5\u05ea",
+                                       None))
         self.groupBox.setTitle(QCoreApplication.translate("ParticipantDialog", u"\u05de\u05d3\u05d3\u05d9\u05dd", None))
         self.label_11.setText(QCoreApplication.translate("ParticipantDialog", u"\u05de\u05e7\u05e8\u05de\u05d4", None))
         self.presenceBar.setFormat("")
@@ -265,3 +268,4 @@ class Ui_ParticipantDialog(object):
         self.anchoringLbl.setText("")
         self.macrameLbl.setText("")
     # retranslateUi
+

@@ -6,8 +6,8 @@
             <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>491</width>
-                <height>411</height>
+                <width>496</width>
+                <height>429</height>
             </rect>
         </property>
         <property name="windowTitle">
@@ -56,7 +56,7 @@
                                     <string notr="true">font-size:16px;</string>
                                 </property>
                                 <property name="text">
-                                    <string/>
+                                    <string>אינו מצוות</string>
                                 </property>
                             </widget>
                         </item>

@@ -1,6 +1,7 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
     <qresource>
-        <file>../../assets/exit.png</file>
+        <file>../../assets/remove.png</file>
+        <file>../../assets/add.png</file>
     </qresource>
 </RCC>

@@ -34,4 +34,8 @@ $(COMPILED_DIR)/%_rc.py : $(RESOURCE_DIR)/%.qrc
 	$(PYRCC) $< -o $@
  
 clean : 
-	$(RM) $(COMPILED_UI) $(COMPILED_RESOURCES) $(COMPILED_UI:.py=.pyc) $(COMPILED_RESOURCES:.py=.pyc)  
+	$(RM) $(COMPILED_UI) $(COMPILED_RESOURCES) $(COMPILED_UI:.py=.pyc) $(COMPILED_RESOURCES:.py=.pyc)
+
+run:
+	mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
+	current_dir := $(notdir $(patsubst %/,%,$(dir $(mkfile_path))))

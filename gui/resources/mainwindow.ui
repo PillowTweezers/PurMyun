@@ -85,13 +85,6 @@
                         </widget>
                     </item>
                     <item>
-                        <widget class="QPushButton" name="createParticipantsBtn">
-                            <property name="text">
-                                <string>צור משתתף</string>
-                            </property>
-                        </widget>
-                    </item>
-                    <item>
                         <widget class="QPushButton" name="loadParticipantsBtn">
                             <property name="text">
                                 <string>טען קובץ
@@ -119,8 +112,8 @@
         <widget class="QDockWidget" name="participantsDock">
             <property name="minimumSize">
                 <size>
-                    <width>228</width>
-                    <height>524</height>
+                    <width>253</width>
+                    <height>532</height>
                 </size>
             </property>
             <property name="features">
@@ -135,14 +128,42 @@
             <widget class="QWidget" name="dockWidgetContents_2">
                 <layout class="QVBoxLayout" name="verticalLayout_2">
                     <item>
-                        <widget class="QLineEdit" name="nameFilterEdt">
-                            <property name="text">
-                                <string/>
-                            </property>
-                            <property name="placeholderText">
-                                <string>פילטר</string>
-                            </property>
-                        </widget>
+                        <layout class="QHBoxLayout" name="horizontalLayout">
+                            <item>
+                                <widget class="QLineEdit" name="nameFilterEdt">
+                                    <property name="text">
+                                        <string/>
+                                    </property>
+                                    <property name="placeholderText">
+                                        <string>פילטר</string>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="QPushButton" name="addParticipantBtn">
+                                    <property name="text">
+                                        <string/>
+                                    </property>
+                                    <property name="icon">
+                                        <iconset resource="mainwindow.qrc">
+                                            <normaloff>:/assets/add.png</normaloff>:/assets/add.png
+                                        </iconset>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="QPushButton" name="removeParticipantBtn">
+                                    <property name="text">
+                                        <string/>
+                                    </property>
+                                    <property name="icon">
+                                        <iconset resource="mainwindow.qrc">
+                                            <normaloff>:/assets/remove.png</normaloff>:/assets/remove.png
+                                        </iconset>
+                                    </property>
+                                </widget>
+                            </item>
+                        </layout>
                     </item>
                     <item>
                         <widget class="QTableWidget" name="participantsTableWidget">
@@ -203,6 +224,8 @@
             </property>
         </action>
     </widget>
-    <resources/>
+    <resources>
+        <include location="mainwindow.qrc"/>
+    </resources>
     <connections/>
 </ui>
