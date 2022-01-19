@@ -60,8 +60,7 @@
                             </property>
                             <property name="text">
                                 <string>מדדי
-                                    חשיבות:
-                                </string>
+חשיבות:</string>
                             </property>
                         </widget>
                     </item>
@@ -211,8 +210,7 @@
                                     </property>
                                     <property name="text">
                                         <string>עיגון
-                                            יתרים
-                                        </string>
+יתרים</string>
                                     </property>
                                     <property name="alignment">
                                         <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -257,8 +255,7 @@
                                     </property>
                                     <property name="text">
                                         <string>כפיתה
-                                            מרובעת
-                                        </string>
+מרובעת</string>
                                     </property>
                                     <property name="alignment">
                                         <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -278,8 +275,7 @@
                                     </property>
                                     <property name="text">
                                         <string>כפיתה
-                                            מקבילה
-                                        </string>
+מקבילה</string>
                                     </property>
                                     <property name="alignment">
                                         <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -299,8 +295,7 @@
                                     </property>
                                     <property name="text">
                                         <string>כפיתה
-                                            מוצלבת
-                                        </string>
+מוצלבת</string>
                                     </property>
                                     <property name="alignment">
                                         <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -320,8 +315,7 @@
                                     </property>
                                     <property name="text">
                                         <string>כפיתת
-                                            חצובה
-                                        </string>
+חצובה</string>
                                     </property>
                                     <property name="alignment">
                                         <set>Qt::AlignHCenter|Qt::AlignTop</set>

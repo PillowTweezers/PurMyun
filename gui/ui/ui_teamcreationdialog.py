@@ -122,7 +122,7 @@ class Ui_TeamCreationDialog(object):
         sizePolicy1.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
         self.label_6.setSizePolicy(sizePolicy1)
         self.label_6.setStyleSheet(u"margin-left:4;margin-right:4;font-size:16px;")
-        self.label_6.setAlignment(Qt.AlignHCenter | Qt.AlignTop)
+        self.label_6.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
         self.gridLayout.addWidget(self.label_6, 1, 1, 1, 1)
 
@@ -142,7 +142,7 @@ class Ui_TeamCreationDialog(object):
         sizePolicy1.setHeightForWidth(self.label_8.sizePolicy().hasHeightForWidth())
         self.label_8.setSizePolicy(sizePolicy1)
         self.label_8.setStyleSheet(u"margin-left:4;margin-right:4;font-size:16px;")
-        self.label_8.setAlignment(Qt.AlignHCenter | Qt.AlignTop)
+        self.label_8.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
         self.gridLayout.addWidget(self.label_8, 1, 6, 1, 1)
 
@@ -151,7 +151,7 @@ class Ui_TeamCreationDialog(object):
         sizePolicy1.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
         self.label_5.setSizePolicy(sizePolicy1)
         self.label_5.setStyleSheet(u"margin-left:4;margin-right:4;font-size:16px;")
-        self.label_5.setAlignment(Qt.AlignHCenter | Qt.AlignTop)
+        self.label_5.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
         self.gridLayout.addWidget(self.label_5, 1, 4, 1, 1)
 
@@ -160,7 +160,7 @@ class Ui_TeamCreationDialog(object):
         sizePolicy1.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
         self.label_4.setSizePolicy(sizePolicy1)
         self.label_4.setStyleSheet(u"margin-left:4;margin-right:4;font-size:16px;")
-        self.label_4.setAlignment(Qt.AlignHCenter | Qt.AlignTop)
+        self.label_4.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
         self.gridLayout.addWidget(self.label_4, 1, 5, 1, 1)
 
@@ -169,7 +169,7 @@ class Ui_TeamCreationDialog(object):
         sizePolicy1.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
         self.label_3.setSizePolicy(sizePolicy1)
         self.label_3.setStyleSheet(u"margin-left:4;margin-right:4;font-size:16px;")
-        self.label_3.setAlignment(Qt.AlignHCenter | Qt.AlignTop)
+        self.label_3.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
         self.gridLayout.addWidget(self.label_3, 1, 2, 1, 1)
 
@@ -178,7 +178,7 @@ class Ui_TeamCreationDialog(object):
         sizePolicy1.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
         self.label_7.setSizePolicy(sizePolicy1)
         self.label_7.setStyleSheet(u"margin-left:4;margin-right:4;font-size:16px;")
-        self.label_7.setAlignment(Qt.AlignHCenter | Qt.AlignTop)
+        self.label_7.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
         self.gridLayout.addWidget(self.label_7, 1, 0, 1, 1)
 
@@ -197,7 +197,7 @@ class Ui_TeamCreationDialog(object):
         self.buttonBox.setLayoutDirection(Qt.RightToLeft)
         self.buttonBox.setStyleSheet(u"")
         self.buttonBox.setOrientation(Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel | QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
 
         self.verticalLayout.addWidget(self.buttonBox)
 
@@ -210,32 +210,23 @@ class Ui_TeamCreationDialog(object):
     # setupUi
 
     def retranslateUi(self, TeamCreationDialog):
-        TeamCreationDialog.setWindowTitle(
-            QCoreApplication.translate("TeamCreationDialog", u"\u05d9\u05e6\u05d9\u05e8\u05ea \u05e6\u05d5\u05d5\u05ea",
-                                       None))
+        TeamCreationDialog.setWindowTitle(QCoreApplication.translate("TeamCreationDialog", u"\u05d9\u05e6\u05d9\u05e8\u05ea \u05e6\u05d5\u05d5\u05ea", None))
         self.label.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05e9\u05dd:", None))
-        self.teamNameEdt.setPlaceholderText(
-            QCoreApplication.translate("TeamCreationDialog", u"\u05e9\u05dd \u05d4\u05e7\u05d1\u05d5\u05e6\u05d4",
-                                       None))
+        self.teamNameEdt.setPlaceholderText(QCoreApplication.translate("TeamCreationDialog", u"\u05e9\u05dd \u05d4\u05e7\u05d1\u05d5\u05e6\u05d4", None))
         self.label_2.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05e6\u05d1\u05e2:", None))
-        self.colorPickerBtn.setText(
-            QCoreApplication.translate("TeamCreationDialog", u"\u05d1\u05d7\u05e8 \u05e6\u05d1\u05e2", None))
+        self.colorPickerBtn.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05d1\u05d7\u05e8 \u05e6\u05d1\u05e2", None))
         self.label_9.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05de\u05d3\u05d3\u05d9\n"
-                                                                              "\u05d7\u05e9\u05d9\u05d1\u05d5\u05ea:",
-                                                        None))
+"\u05d7\u05e9\u05d9\u05d1\u05d5\u05ea:", None))
         self.label_6.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05e2\u05d9\u05d2\u05d5\u05df\n"
-                                                                              "\u05d9\u05ea\u05e8\u05d9\u05dd", None))
+"\u05d9\u05ea\u05e8\u05d9\u05dd", None))
         self.label_8.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05db\u05e4\u05d9\u05ea\u05d4\n"
-                                                                              "\u05de\u05e8\u05d5\u05d1\u05e2\u05ea",
-                                                        None))
+"\u05de\u05e8\u05d5\u05d1\u05e2\u05ea", None))
         self.label_5.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05db\u05e4\u05d9\u05ea\u05d4\n"
-                                                                              "\u05de\u05e7\u05d1\u05d9\u05dc\u05d4",
-                                                        None))
+"\u05de\u05e7\u05d1\u05d9\u05dc\u05d4", None))
         self.label_4.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05db\u05e4\u05d9\u05ea\u05d4\n"
-                                                                              "\u05de\u05d5\u05e6\u05dc\u05d1\u05ea",
-                                                        None))
+"\u05de\u05d5\u05e6\u05dc\u05d1\u05ea", None))
         self.label_3.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05db\u05e4\u05d9\u05ea\u05ea\n"
-                                                                              "\u05d7\u05e6\u05d5\u05d1\u05d4", None))
+"\u05d7\u05e6\u05d5\u05d1\u05d4", None))
         self.label_7.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05de\u05e7\u05e8\u05de\u05d4", None))
     # retranslateUi
 

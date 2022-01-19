@@ -141,8 +141,7 @@
                             <widget class="QLabel" name="label_10">
                                 <property name="text">
                                     <string>עיגון
-                                        יתרים
-                                    </string>
+יתרים</string>
                                 </property>
                             </widget>
                         </item>
@@ -193,8 +192,7 @@
                             <widget class="QLabel" name="label_9">
                                 <property name="text">
                                     <string>כפיתת
-                                        חצובה
-                                    </string>
+חצובה</string>
                                 </property>
                             </widget>
                         </item>
@@ -228,8 +226,7 @@
                             <widget class="QLabel" name="label_8">
                                 <property name="text">
                                     <string>כפיתה
-                                        מקבילה
-                                    </string>
+מקבילה</string>
                                 </property>
                             </widget>
                         </item>
@@ -270,8 +267,7 @@
                             <widget class="QLabel" name="label_6">
                                 <property name="text">
                                     <string>כפיתה
-                                        מרובעת
-                                    </string>
+מרובעת</string>
                                 </property>
                             </widget>
                         </item>
@@ -279,8 +275,7 @@
                             <widget class="QLabel" name="label_7">
                                 <property name="text">
                                     <string>כפיתה
-                                        מוצלבת
-                                    </string>
+מוצלבת</string>
                                 </property>
                             </widget>
                         </item>

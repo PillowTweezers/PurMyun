@@ -60,7 +60,7 @@ class Ui_ParticipantDialog(object):
         sizePolicy.setHeightForWidth(self.groupBox.sizePolicy().hasHeightForWidth())
         self.groupBox.setSizePolicy(sizePolicy)
         self.groupBox.setLayoutDirection(Qt.RightToLeft)
-        self.groupBox.setAlignment(Qt.AlignLeading | Qt.AlignLeft | Qt.AlignVCenter)
+        self.groupBox.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
         self.groupBox.setFlat(False)
         self.gridLayout = QGridLayout(self.groupBox)
         self.gridLayout.setObjectName(u"gridLayout")
@@ -109,7 +109,7 @@ class Ui_ParticipantDialog(object):
         self.parallelLbl = QLabel(self.groupBox)
         self.parallelLbl.setObjectName(u"parallelLbl")
         self.parallelLbl.setStyleSheet(u"font-weight:bold;font-size:16px;")
-        self.parallelLbl.setAlignment(Qt.AlignRight | Qt.AlignTrailing | Qt.AlignVCenter)
+        self.parallelLbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout.addWidget(self.parallelLbl, 4, 2, 1, 1)
 
@@ -133,14 +133,14 @@ class Ui_ParticipantDialog(object):
         self.squareLbl = QLabel(self.groupBox)
         self.squareLbl.setObjectName(u"squareLbl")
         self.squareLbl.setStyleSheet(u"font-weight:bold;font-size:16px;")
-        self.squareLbl.setAlignment(Qt.AlignRight | Qt.AlignTrailing | Qt.AlignVCenter)
+        self.squareLbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout.addWidget(self.squareLbl, 2, 2, 1, 1)
 
         self.crossLbl = QLabel(self.groupBox)
         self.crossLbl.setObjectName(u"crossLbl")
         self.crossLbl.setStyleSheet(u"font-weight:bold;font-size:16px;")
-        self.crossLbl.setAlignment(Qt.AlignRight | Qt.AlignTrailing | Qt.AlignVCenter)
+        self.crossLbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout.addWidget(self.crossLbl, 3, 2, 1, 1)
 
@@ -152,14 +152,14 @@ class Ui_ParticipantDialog(object):
         self.tripodLbl = QLabel(self.groupBox)
         self.tripodLbl.setObjectName(u"tripodLbl")
         self.tripodLbl.setStyleSheet(u"font-weight:bold;font-size:16px;")
-        self.tripodLbl.setAlignment(Qt.AlignRight | Qt.AlignTrailing | Qt.AlignVCenter)
+        self.tripodLbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout.addWidget(self.tripodLbl, 5, 2, 1, 1)
 
         self.presenceLbl = QLabel(self.groupBox)
         self.presenceLbl.setObjectName(u"presenceLbl")
         self.presenceLbl.setStyleSheet(u"font-weight:bold;font-size:16px;")
-        self.presenceLbl.setAlignment(Qt.AlignRight | Qt.AlignTrailing | Qt.AlignVCenter)
+        self.presenceLbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout.addWidget(self.presenceLbl, 0, 2, 1, 1)
 
@@ -181,14 +181,14 @@ class Ui_ParticipantDialog(object):
         self.anchoringLbl = QLabel(self.groupBox)
         self.anchoringLbl.setObjectName(u"anchoringLbl")
         self.anchoringLbl.setStyleSheet(u"font-weight:bold;font-size:16px;")
-        self.anchoringLbl.setAlignment(Qt.AlignRight | Qt.AlignTrailing | Qt.AlignVCenter)
+        self.anchoringLbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout.addWidget(self.anchoringLbl, 6, 2, 1, 1)
 
         self.macrameLbl = QLabel(self.groupBox)
         self.macrameLbl.setObjectName(u"macrameLbl")
         self.macrameLbl.setStyleSheet(u"font-weight:bold;font-size:16px;")
-        self.macrameLbl.setAlignment(Qt.AlignRight | Qt.AlignTrailing | Qt.AlignVCenter)
+        self.macrameLbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout.addWidget(self.macrameLbl, 7, 2, 1, 1)
 
@@ -233,9 +233,7 @@ class Ui_ParticipantDialog(object):
         self.label.setText(QCoreApplication.translate("ParticipantDialog", u"\u05e9\u05dd:", None))
         self.nameLbl.setText("")
         self.label_3.setText(QCoreApplication.translate("ParticipantDialog", u"\u05e6\u05d5\u05d5\u05ea:", None))
-        self.teamLbl.setText(
-            QCoreApplication.translate("ParticipantDialog", u"\u05d0\u05d9\u05e0\u05d5 \u05de\u05e6\u05d5\u05d5\u05ea",
-                                       None))
+        self.teamLbl.setText(QCoreApplication.translate("ParticipantDialog", u"\u05d0\u05d9\u05e0\u05d5 \u05de\u05e6\u05d5\u05d5\u05ea", None))
         self.groupBox.setTitle(QCoreApplication.translate("ParticipantDialog", u"\u05de\u05d3\u05d3\u05d9\u05dd", None))
         self.label_11.setText(QCoreApplication.translate("ParticipantDialog", u"\u05de\u05e7\u05e8\u05de\u05d4", None))
         self.presenceBar.setFormat("")
@@ -243,28 +241,24 @@ class Ui_ParticipantDialog(object):
         self.squareBar.setFormat("")
         self.macrameBar.setFormat("")
         self.label_10.setText(QCoreApplication.translate("ParticipantDialog", u"\u05e2\u05d9\u05d2\u05d5\u05df\n"
-                                                                              "\u05d9\u05ea\u05e8\u05d9\u05dd", None))
+"\u05d9\u05ea\u05e8\u05d9\u05dd", None))
         self.crossBar.setFormat("")
         self.parallelLbl.setText("")
         self.tripodBar.setFormat("")
         self.parallelBar.setFormat("")
         self.label_9.setText(QCoreApplication.translate("ParticipantDialog", u"\u05db\u05e4\u05d9\u05ea\u05ea\n"
-                                                                             "\u05d7\u05e6\u05d5\u05d1\u05d4", None))
+"\u05d7\u05e6\u05d5\u05d1\u05d4", None))
         self.squareLbl.setText("")
         self.crossLbl.setText("")
         self.label_8.setText(QCoreApplication.translate("ParticipantDialog", u"\u05db\u05e4\u05d9\u05ea\u05d4\n"
-                                                                             "\u05de\u05e7\u05d1\u05d9\u05dc\u05d4",
-                                                        None))
+"\u05de\u05e7\u05d1\u05d9\u05dc\u05d4", None))
         self.tripodLbl.setText("")
         self.presenceLbl.setText("")
-        self.label_5.setText(
-            QCoreApplication.translate("ParticipantDialog", u"\u05de\u05d7\u05d5\u05d9\u05d1\u05d5\u05ea", None))
+        self.label_5.setText(QCoreApplication.translate("ParticipantDialog", u"\u05de\u05d7\u05d5\u05d9\u05d1\u05d5\u05ea", None))
         self.label_6.setText(QCoreApplication.translate("ParticipantDialog", u"\u05db\u05e4\u05d9\u05ea\u05d4\n"
-                                                                             "\u05de\u05e8\u05d5\u05d1\u05e2\u05ea",
-                                                        None))
+"\u05de\u05e8\u05d5\u05d1\u05e2\u05ea", None))
         self.label_7.setText(QCoreApplication.translate("ParticipantDialog", u"\u05db\u05e4\u05d9\u05ea\u05d4\n"
-                                                                             "\u05de\u05d5\u05e6\u05dc\u05d1\u05ea",
-                                                        None))
+"\u05de\u05d5\u05e6\u05dc\u05d1\u05ea", None))
         self.anchoringLbl.setText("")
         self.macrameLbl.setText("")
     # retranslateUi
