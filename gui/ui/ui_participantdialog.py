@@ -243,34 +243,27 @@ class Ui_ParticipantDialog(object):
         self.squareBar.setFormat("")
         self.macrameBar.setFormat("")
         self.label_10.setText(QCoreApplication.translate("ParticipantDialog", u"\u05e2\u05d9\u05d2\u05d5\u05df\n"
-                                                                              "                                        \u05d9\u05ea\u05e8\u05d9\u05dd\n"
-                                                                              "                                    ",
-                                                         None))
+                                                                              "\u05d9\u05ea\u05e8\u05d9\u05dd", None))
         self.crossBar.setFormat("")
         self.parallelLbl.setText("")
         self.tripodBar.setFormat("")
         self.parallelBar.setFormat("")
         self.label_9.setText(QCoreApplication.translate("ParticipantDialog", u"\u05db\u05d9\u05e4\u05ea\u05ea\n"
-                                                                             "                                        \u05d7\u05e6\u05d5\u05d1\u05d4\n"
-                                                                             "                                    ",
-                                                        None))
+                                                                             "\u05d7\u05e6\u05d5\u05d1\u05d4", None))
         self.squareLbl.setText("")
         self.crossLbl.setText("")
         self.label_8.setText(QCoreApplication.translate("ParticipantDialog", u"\u05db\u05e4\u05d9\u05ea\u05d4\n"
-                                                                             "                                        \u05de\u05e7\u05d1\u05d9\u05dc\u05d4\n"
-                                                                             "                                    ",
+                                                                             "\u05de\u05e7\u05d1\u05d9\u05dc\u05d4",
                                                         None))
         self.tripodLbl.setText("")
         self.presenceLbl.setText("")
         self.label_5.setText(
             QCoreApplication.translate("ParticipantDialog", u"\u05de\u05d7\u05d5\u05d9\u05d1\u05d5\u05ea", None))
         self.label_6.setText(QCoreApplication.translate("ParticipantDialog", u"\u05db\u05e4\u05d9\u05ea\u05d4\n"
-                                                                             "                                        \u05de\u05e8\u05d5\u05d1\u05e2\u05ea\n"
-                                                                             "                                    ",
+                                                                             "\u05de\u05e8\u05d5\u05d1\u05e2\u05ea",
                                                         None))
         self.label_7.setText(QCoreApplication.translate("ParticipantDialog", u"\u05db\u05e4\u05d9\u05ea\u05d4\n"
-                                                                             "                                        \u05de\u05d5\u05e6\u05dc\u05d1\u05ea\n"
-                                                                             "                                    ",
+                                                                             "\u05de\u05d5\u05e6\u05dc\u05d1\u05ea",
                                                         None))
         self.anchoringLbl.setText("")
         self.macrameLbl.setText("")
