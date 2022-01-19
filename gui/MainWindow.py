@@ -1,4 +1,4 @@
-from PySide6 import QtWidgets
+from PySide6 import QtWidgets, QtCore
 from PySide6.QtCore import QSettings, Slot
 
 from gui.ParticipantCreationDialog import ParticipantCreationDialog
@@ -27,6 +27,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.participantsTableWidget.setColumnWidth(2, 55)
         self.ui.participantsTableWidget.setColumnWidth(3, 64)
         self.ui.participantsTableWidget.doubleClicked.connect(self.participants_double_clicked)
+        self.ui.participantsTableWidget.setAlternatingRowColors(True)
+        self.ui.participantsTableWidget.setSortingEnabled(True)
 
         self.settings = QSettings("settings.ini", QSettings.IniFormat)
         self.restoreGeometry(self.settings.value("geometry"))
@@ -61,7 +63,11 @@ class MainWindow(QtWidgets.QMainWindow):
     @Slot()
     def participants_double_clicked(self):
         row = self.ui.participantsTableWidget.currentRow()
-        participant = client.participants[row]
+        participant_id = self.ui.participantsTableWidget.item(row, 0).data(QtCore.Qt.UserRole)
+
+        def find_by_id(p): return p.id == participant_id
+
+        participant = next(filter(find_by_id, client.participants), None)
         self.statusBar().showMessage("פותח תפריט עבור משתתף: " + participant.name)
         participantDialog = ParticipantDialog(participant)
         participantDialog.exec()
@@ -92,10 +98,13 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.participantsTableWidget.setRowCount(len(client.participants))
         for participant in client.participants:
             item = QtWidgets.QTableWidgetItem(participant.name)
+            item.setData(QtCore.Qt.UserRole, participant.id)
             self.ui.participantsTableWidget.setItem(client.participants.index(participant), 0, item)
-            item = QtWidgets.QTableWidgetItem("{:g}".format(round(participant.average(), 1)))
+            item = QtWidgets.QTableWidgetItem()
+            item.setData(QtCore.Qt.DisplayRole, float("{:g}".format(round(participant.average(), 1))))
             self.ui.participantsTableWidget.setItem(client.participants.index(participant), 1, item)
-            item = QtWidgets.QTableWidgetItem(str(participant.presence))
+            item = QtWidgets.QTableWidgetItem()
+            item.setData(QtCore.Qt.DisplayRole, participant.presence)
             self.ui.participantsTableWidget.setItem(client.participants.index(participant), 2, item)
             if participant.team is not None:
                 item = QtWidgets.QTableWidgetItem(participant.team.name)

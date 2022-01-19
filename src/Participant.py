@@ -8,38 +8,28 @@ MAX_OTHER = 5
 
 class Participant:
     def __init__(self, data=None):
+        def int_or_none(x):
+            if x is None:
+                return None
+            return int(x)
+
         if data is None:
             data = dict()
-        if len(data) != 0:
-            self.name = data.get("שם מלא:")
-            self.grade = data.get("שכבה:")
-            self.team_preference1 = data.get("דרגו את הצוותים שאתם רוצים להיות בהם: [עדיפות ראשונה]")
-            self.team_preference2 = data.get("דרגו את הצוותים שאתם רוצים להיות בהם: [עדיפות שניה]")
-            self.team_preference3 = data.get("דרגו את הצוותים שאתם רוצים להיות בהם: [עדיפות שלישית]")
-            self.motivation = int(data.get("מהי רמת המוטיבציה שלכם להליך פורימון?"))
-            self.presence = int(data.get("לכמה ימי עבודה אתם מתכוונים להגיע?"))
-            self.square = int(data.get("מהי רמת הכפיתה המרובעת שלך?"))
-            self.cross = int(data.get("מהי רמת הכפיתה המוצלבת שלך?"))
-            self.parallel = int(data.get("מהי רמת הכפיתה המקבילה שלך?"))
-            self.tripod = int(data.get("מהי רמת כפיתת החצובה שלך?"))
-            self.anchoring = int(data.get("מהי רמת עיגון היתרים שלך?"))
-            self.macrame = int(data.get("מהי רמת המקרמה שלך?"))
-            self.appearance = int(data.get("כמה אתם מעוניינים להיות בצוות חזות?"))
-        else:
-            self.name = ""
-            self.grade = ""
-            self.team_preference1 = ""
-            self.team_preference2 = ""
-            self.team_preference3 = ""
-            self.motivation = 0
-            self.presence = 0
-            self.square = 0
-            self.cross = 0
-            self.parallel = 0
-            self.tripod = 0
-            self.anchoring = 0
-            self.macrame = 0
-            self.appearance = 0
+        self.name = data.get("שם מלא:")
+        self.grade = data.get("שכבה:")
+        self.team_preference1 = data.get("דרגו את הצוותים שאתם רוצים להיות בהם: [עדיפות ראשונה]")
+        self.team_preference2 = data.get("דרגו את הצוותים שאתם רוצים להיות בהם: [עדיפות שניה]")
+        self.team_preference3 = data.get("דרגו את הצוותים שאתם רוצים להיות בהם: [עדיפות שלישית]")
+        self.motivation = int_or_none(data.get("מהי רמת המוטיבציה שלכם להליך פורימון?"))
+        self.presence = int_or_none(data.get("לכמה ימי עבודה אתם מתכוונים להגיע?"))
+        self.square = int_or_none(data.get("מהי רמת הכפיתה המרובעת שלך?"))
+        self.cross = int_or_none(data.get("מהי רמת הכפיתה המוצלבת שלך?"))
+        self.parallel = int_or_none(data.get("מהי רמת הכפיתה המקבילה שלך?"))
+        self.tripod = int_or_none(data.get("מהי רמת כפיתת החצובה שלך?"))
+        self.anchoring = int_or_none(data.get("מהי רמת עיגון היתרים שלך?"))
+        self.macrame = int_or_none(data.get("מהי רמת המקרמה שלך?"))
+        self.appearance = int_or_none(data.get("כמה אתם מעוניינים להיות בצוות חזות?"))
+        self.id = int_or_none(data.get('id'))
         self.team = None
 
     def average(self):

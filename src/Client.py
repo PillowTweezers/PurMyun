@@ -1,24 +1,28 @@
-from PySide6 import QtWidgets
-from src.Team import Team
-from src.Participant import Participant
-from src.Weights import Weights
-import os
 import csv
-from random import shuffle
+import os
 import pickle
+from random import shuffle
+
+from src.Participant import Participant
+from src.Team import Team
+from src.Weights import Weights
 
 participants = []
 teams = []
+participant_id = 0
 
 
-def load_participants(filePath):
-    if filePath == "":
+def load_participants(file_path):
+    global participant_id
+    if file_path == "":
         return [], 1
-    elif not (os.path.isfile(filePath) and os.access(filePath, mode=os.R_OK)):
+    elif not (os.path.isfile(file_path) and os.access(file_path, mode=os.R_OK)):
         return -1
-    with open(filePath, encoding='utf8') as csvfile:
+    with open(file_path, encoding='utf8') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
+            row['id'] = participant_id
+            participant_id += 1
             participants.append(Participant(row))
     return participants.copy(), 0
 
