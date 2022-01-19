@@ -8,18 +8,13 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
-    QCursor, QFont, QFontDatabase, QGradient,
-    QIcon, QImage, QKeySequence, QLinearGradient,
-    QPainter, QPalette, QPixmap, QRadialGradient,
-    QTransform)
-from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QDockWidget, QHeaderView,
-    QLineEdit, QMainWindow, QMenu, QMenuBar,
-    QPushButton, QSizePolicy, QSpacerItem, QStatusBar,
-    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
+from PySide6.QtCore import (QCoreApplication, QMetaObject, QRect,
+                            QSize, Qt)
+from PySide6.QtGui import (QAction, QFont)
+from PySide6.QtWidgets import (QAbstractScrollArea, QDockWidget, QLineEdit, QMenu, QMenuBar,
+                               QPushButton, QSizePolicy, QSpacerItem, QStatusBar,
+                               QTableWidget, QVBoxLayout, QWidget)
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -61,7 +56,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
         self.controlsDock = QDockWidget(MainWindow)
         self.controlsDock.setObjectName(u"controlsDock")
-        self.controlsDock.setFeatures(QDockWidget.DockWidgetFloatable|QDockWidget.DockWidgetMovable)
+        self.controlsDock.setFeatures(QDockWidget.DockWidgetFloatable | QDockWidget.DockWidgetMovable)
         self.dockWidgetContents = QWidget()
         self.dockWidgetContents.setObjectName(u"dockWidgetContents")
         self.verticalLayout = QVBoxLayout(self.dockWidgetContents)
@@ -91,7 +86,7 @@ class Ui_MainWindow(object):
         self.participantsDock = QDockWidget(MainWindow)
         self.participantsDock.setObjectName(u"participantsDock")
         self.participantsDock.setMinimumSize(QSize(228, 524))
-        self.participantsDock.setFeatures(QDockWidget.DockWidgetFloatable|QDockWidget.DockWidgetMovable)
+        self.participantsDock.setFeatures(QDockWidget.DockWidgetFloatable | QDockWidget.DockWidgetMovable)
         self.dockWidgetContents_2 = QWidget()
         self.dockWidgetContents_2.setObjectName(u"dockWidgetContents_2")
         self.verticalLayout_2 = QVBoxLayout(self.dockWidgetContents_2)
@@ -121,30 +116,39 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         QMetaObject.connectSlotsByName(MainWindow)
+
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u05e4\u05d5\u05e8\u05de\u05d9\u05d5\u05df", None))
+        MainWindow.setWindowTitle(
+            QCoreApplication.translate("MainWindow", u"\u05e4\u05d5\u05e8\u05de\u05d9\u05d5\u05df", None))
         self.actionCreate_Team.setText(QCoreApplication.translate("MainWindow", u"Create Team", None))
-#if QT_CONFIG(shortcut)
+        # if QT_CONFIG(shortcut)
         self.actionCreate_Team.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+T", None))
-#endif // QT_CONFIG(shortcut)
+        # endif // QT_CONFIG(shortcut)
         self.actionCreate_Participant.setText(QCoreApplication.translate("MainWindow", u"Create Participant", None))
-        self.actionLoad_Participants_File.setText(QCoreApplication.translate("MainWindow", u"Load Participants File", None))
-#if QT_CONFIG(tooltip)
-        self.actionLoad_Participants_File.setToolTip(QCoreApplication.translate("MainWindow", u"Load Participants File", None))
-#endif // QT_CONFIG(tooltip)
+        self.actionLoad_Participants_File.setText(
+            QCoreApplication.translate("MainWindow", u"Load Participants File", None))
+        # if QT_CONFIG(tooltip)
+        self.actionLoad_Participants_File.setToolTip(
+            QCoreApplication.translate("MainWindow", u"Load Participants File", None))
+        # endif // QT_CONFIG(tooltip)
         self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"\u05e7\u05d5\u05d1\u05e5", None))
         self.menuEfit.setTitle(QCoreApplication.translate("MainWindow", u"\u05e2\u05e8\u05d9\u05db\u05d4", None))
         self.menuView.setTitle(QCoreApplication.translate("MainWindow", u"\u05ea\u05e6\u05d5\u05d2\u05d4", None))
         self.menuHelp.setTitle(QCoreApplication.translate("MainWindow", u"\u05e2\u05d6\u05e8\u05d4", None))
-        self.controlsDock.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u05e4\u05e2\u05d5\u05dc\u05d5\u05ea", None))
-        self.createTeamBtn.setText(QCoreApplication.translate("MainWindow", u"\u05e6\u05d5\u05e8 \u05e7\u05d1\u05d5\u05e6\u05d4", None))
-        self.createParticipantsBtn.setText(QCoreApplication.translate("MainWindow", u"\u05e6\u05d5\u05e8 \u05de\u05e9\u05ea\u05ea\u05e3", None))
-        self.loadParticipantsBtn.setText(QCoreApplication.translate("MainWindow", u"\u05d8\u05e2\u05df \u05e7\u05d5\u05d1\u05e5\n"
-"\u05de\u05e9\u05ea\u05ea\u05e4\u05d9\u05dd", None))
-        self.participantsDock.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u05de\u05e9\u05ea\u05ea\u05e4\u05d9\u05dd", None))
+        self.controlsDock.setWindowTitle(
+            QCoreApplication.translate("MainWindow", u"\u05e4\u05e2\u05d5\u05dc\u05d5\u05ea", None))
+        self.createTeamBtn.setText(
+            QCoreApplication.translate("MainWindow", u"\u05e6\u05d5\u05e8 \u05e7\u05d1\u05d5\u05e6\u05d4", None))
+        self.createParticipantsBtn.setText(
+            QCoreApplication.translate("MainWindow", u"\u05e6\u05d5\u05e8 \u05de\u05e9\u05ea\u05ea\u05e3", None))
+        self.loadParticipantsBtn.setText(
+            QCoreApplication.translate("MainWindow", u"\u05d8\u05e2\u05df \u05e7\u05d5\u05d1\u05e5\n"
+                                                     "\u05de\u05e9\u05ea\u05ea\u05e4\u05d9\u05dd", None))
+        self.participantsDock.setWindowTitle(
+            QCoreApplication.translate("MainWindow", u"\u05de\u05e9\u05ea\u05ea\u05e4\u05d9\u05dd", None))
         self.nameFilterEdt.setText("")
-        self.nameFilterEdt.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u05e4\u05d9\u05dc\u05d8\u05e8", None))
+        self.nameFilterEdt.setPlaceholderText(
+            QCoreApplication.translate("MainWindow", u"\u05e4\u05d9\u05dc\u05d8\u05e8", None))
     # retranslateUi
-

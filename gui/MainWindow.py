@@ -1,10 +1,10 @@
-from PySide6 import QtWidgets, QtGui, QtCore
+from PySide6 import QtWidgets
 from PySide6.QtCore import QSettings, Slot
 
 from gui.ParticipantDialog import ParticipantDialog
 from gui.TeamCreationDialog import TeamCreationDialog
-from src import Client as client
 from gui.ui.ui_mainwindow import Ui_MainWindow
+from src import Client as client
 
 
 class MainWindow(QtWidgets.QMainWindow):

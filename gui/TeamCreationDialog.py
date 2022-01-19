@@ -1,8 +1,8 @@
 from PySide6 import QtWidgets
 
-from src.Weights import Weights
 from gui.ui.ui_teamcreationdialog import Ui_TeamCreationDialog
 from src import Client as client
+from src.Weights import Weights
 
 
 class TeamCreationDialog(QtWidgets.QDialog):
@@ -30,4 +30,3 @@ class TeamCreationDialog(QtWidgets.QDialog):
         weights.size = self.ui.squareSlider.value()
         client.create_team(self.ui.teamNameEdt.text(), weights)
         client.print_all_teams()
-
