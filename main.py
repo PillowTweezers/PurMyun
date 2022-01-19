@@ -10,6 +10,7 @@ from gui.MainWindow import MainWindow
 
 def main():
     app = QtWidgets.QApplication([])
+    app.setLayoutDirection(QtWidgets.QApplication.layoutDirection().RightToLeft)
     window = MainWindow()
     window.show()
     app.exec()

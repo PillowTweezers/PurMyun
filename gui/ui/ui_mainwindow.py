@@ -37,6 +37,11 @@ class Ui_MainWindow(object):
         self.actionLoad_Participants_File = QAction(MainWindow)
         self.actionLoad_Participants_File.setObjectName(u"actionLoad_Participants_File")
         self.actionLoad_Participants_File.setFont(font)
+        self.loadParticipantsFileAction = QAction(MainWindow)
+        self.loadParticipantsFileAction.setObjectName(u"loadParticipantsFileAction")
+        icon = QIcon()
+        icon.addFile(u":/assets/form.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.loadParticipantsFileAction.setIcon(icon)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setStyleSheet(u"background-color:rgb(139, 139, 139)")
@@ -46,6 +51,8 @@ class Ui_MainWindow(object):
         self.menubar.setGeometry(QRect(0, 0, 920, 24))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
+        self.menuFile.setLayoutDirection(Qt.RightToLeft)
+        self.menuFile.setStyleSheet(u"")
         self.menuEfit = QMenu(self.menubar)
         self.menuEfit.setObjectName(u"menuEfit")
         self.menuView = QMenu(self.menubar)
@@ -68,11 +75,6 @@ class Ui_MainWindow(object):
         self.createTeamBtn.setObjectName(u"createTeamBtn")
 
         self.verticalLayout.addWidget(self.createTeamBtn)
-
-        self.loadParticipantsBtn = QPushButton(self.dockWidgetContents)
-        self.loadParticipantsBtn.setObjectName(u"loadParticipantsBtn")
-
-        self.verticalLayout.addWidget(self.loadParticipantsBtn)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
@@ -97,17 +99,17 @@ class Ui_MainWindow(object):
 
         self.addParticipantBtn = QPushButton(self.dockWidgetContents_2)
         self.addParticipantBtn.setObjectName(u"addParticipantBtn")
-        icon = QIcon()
-        icon.addFile(u":/assets/add.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.addParticipantBtn.setIcon(icon)
+        icon1 = QIcon()
+        icon1.addFile(u":/assets/add.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.addParticipantBtn.setIcon(icon1)
 
         self.horizontalLayout.addWidget(self.addParticipantBtn)
 
         self.removeParticipantBtn = QPushButton(self.dockWidgetContents_2)
         self.removeParticipantBtn.setObjectName(u"removeParticipantBtn")
-        icon1 = QIcon()
-        icon1.addFile(u":/assets/remove.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.removeParticipantBtn.setIcon(icon1)
+        icon2 = QIcon()
+        icon2.addFile(u":/assets/remove.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.removeParticipantBtn.setIcon(icon2)
 
         self.horizontalLayout.addWidget(self.removeParticipantBtn)
 
@@ -116,8 +118,8 @@ class Ui_MainWindow(object):
         self.participantsTableWidget = QTableWidget(self.dockWidgetContents_2)
         self.participantsTableWidget.setObjectName(u"participantsTableWidget")
         self.participantsTableWidget.setMinimumSize(QSize(0, 454))
-        self.participantsTableWidget.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.participantsTableWidget.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.participantsTableWidget.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        self.participantsTableWidget.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         self.participantsTableWidget.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
 
         self.verticalLayout_2.addWidget(self.participantsTableWidget)
@@ -129,6 +131,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuEfit.menuAction())
         self.menubar.addAction(self.menuView.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
+        self.menuFile.addAction(self.loadParticipantsFileAction)
 
         self.retranslateUi(MainWindow)
 
@@ -149,6 +152,9 @@ class Ui_MainWindow(object):
         self.actionLoad_Participants_File.setToolTip(
             QCoreApplication.translate("MainWindow", u"Load Participants File", None))
         # endif // QT_CONFIG(tooltip)
+        self.loadParticipantsFileAction.setText(QCoreApplication.translate("MainWindow",
+                                                                           u"\u05e4\u05ea\u05d7 \u05e7\u05d5\u05d1\u05e5 \u05de\u05e9\u05ea\u05de\u05e9\u05d9\u05dd...",
+                                                                           None))
         self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"\u05e7\u05d5\u05d1\u05e5", None))
         self.menuEfit.setTitle(QCoreApplication.translate("MainWindow", u"\u05e2\u05e8\u05d9\u05db\u05d4", None))
         self.menuView.setTitle(QCoreApplication.translate("MainWindow", u"\u05ea\u05e6\u05d5\u05d2\u05d4", None))
@@ -157,9 +163,6 @@ class Ui_MainWindow(object):
             QCoreApplication.translate("MainWindow", u"\u05e4\u05e2\u05d5\u05dc\u05d5\u05ea", None))
         self.createTeamBtn.setText(
             QCoreApplication.translate("MainWindow", u"\u05e6\u05d5\u05e8 \u05e7\u05d1\u05d5\u05e6\u05d4", None))
-        self.loadParticipantsBtn.setText(
-            QCoreApplication.translate("MainWindow", u"\u05d8\u05e2\u05df \u05e7\u05d5\u05d1\u05e5\n"
-                                                     "\u05de\u05e9\u05ea\u05ea\u05e4\u05d9\u05dd", None))
         self.participantsDock.setWindowTitle(
             QCoreApplication.translate("MainWindow", u"\u05de\u05e9\u05ea\u05ea\u05e4\u05d9\u05dd", None))
         self.nameFilterEdt.setText("")

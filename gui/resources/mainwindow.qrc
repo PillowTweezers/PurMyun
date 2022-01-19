@@ -3,5 +3,6 @@
     <qresource>
         <file>../../assets/remove.png</file>
         <file>../../assets/add.png</file>
+        <file>../../assets/form.png</file>
     </qresource>
 </RCC>

@@ -37,9 +37,16 @@
                 </rect>
             </property>
             <widget class="QMenu" name="menuFile">
+                <property name="layoutDirection">
+                    <enum>Qt::RightToLeft</enum>
+                </property>
+                <property name="styleSheet">
+                    <string notr="true"/>
+                </property>
                 <property name="title">
                     <string>קובץ</string>
                 </property>
+                <addaction name="loadParticipantsFileAction"/>
             </widget>
             <widget class="QMenu" name="menuEfit">
                 <property name="title">
@@ -81,15 +88,6 @@
                         <widget class="QPushButton" name="createTeamBtn">
                             <property name="text">
                                 <string>צור קבוצה</string>
-                            </property>
-                        </widget>
-                    </item>
-                    <item>
-                        <widget class="QPushButton" name="loadParticipantsBtn">
-                            <property name="text">
-                                <string>טען קובץ
-                                    משתתפים
-                                </string>
                             </property>
                         </widget>
                     </item>
@@ -174,10 +172,10 @@
                                 </size>
                             </property>
                             <property name="verticalScrollBarPolicy">
-                                <enum>Qt::ScrollBarAlwaysOff</enum>
+                                <enum>Qt::ScrollBarAsNeeded</enum>
                             </property>
                             <property name="horizontalScrollBarPolicy">
-                                <enum>Qt::ScrollBarAlwaysOff</enum>
+                                <enum>Qt::ScrollBarAsNeeded</enum>
                             </property>
                             <property name="sizeAdjustPolicy">
                                 <enum>QAbstractScrollArea::AdjustToContents</enum>
@@ -221,6 +219,16 @@
                 <font>
                     <pointsize>14</pointsize>
                 </font>
+            </property>
+        </action>
+        <action name="loadParticipantsFileAction">
+            <property name="icon">
+                <iconset resource="mainwindow.qrc">
+                    <normaloff>:/assets/form.png</normaloff>:/assets/form.png
+                </iconset>
+            </property>
+            <property name="text">
+                <string>פתח קובץ משתמשים...</string>
             </property>
         </action>
     </widget>

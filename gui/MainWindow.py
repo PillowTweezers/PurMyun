@@ -16,9 +16,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
 
         self.ui.createTeamBtn.clicked.connect(self.create_team)
-        self.ui.loadParticipantsBtn.clicked.connect(self.load_participants)
         self.ui.addParticipantBtn.clicked.connect(self.create_participant)
         self.ui.removeParticipantBtn.clicked.connect(self.remove_participants)
+
+        self.ui.loadParticipantsFileAction.triggered.connect(self.load_participants_file)
 
         self.ui.participantsTableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.ui.participantsTableWidget.setColumnCount(4)
@@ -63,9 +64,7 @@ class MainWindow(QtWidgets.QMainWindow):
             for row in sorted(selected_rows, reverse=True):
                 participant_id = self.ui.participantsTableWidget.item(row, 0).data(QtCore.Qt.UserRole)
                 client.remove_participant(participant_id)
-                print("removed participant with id: " + str(participant_id))
                 self.ui.participantsTableWidget.removeRow(row)
-                print("removed row: " + str(row))
             self.statusBar().showMessage("משתתפים נמחקו")
             self.ui.participantsTableWidget.clearSelection()
         else:
@@ -110,7 +109,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.statusBar().showMessage("צוות נוצר")
 
     @Slot()
-    def load_participants(self):
+    def load_participants_file(self):
         self.statusBar().showMessage("טוען משתתפים...")
         filePath, _ = QtWidgets.QFileDialog.getOpenFileName(self, str("Choose File"), "", str("*.csv"))
         _, exit_code = client.load_participants(filePath)
