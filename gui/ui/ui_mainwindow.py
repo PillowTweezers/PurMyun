@@ -113,6 +113,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.removeParticipantBtn)
 
+
         self.verticalLayout_2.addLayout(self.horizontalLayout)
 
         self.participantsTableWidget = QTableWidget(self.dockWidgetContents_2)

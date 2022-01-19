@@ -17,7 +17,7 @@ class Ui_ParticipantDialog(object):
     def setupUi(self, ParticipantDialog):
         if not ParticipantDialog.objectName():
             ParticipantDialog.setObjectName(u"ParticipantDialog")
-        ParticipantDialog.resize(462, 432)
+        ParticipantDialog.resize(452, 429)
         self.verticalLayout = QVBoxLayout(ParticipantDialog)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.widget = QWidget(ParticipantDialog)
@@ -248,7 +248,7 @@ class Ui_ParticipantDialog(object):
         self.parallelLbl.setText("")
         self.tripodBar.setFormat("")
         self.parallelBar.setFormat("")
-        self.label_9.setText(QCoreApplication.translate("ParticipantDialog", u"\u05db\u05d9\u05e4\u05ea\u05ea\n"
+        self.label_9.setText(QCoreApplication.translate("ParticipantDialog", u"\u05db\u05e4\u05d9\u05ea\u05ea\n"
                                                                              "\u05d7\u05e6\u05d5\u05d1\u05d4", None))
         self.squareLbl.setText("")
         self.crossLbl.setText("")
