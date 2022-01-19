@@ -12,18 +12,23 @@ from src.Participant import Participant
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
+        # Load UI from compiled .ui file
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        # Connect All Buttons to their corresponding slots
         self.ui.createTeamBtn.clicked.connect(self.create_team)
         self.ui.addParticipantBtn.clicked.connect(self.create_participant)
         self.ui.removeParticipantBtn.clicked.connect(self.remove_participants)
 
+        # Connect all Action signals to their corresponding slots
         self.ui.loadParticipantsFileAction.triggered.connect(self.load_participants_file)
         self.ui.saveAsAction.triggered.connect(self.save_as)
         self.ui.saveAction.triggered.connect(self.save)
         self.ui.quitAction.triggered.connect(self.quit)
+        self.ui.openAction.triggered.connect(self.open_project)
 
+        # Init participants table
         self.ui.participantsTableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.ui.participantsTableWidget.setColumnCount(4)
         self.ui.participantsTableWidget.setHorizontalHeaderLabels(["שם", "ממוצע", "מחויבות", "צוות"])
@@ -36,6 +41,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.participantsTableWidget.setSortingEnabled(True)
         self.ui.participantsTableWidget.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
 
+        # Load past window state
         self.settings = QSettings("settings.ini", QSettings.IniFormat)
         self.restoreGeometry(self.settings.value("geometry"))
         self.restoreState(self.settings.value("windowState"))
@@ -43,9 +49,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self.statusBar().showMessage("מוכן")
 
     def closeEvent(self, event):
-        self.settings.setValue("geometry", self.saveGeometry())
-        self.settings.setValue("windowState", self.saveState())
-        event.accept()
+        if self.can_exit():
+            self.settings.setValue("geometry", self.saveGeometry())
+            self.settings.setValue("windowState", self.saveState())
+            event.accept()
+        else:
+            event.ignore()
 
     @Slot()
     def save_as(self):
@@ -158,12 +167,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.render_participants_table()
         self.statusBar().showMessage("משתתפים נטענו")
-
-    def closeEvent(self, event):
-        if self.can_exit():
-            event.accept()
-        else:
-            event.ignore()
 
     @Slot()
     def quit(self):
