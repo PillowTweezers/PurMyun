@@ -20,6 +20,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.removeParticipantBtn.clicked.connect(self.remove_participants)
 
         self.ui.loadParticipantsFileAction.triggered.connect(self.load_participants_file)
+        self.ui.saveAsAction.triggered.connect(self.save_as)
+        self.ui.saveAction.triggered.connect(self.save)
         self.ui.quitAction.triggered.connect(self.quit)
 
         self.ui.participantsTableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
@@ -44,6 +46,34 @@ class MainWindow(QtWidgets.QMainWindow):
         self.settings.setValue("geometry", self.saveGeometry())
         self.settings.setValue("windowState", self.saveState())
         event.accept()
+
+    @Slot()
+    def save_as(self):
+        self.statusBar().showMessage("שמירת קובץ...")
+        saveDialog = QtWidgets.QFileDialog()
+        saveDialog.setAcceptMode(QtWidgets.QFileDialog.AcceptSave)
+        saveDialog.setNameFilter("קובץ פורימון (*.pur)")
+        saveDialog.setDefaultSuffix("pur")
+        saveDialog.setWindowTitle("שמירת קובץ")
+        saveDialog.exec()
+        if saveDialog.result() == QtWidgets.QDialog.Accepted:
+            filename = saveDialog.selectedFiles()[0]
+            if filename:
+                if client.save_project_as(filename=filename) == 0:
+                    self.statusBar().showMessage("קובץ נשמר בהצלחה")
+                    return 0
+                else:
+                    self.error_text("שגיאה בשמירת קובץ")
+        self.statusBar().showMessage("שמירה בוטלה")
+        return -1
+
+    def save(self):
+        self.statusBar().showMessage("שמירת קובץ...")
+        if client.last_project_file is None:
+            return self.save_as()
+        else:
+            if client.save_project() == 0:
+                self.statusBar().showMessage("קובץ נשמר בהצלחה")
 
     @Slot()
     def remove_participants(self):

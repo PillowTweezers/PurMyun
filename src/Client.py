@@ -10,6 +10,7 @@ from src.Weights import Weights
 participants = []
 teams = []
 id_keeper = 0
+last_project_file = None
 
 
 def load_participants(file_path):
@@ -75,18 +76,31 @@ def print_all_teams():
         print(str(team))
 
 
-def save_participants_to_file():
-    with open('participants.pickle', 'wb') as f:
+def save_participants_to_file(filename="participants.pickle"):
+    with open(filename, 'wb') as f:
         pickle.dump(participants, f, pickle.HIGHEST_PROTOCOL)
 
 
+def save_project_as(filename: str | None = "unnamed.pickle"):
+    global last_project_file
+    try:
+        with open(filename, 'wb') as f:
+            pickle.dump((participants, teams), f, pickle.HIGHEST_PROTOCOL)
+        last_project_file = filename
+        return 0
+    except PermissionError:
+        return -1
+
+
 def save_project():
-    with open('project.pickle', 'wb') as f:
-        pickle.dump((participants, teams), f, pickle.HIGHEST_PROTOCOL)
+    if last_project_file is not None:
+        return save_project_as(last_project_file)
+    else:
+        return -1
 
 
-def load_project():
-    with open('project.pickle', 'rb') as f:
+def load_project(filename="unnamed.pickle"):
+    with open(filename, 'rb') as f:
         global participants, teams
         participants, teams = pickle.load(f)
 
