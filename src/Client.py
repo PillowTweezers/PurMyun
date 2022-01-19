@@ -141,3 +141,15 @@ def remove_participant(participant_id):
         if participant.id == participant_id:
             participants.remove(participant)
             break
+
+
+def new_project():
+    global is_dirty
+    is_dirty = False
+    global participants, teams
+    participants = []
+    teams = []
+    global id_keeper
+    id_keeper = 0
+    global last_project_file
+    last_project_file = None

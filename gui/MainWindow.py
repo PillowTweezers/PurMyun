@@ -27,6 +27,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.saveAction.triggered.connect(self.save)
         self.ui.quitAction.triggered.connect(self.quit)
         self.ui.openAction.triggered.connect(self.open_project)
+        self.ui.newAction.triggered.connect(self.new_project)
 
         # Init participants table
         self.ui.participantsTableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
@@ -55,6 +56,18 @@ class MainWindow(QtWidgets.QMainWindow):
             event.accept()
         else:
             event.ignore()
+
+    @Slot()
+    def new_project(self):
+        if self.can_exit():
+            self.statusBar().showMessage("יוצר פרויקט חדש...")
+            client.new_project()
+            self.render_participants_table()
+            self.statusBar().showMessage("פרויקט נוצר")
+            return True
+        else:
+            self.statusBar().showMessage("יצירת פרויקט בוטלה")
+            return False
 
     @Slot()
     def open_project(self):
