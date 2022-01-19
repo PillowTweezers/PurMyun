@@ -42,6 +42,7 @@ def create_team(team_name: str, team_weights: Weights):
 def assign_to_teams():
     global is_dirty
     is_dirty = True
+
     def remove_participant_from_list(participant, lst):
         for i in range(len(lst)):
             if lst[i] == participant:
@@ -108,10 +109,20 @@ def save_project():
         return -1
 
 
-def load_project(filename="unnamed.pickle"):
-    with open(filename, 'rb') as f:
-        global participants, teams
-        participants, teams = pickle.load(f)
+def open_project(filename="unnamed.pickle"):
+    global is_dirty
+    global last_project_file
+    try:
+        with open(filename, 'rb') as f:
+            global participants, teams
+            participants, teams = pickle.load(f)
+        last_project_file = filename
+        is_dirty = False
+        return 0
+    except FileNotFoundError:
+        return -1
+    except PermissionError:
+        return -2
 
 
 def add_participant(participant):

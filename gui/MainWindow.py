@@ -57,6 +57,27 @@ class MainWindow(QtWidgets.QMainWindow):
             event.ignore()
 
     @Slot()
+    def open_project(self):
+        if self.can_exit():
+            self.statusBar().showMessage("טוען קובץ...")
+            openDialog = QtWidgets.QFileDialog()
+            openDialog.setAcceptMode(QtWidgets.QFileDialog.AcceptOpen)
+            openDialog.setNameFilter("קובץ פורימון (*.pur)")
+            openDialog.setWindowTitle("פתיחת קובץ")
+            openDialog.exec()
+            if openDialog.result() == QtWidgets.QDialog.Accepted:
+                filename = openDialog.selectedFiles()[0]
+                if filename:
+                    if client.open_project(filename=filename) == 0:
+                        self.statusBar().showMessage("קובץ נטען בהצלחה")
+                        self.render_participants_table()
+                        return True
+                    else:
+                        self.error_text("שגיאה בטעינת קובץ")
+            self.statusBar().showMessage("טעינה בוטלה")
+        return False
+
+    @Slot()
     def save_as(self):
         self.statusBar().showMessage("שמירת קובץ...")
         saveDialog = QtWidgets.QFileDialog()
