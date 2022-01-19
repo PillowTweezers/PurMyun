@@ -1,10 +1,12 @@
 from PySide6 import QtWidgets
 from PySide6.QtCore import QSettings, Slot
 
+from gui.ParticipantCreationDialog import ParticipantCreationDialog
 from gui.ParticipantDialog import ParticipantDialog
 from gui.TeamCreationDialog import TeamCreationDialog
 from gui.ui.ui_mainwindow import Ui_MainWindow
 from src import Client as client
+from src.Participant import Participant
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -15,6 +17,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.ui.createTeamBtn.clicked.connect(self.create_team)
         self.ui.loadParticipantsBtn.clicked.connect(self.load_participants)
+        self.ui.createParticipantsBtn.clicked.connect(self.create_participant)
 
         self.ui.participantsTableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.ui.participantsTableWidget.setColumnCount(4)
@@ -37,6 +40,25 @@ class MainWindow(QtWidgets.QMainWindow):
         event.accept()
 
     @Slot()
+    def create_participant(self):
+        self.statusBar().showMessage("יוצר משתתף...")
+        participantCreationDialog = ParticipantCreationDialog()
+        if participantCreationDialog.exec() == QtWidgets.QDialog.Accepted:
+            participant = Participant()
+            participant.name = participantCreationDialog.ui.nameLineEdt.text()
+            participant.presence = participantCreationDialog.ui.presenceSlider.value()
+            participant.motivation = participantCreationDialog.ui.motivationSlider.value()
+            participant.square = participantCreationDialog.ui.squareSlider.value()
+            participant.cross = participantCreationDialog.ui.crossSlider.value()
+            participant.parallel = participantCreationDialog.ui.parallelSlider.value()
+            participant.tripod = participantCreationDialog.ui.tripodSlider.value()
+            participant.anchoring = participantCreationDialog.ui.anchoringSlider.value()
+            participant.macrame = participantCreationDialog.ui.macrameSlider.value()
+            client.add_participant(participant)
+        self.statusBar().showMessage("משתתף נוצר")
+        self.render_participants_table()
+
+    @Slot()
     def participants_double_clicked(self):
         row = self.ui.participantsTableWidget.currentRow()
         participant = client.participants[row]
@@ -55,7 +77,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def load_participants(self):
         self.statusBar().showMessage("טוען משתתפים...")
         filePath, _ = QtWidgets.QFileDialog.getOpenFileName(self, str("Choose File"), "", str("*.csv"))
-        participants, exit_code = client.load_participants(filePath)
+        _, exit_code = client.load_participants(filePath)
         if exit_code == 1:
             self.error_text('בבקשה בחר קובץ')
             return
@@ -63,19 +85,21 @@ class MainWindow(QtWidgets.QMainWindow):
             self.error_text('אין גישה לקובץ')
             return
 
-        self.ui.participantsTableWidget.setRowCount(len(participants))
+        self.render_participants_table()
+        self.statusBar().showMessage("משתתפים נטענו")
+
+    def render_participants_table(self):
+        self.ui.participantsTableWidget.setRowCount(len(client.participants))
         for participant in client.participants:
             item = QtWidgets.QTableWidgetItem(participant.name)
             self.ui.participantsTableWidget.setItem(client.participants.index(participant), 0, item)
-            item = QtWidgets.QTableWidgetItem("{:g}".format(round(participant.average, 1)))
+            item = QtWidgets.QTableWidgetItem("{:g}".format(round(participant.average(), 1)))
             self.ui.participantsTableWidget.setItem(client.participants.index(participant), 1, item)
             item = QtWidgets.QTableWidgetItem(str(participant.presence))
             self.ui.participantsTableWidget.setItem(client.participants.index(participant), 2, item)
             if participant.team is not None:
                 item = QtWidgets.QTableWidgetItem(participant.team.name)
                 self.ui.participantsTableWidget.setItem(client.participants.index(participant), 3, item)
-
-        self.statusBar().showMessage("משתתפים נטענו")
 
     def alert_text(self, text: str):
         QtWidgets.QMessageBox.about(self, "Alert", text)

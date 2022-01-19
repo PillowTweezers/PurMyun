@@ -85,3 +85,7 @@ def load_project():
     with open('project.pickle', 'rb') as f:
         global participants, teams
         participants, teams = pickle.load(f)
+
+
+def add_participant(participant):
+    participants.append(participant)

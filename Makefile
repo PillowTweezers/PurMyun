@@ -6,7 +6,7 @@ RESOURCE_DIR = gui/resources
 COMPILED_DIR = gui/ui
  
 #UI files to compile
-UI_FILES = mainwindow.ui participantdialog.ui teamcreationdialog.ui
+UI_FILES = mainwindow.ui participantdialog.ui teamcreationdialog.ui participantcreationdialog.ui
 
 #Qt resource files to compile
 RESOURCES = mainwindow.qrc
