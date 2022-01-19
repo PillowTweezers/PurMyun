@@ -1,329 +1,320 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
-    <class>MainWindow</class>
-    <widget class="QMainWindow" name="MainWindow">
-        <property name="geometry">
-            <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>920</width>
-                <height>579</height>
-            </rect>
-        </property>
-        <property name="windowTitle">
-            <string>פורמיון</string>
-        </property>
-        <property name="layoutDirection">
-            <enum>Qt::RightToLeft</enum>
-        </property>
-        <property name="autoFillBackground">
-            <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-            <string notr="true"/>
-        </property>
-        <widget class="QWidget" name="centralwidget">
-            <property name="styleSheet">
-                <string notr="true">background-color:rgb(139, 139, 139)</string>
-            </property>
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>920</width>
+    <height>579</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>פורמיון</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::RightToLeft</enum>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">background-color:rgb(139, 139, 139)</string>
+   </property>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>920</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="title">
+     <string>קובץ</string>
+    </property>
+    <addaction name="newAction"/>
+    <addaction name="openAction"/>
+    <addaction name="recentAction"/>
+    <addaction name="separator"/>
+    <addaction name="saveAsAction"/>
+    <addaction name="saveAction"/>
+    <addaction name="separator"/>
+    <addaction name="loadParticipantsFileAction"/>
+    <addaction name="separator"/>
+    <addaction name="quitAction"/>
+   </widget>
+   <widget class="QMenu" name="menuEfit">
+    <property name="title">
+     <string>עריכה</string>
+    </property>
+    <addaction name="action"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>תצוגה</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>עזרה</string>
+    </property>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEfit"/>
+   <addaction name="menuView"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QDockWidget" name="controlsDock">
+   <property name="features">
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="windowTitle">
+    <string>פעולות</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="spacing">
+      <number>6</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="createTeamBtn">
+       <property name="text">
+        <string>צור קבוצה</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="participantsDock">
+   <property name="minimumSize">
+    <size>
+     <width>253</width>
+     <height>532</height>
+    </size>
+   </property>
+   <property name="features">
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="windowTitle">
+    <string>משתתפים</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_2">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLineEdit" name="participantsFilterLineEdt">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="placeholderText">
+          <string>פילטר</string>
+         </property>
         </widget>
-        <widget class="QMenuBar" name="menubar">
-            <property name="geometry">
-                <rect>
-                    <x>0</x>
-                    <y>0</y>
-                    <width>920</width>
-                    <height>24</height>
-                </rect>
-            </property>
-            <widget class="QMenu" name="menuFile">
-                <property name="layoutDirection">
-                    <enum>Qt::RightToLeft</enum>
-                </property>
-                <property name="styleSheet">
-                    <string notr="true"/>
-                </property>
-                <property name="title">
-                    <string>קובץ</string>
-                </property>
-                <addaction name="newAction"/>
-                <addaction name="openAction"/>
-                <addaction name="recentAction"/>
-                <addaction name="separator"/>
-                <addaction name="saveAsAction"/>
-                <addaction name="saveAction"/>
-                <addaction name="separator"/>
-                <addaction name="loadParticipantsFileAction"/>
-                <addaction name="separator"/>
-                <addaction name="quitAction"/>
-            </widget>
-            <widget class="QMenu" name="menuEfit">
-                <property name="title">
-                    <string>עריכה</string>
-                </property>
-                <addaction name="action"/>
-            </widget>
-            <widget class="QMenu" name="menuView">
-                <property name="title">
-                    <string>תצוגה</string>
-                </property>
-            </widget>
-            <widget class="QMenu" name="menuHelp">
-                <property name="title">
-                    <string>עזרה</string>
-                </property>
-            </widget>
-            <addaction name="menuFile"/>
-            <addaction name="menuEfit"/>
-            <addaction name="menuView"/>
-            <addaction name="menuHelp"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="addParticipantBtn">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="mainwindow.qrc">
+           <normaloff>:/assets/add.png</normaloff>:/assets/add.png</iconset>
+         </property>
         </widget>
-        <widget class="QStatusBar" name="statusbar"/>
-        <widget class="QDockWidget" name="controlsDock">
-            <property name="features">
-                <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
-            </property>
-            <property name="windowTitle">
-                <string>פעולות</string>
-            </property>
-            <attribute name="dockWidgetArea">
-                <number>2</number>
-            </attribute>
-            <widget class="QWidget" name="dockWidgetContents">
-                <layout class="QVBoxLayout" name="verticalLayout">
-                    <property name="spacing">
-                        <number>6</number>
-                    </property>
-                    <item>
-                        <widget class="QPushButton" name="createTeamBtn">
-                            <property name="text">
-                                <string>צור קבוצה</string>
-                            </property>
-                        </widget>
-                    </item>
-                    <item>
-                        <spacer name="verticalSpacer">
-                            <property name="orientation">
-                                <enum>Qt::Vertical</enum>
-                            </property>
-                            <property name="sizeHint" stdset="0">
-                                <size>
-                                    <width>20</width>
-                                    <height>40</height>
-                                </size>
-                            </property>
-                        </spacer>
-                    </item>
-                </layout>
-            </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="removeParticipantBtn">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="mainwindow.qrc">
+           <normaloff>:/assets/remove.png</normaloff>:/assets/remove.png</iconset>
+         </property>
         </widget>
-        <widget class="QDockWidget" name="participantsDock">
-            <property name="minimumSize">
-                <size>
-                    <width>253</width>
-                    <height>532</height>
-                </size>
-            </property>
-            <property name="features">
-                <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
-            </property>
-            <property name="windowTitle">
-                <string>משתתפים</string>
-            </property>
-            <attribute name="dockWidgetArea">
-                <number>1</number>
-            </attribute>
-            <widget class="QWidget" name="dockWidgetContents_2">
-                <layout class="QVBoxLayout" name="verticalLayout_2">
-                    <item>
-                        <layout class="QHBoxLayout" name="horizontalLayout">
-                            <item>
-                                <widget class="QLineEdit" name="nameFilterEdt">
-                                    <property name="text">
-                                        <string/>
-                                    </property>
-                                    <property name="placeholderText">
-                                        <string>פילטר</string>
-                                    </property>
-                                </widget>
-                            </item>
-                            <item>
-                                <widget class="QPushButton" name="addParticipantBtn">
-                                    <property name="text">
-                                        <string/>
-                                    </property>
-                                    <property name="icon">
-                                        <iconset resource="mainwindow.qrc">
-                                            <normaloff>:/assets/add.png</normaloff>:/assets/add.png
-                                        </iconset>
-                                    </property>
-                                </widget>
-                            </item>
-                            <item>
-                                <widget class="QPushButton" name="removeParticipantBtn">
-                                    <property name="text">
-                                        <string/>
-                                    </property>
-                                    <property name="icon">
-                                        <iconset resource="mainwindow.qrc">
-                                            <normaloff>:/assets/remove.png</normaloff>:/assets/remove.png
-                                        </iconset>
-                                    </property>
-                                </widget>
-                            </item>
-                        </layout>
-                    </item>
-                    <item>
-                        <widget class="QTableWidget" name="participantsTableWidget">
-                            <property name="minimumSize">
-                                <size>
-                                    <width>0</width>
-                                    <height>454</height>
-                                </size>
-                            </property>
-                            <property name="verticalScrollBarPolicy">
-                                <enum>Qt::ScrollBarAsNeeded</enum>
-                            </property>
-                            <property name="horizontalScrollBarPolicy">
-                                <enum>Qt::ScrollBarAsNeeded</enum>
-                            </property>
-                            <property name="sizeAdjustPolicy">
-                                <enum>QAbstractScrollArea::AdjustToContents</enum>
-                            </property>
-                        </widget>
-                    </item>
-                </layout>
-            </widget>
-        </widget>
-        <action name="actionCreate_Team">
-            <property name="text">
-                <string>Create Team</string>
-            </property>
-            <property name="font">
-                <font>
-                    <pointsize>14</pointsize>
-                </font>
-            </property>
-            <property name="shortcut">
-                <string>Ctrl+T</string>
-            </property>
-        </action>
-        <action name="actionCreate_Participant">
-            <property name="text">
-                <string>Create Participant</string>
-            </property>
-            <property name="font">
-                <font>
-                    <pointsize>14</pointsize>
-                </font>
-            </property>
-        </action>
-        <action name="actionLoad_Participants_File">
-            <property name="text">
-                <string>Load Participants File</string>
-            </property>
-            <property name="toolTip">
-                <string>Load Participants File</string>
-            </property>
-            <property name="font">
-                <font>
-                    <pointsize>14</pointsize>
-                </font>
-            </property>
-        </action>
-        <action name="loadParticipantsFileAction">
-            <property name="icon">
-                <iconset resource="mainwindow.qrc">
-                    <normaloff>:/assets/form.png</normaloff>:/assets/form.png
-                </iconset>
-            </property>
-            <property name="text">
-                <string>פתח קובץ משתמשים...</string>
-            </property>
-        </action>
-        <action name="saveAsAction">
-            <property name="icon">
-                <iconset resource="mainwindow.qrc">
-                    <normaloff>:/assets/saveAs.png</normaloff>:/assets/saveAs.png
-                </iconset>
-            </property>
-            <property name="text">
-                <string>שמור פרויקט בשם...</string>
-            </property>
-            <property name="shortcut">
-                <string>F12</string>
-            </property>
-        </action>
-        <action name="saveAction">
-            <property name="icon">
-                <iconset resource="mainwindow.qrc">
-                    <normaloff>:/assets/save.png</normaloff>:/assets/save.png
-                </iconset>
-            </property>
-            <property name="text">
-                <string>שמור פרויקט</string>
-            </property>
-            <property name="shortcut">
-                <string>Ctrl+S</string>
-            </property>
-        </action>
-        <action name="openAction">
-            <property name="icon">
-                <iconset resource="mainwindow.qrc">
-                    <normaloff>:/assets/open.png</normaloff>:/assets/open.png
-                </iconset>
-            </property>
-            <property name="text">
-                <string>פתח פרויקט...</string>
-            </property>
-            <property name="shortcut">
-                <string>Ctrl+O</string>
-            </property>
-        </action>
-        <action name="recentAction">
-            <property name="icon">
-                <iconset resource="mainwindow.qrc">
-                    <normaloff>:/assets/recent.png</normaloff>:/assets/recent.png
-                </iconset>
-            </property>
-            <property name="text">
-                <string>פרויקטים אחרונים</string>
-            </property>
-        </action>
-        <action name="quitAction">
-            <property name="icon">
-                <iconset resource="mainwindow.qrc">
-                    <normaloff>:/assets/exit.png</normaloff>:/assets/exit.png
-                </iconset>
-            </property>
-            <property name="text">
-                <string>צא</string>
-            </property>
-            <property name="shortcut">
-                <string>Ctrl+Q</string>
-            </property>
-        </action>
-        <action name="newAction">
-            <property name="icon">
-                <iconset resource="mainwindow.qrc">
-                    <normaloff>:/assets/new.png</normaloff>:/assets/new.png
-                </iconset>
-            </property>
-            <property name="text">
-                <string>צור פרויקט חדש...</string>
-            </property>
-            <property name="shortcut">
-                <string>Ctrl+N</string>
-            </property>
-        </action>
-        <action name="action">
-            <property name="text">
-                <string>בדיקה</string>
-            </property>
-        </action>
-    </widget>
-    <resources>
-        <include location="mainwindow.qrc"/>
-    </resources>
-    <connections/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QTableWidget" name="participantsTableWidget">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>454</height>
+        </size>
+       </property>
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAsNeeded</enum>
+       </property>
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarAsNeeded</enum>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QAbstractScrollArea::AdjustToContents</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <action name="actionCreate_Team">
+   <property name="text">
+    <string>Create Team</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionCreate_Participant">
+   <property name="text">
+    <string>Create Participant</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionLoad_Participants_File">
+   <property name="text">
+    <string>Load Participants File</string>
+   </property>
+   <property name="toolTip">
+    <string>Load Participants File</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="loadParticipantsFileAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/assets/form.png</normaloff>:/assets/form.png</iconset>
+   </property>
+   <property name="text">
+    <string>פתח קובץ משתמשים...</string>
+   </property>
+  </action>
+  <action name="saveAsAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/assets/saveAs.png</normaloff>:/assets/saveAs.png</iconset>
+   </property>
+   <property name="text">
+    <string>שמור פרויקט בשם...</string>
+   </property>
+   <property name="shortcut">
+    <string>F12</string>
+   </property>
+  </action>
+  <action name="saveAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/assets/save.png</normaloff>:/assets/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>שמור פרויקט</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="openAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/assets/open.png</normaloff>:/assets/open.png</iconset>
+   </property>
+   <property name="text">
+    <string>פתח פרויקט...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="recentAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/assets/recent.png</normaloff>:/assets/recent.png</iconset>
+   </property>
+   <property name="text">
+    <string>פרויקטים אחרונים</string>
+   </property>
+  </action>
+  <action name="quitAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/assets/exit.png</normaloff>:/assets/exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>צא</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="newAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/assets/new.png</normaloff>:/assets/new.png</iconset>
+   </property>
+   <property name="text">
+    <string>צור פרויקט חדש...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="text">
+    <string>בדיקה</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="mainwindow.qrc"/>
+ </resources>
+ <connections/>
 </ui>

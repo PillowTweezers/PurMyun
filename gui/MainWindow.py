@@ -41,6 +41,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.participantsTableWidget.setAlternatingRowColors(True)
         self.ui.participantsTableWidget.setSortingEnabled(True)
         self.ui.participantsTableWidget.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.ui.participantsFilterLineEdt.textChanged.connect(self.filter_participants)
 
         # Load past window state
         self.settings = QSettings("settings.ini", QSettings.IniFormat)
@@ -169,6 +170,20 @@ class MainWindow(QtWidgets.QMainWindow):
         self.render_participants_table()
 
     @Slot()
+    def filter_participants(self):
+        filter_str = self.ui.participantsFilterLineEdt.text()
+        if filter_str == "":
+            self.render_participants_table()
+            return
+        for row in range(self.ui.participantsTableWidget.rowCount()):
+            participant_name = self.ui.participantsTableWidget.item(row, 0).text()
+            if filter_str.lower() in participant_name.lower():
+                self.ui.participantsTableWidget.showRow(row)
+            else:
+                self.ui.participantsTableWidget.hideRow(row)
+        self.ui.participantsTableWidget.clearSelection()
+
+    @Slot()
     def participants_double_clicked(self):
         row = self.ui.participantsTableWidget.currentRow()
         participant_id = self.ui.participantsTableWidget.item(row, 0).data(QtCore.Qt.UserRole)
@@ -227,6 +242,7 @@ class MainWindow(QtWidgets.QMainWindow):
             if participant.team is not None:
                 item = QtWidgets.QTableWidgetItem(participant.team.name)
                 self.ui.participantsTableWidget.setItem(client.participants.index(participant), 3, item)
+            self.ui.participantsTableWidget.showRow(client.participants.index(participant))
 
     def can_exit(self):
         if client.is_dirty:

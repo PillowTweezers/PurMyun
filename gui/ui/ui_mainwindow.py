@@ -129,10 +129,10 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.nameFilterEdt = QLineEdit(self.dockWidgetContents_2)
-        self.nameFilterEdt.setObjectName(u"nameFilterEdt")
+        self.participantsFilterLineEdt = QLineEdit(self.dockWidgetContents_2)
+        self.participantsFilterLineEdt.setObjectName(u"participantsFilterLineEdt")
 
-        self.horizontalLayout.addWidget(self.nameFilterEdt)
+        self.horizontalLayout.addWidget(self.participantsFilterLineEdt)
 
         self.addParticipantBtn = QPushButton(self.dockWidgetContents_2)
         self.addParticipantBtn.setObjectName(u"addParticipantBtn")
@@ -227,8 +227,8 @@ class Ui_MainWindow(object):
         self.controlsDock.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u05e4\u05e2\u05d5\u05dc\u05d5\u05ea", None))
         self.createTeamBtn.setText(QCoreApplication.translate("MainWindow", u"\u05e6\u05d5\u05e8 \u05e7\u05d1\u05d5\u05e6\u05d4", None))
         self.participantsDock.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u05de\u05e9\u05ea\u05ea\u05e4\u05d9\u05dd", None))
-        self.nameFilterEdt.setText("")
-        self.nameFilterEdt.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u05e4\u05d9\u05dc\u05d8\u05e8", None))
+        self.participantsFilterLineEdt.setText("")
+        self.participantsFilterLineEdt.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u05e4\u05d9\u05dc\u05d8\u05e8", None))
         self.addParticipantBtn.setText("")
         self.removeParticipantBtn.setText("")
     # retranslateUi
