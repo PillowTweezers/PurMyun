@@ -4,12 +4,10 @@ from PySide6 import QtWidgets, QtCore
 from PySide6.QtCore import QSettings, Slot
 from PySide6.QtGui import QAction
 
-from gui.ParticipantCreationDialog import ParticipantCreationDialog
-from gui.ParticipantDialog import ParticipantDialog
 from gui.TeamCreationDialog import TeamCreationDialog
+from gui.TeamWidget import TeamWidget
 from gui.ui.ui_mainwindow import Ui_MainWindow
 from src import Client as client
-from src.Participant import Participant
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -26,8 +24,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Connect All Buttons to their corresponding slots
         self.ui.createTeamBtn.clicked.connect(self.create_team)
-        self.ui.addParticipantBtn.clicked.connect(self.create_participant)
-        self.ui.removeParticipantBtn.clicked.connect(self.remove_participants)
 
         # Connect all Action signals to their corresponding slots
         self.ui.loadParticipantsFileAction.triggered.connect(self.load_participants_file)
@@ -36,7 +32,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.quitAction.triggered.connect(self.quit)
         self.ui.openAction.triggered.connect(self.open_project)
         self.ui.newAction.triggered.connect(self.new_project)
-
+        self.ui.assignTeamsBtn.clicked.connect(self.assign_teams)
         # Create recent files menu actions
         for i in range(self.MAX_RECENT_FILES):
             self.recent_actions.append(
@@ -44,26 +40,16 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.recentFilesMenu.insertAction(self.ui.quitAction, self.recent_actions[i])
         self.update_recent_files_menu()
 
-        # Init participants table
-        self.ui.participantsTableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
-        self.ui.participantsTableWidget.setColumnCount(4)
-        self.ui.participantsTableWidget.setHorizontalHeaderLabels(["שם", "ממוצע", "מחויבות", "צוות"])
-        self.ui.participantsTableWidget.setColumnWidth(0, 80)
-        self.ui.participantsTableWidget.setColumnWidth(1, 55)
-        self.ui.participantsTableWidget.setColumnWidth(2, 55)
-        self.ui.participantsTableWidget.setColumnWidth(3, 64)
-        self.ui.participantsTableWidget.doubleClicked.connect(self.participants_double_clicked)
-        self.ui.participantsTableWidget.setAlternatingRowColors(True)
-        self.ui.participantsTableWidget.setSortingEnabled(True)
-        self.ui.participantsTableWidget.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
-        self.ui.participantsFilterLineEdt.textChanged.connect(self.filter_participants)
-
         # Load past window state
         self.settings = QSettings("settings.ini", QSettings.IniFormat)
         self.restoreGeometry(self.settings.value("geometry"))
         self.restoreState(self.settings.value("windowState"))
 
         self.statusBar().showMessage("מוכן")
+
+    def update_ui(self):
+        self.render_participants_table()
+        self.render_teams_widget()
 
     def closeEvent(self, event):
         if self.can_exit():
@@ -78,7 +64,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if self.can_exit():
             self.statusBar().showMessage("יוצר פרויקט חדש...")
             client.new_project()
-            self.render_participants_table()
+            self.update_ui()
             self.statusBar().showMessage("פרויקט נוצר")
             return True
         else:
@@ -89,7 +75,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if self.can_exit():
             self.statusBar().showMessage("פותח פרויקט...")
             if client.open_project(self.sender().data()) == 0:
-                self.render_participants_table()
+                self.update_ui()
                 self.statusBar().showMessage("פרויקט נטען")
                 self.update_current_file()
                 return True
@@ -113,7 +99,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 if filename:
                     if client.open_project(filename=filename) == 0:
                         self.statusBar().showMessage("קובץ נטען בהצלחה")
-                        self.render_participants_table()
+                        self.update_ui()
                         self.update_current_file()
                         return True
                     else:
@@ -156,82 +142,20 @@ class MainWindow(QtWidgets.QMainWindow):
         return False
 
     @Slot()
-    def remove_participants(self):
-        self.statusBar().showMessage("מחיקת משתתפים...")
-        selected_items = self.ui.participantsTableWidget.selectedItems()
-        selected_rows = set()
-        for item in selected_items:
-            selected_rows.add(item.row())
-        if len(selected_rows) == 0:
-            self.alert_text("לא נבחרו משתתפים")
-            return
-        confirmation_box = QtWidgets.QMessageBox()
-        confirmation_box.setText("האם אתה בטוח שברצונך למחוק את המשתתפים שנבחרו?")
-        confirmation_box.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
-        confirmation_box.setDefaultButton(QtWidgets.QMessageBox.No)
-        confirmation_box.setIcon(QtWidgets.QMessageBox.Question)
-        confirmation_box.setWindowTitle("אישור מחיקה")
-        if confirmation_box.exec() == QtWidgets.QMessageBox.Yes:
-            for row in sorted(selected_rows, reverse=True):
-                participant_id = self.ui.participantsTableWidget.item(row, 0).data(QtCore.Qt.UserRole)
-                client.remove_participant(participant_id)
-                self.ui.participantsTableWidget.removeRow(row)
-            self.statusBar().showMessage("משתתפים נמחקו")
-            self.ui.participantsTableWidget.clearSelection()
-        else:
-            self.statusBar().showMessage("מחיקת משתתפים בוטלה")
-
-    @Slot()
-    def create_participant(self):
-        self.statusBar().showMessage("יוצר משתתף...")
-        participantCreationDialog = ParticipantCreationDialog()
-        if participantCreationDialog.exec() == QtWidgets.QDialog.Accepted:
-            participant = Participant()
-            participant.name = participantCreationDialog.ui.nameLineEdt.text()
-            participant.presence = participantCreationDialog.ui.presenceSlider.value()
-            participant.motivation = participantCreationDialog.ui.motivationSlider.value()
-            participant.square = participantCreationDialog.ui.squareSlider.value()
-            participant.cross = participantCreationDialog.ui.crossSlider.value()
-            participant.parallel = participantCreationDialog.ui.parallelSlider.value()
-            participant.tripod = participantCreationDialog.ui.tripodSlider.value()
-            participant.anchoring = participantCreationDialog.ui.anchoringSlider.value()
-            participant.macrame = participantCreationDialog.ui.macrameSlider.value()
-            client.add_participant(participant)
-        self.statusBar().showMessage("משתתף נוצר")
-        self.render_participants_table()
-
-    @Slot()
-    def filter_participants(self):
-        filter_str = self.ui.participantsFilterLineEdt.text()
-        if filter_str == "":
-            self.render_participants_table()
-            return
-        for row in range(self.ui.participantsTableWidget.rowCount()):
-            participant_name = self.ui.participantsTableWidget.item(row, 0).text()
-            if filter_str.lower() in participant_name.lower():
-                self.ui.participantsTableWidget.showRow(row)
-            else:
-                self.ui.participantsTableWidget.hideRow(row)
-        self.ui.participantsTableWidget.clearSelection()
-
-    @Slot()
-    def participants_double_clicked(self):
-        row = self.ui.participantsTableWidget.currentRow()
-        participant_id = self.ui.participantsTableWidget.item(row, 0).data(QtCore.Qt.UserRole)
-
-        def find_by_id(p): return p.id == participant_id
-
-        participant = next(filter(find_by_id, client.participants), None)
-        self.statusBar().showMessage("פותח תפריט עבור משתתף: " + participant.name)
-        participantDialog = ParticipantDialog(participant)
-        participantDialog.exec()
-
-    @Slot()
     def create_team(self):
         self.statusBar().showMessage("יוצר צוות...")
         teamCreationDialog = TeamCreationDialog()
-        teamCreationDialog.exec()
-        self.statusBar().showMessage("צוות נוצר")
+        if teamCreationDialog.exec() == QtWidgets.QDialog.Accepted:
+            self.statusBar().showMessage("צוות נוצר")
+            self.render_teams_widget()
+        else:
+            self.statusBar().showMessage("צוות לא נוצר")
+
+    @Slot()
+    def assign_teams(self):
+        self.statusBar().showMessage("מקצה צוותים...")
+        client.assign_to_teams()
+        self.update_ui()
 
     @Slot()
     def load_participants_file(self):
@@ -254,26 +178,16 @@ class MainWindow(QtWidgets.QMainWindow):
             self.close()
 
     def render_participants_table(self):
-        # This library seems to not work well with clearContents()
-        # my guess is that it's asynchonous and the table is still rendering
-        # while the clearContents() is happening.
-        # You may want to figure out a way to wait for it to clear. Remember
-        # that this is only a guess.
-        self.ui.participantsTableWidget.setRowCount(len(client.participants))
-        for participant in client.participants:
-            item = QtWidgets.QTableWidgetItem(participant.name)
-            item.setData(QtCore.Qt.UserRole, participant.id)
-            self.ui.participantsTableWidget.setItem(client.participants.index(participant), 0, item)
-            item = QtWidgets.QTableWidgetItem()
-            item.setData(QtCore.Qt.DisplayRole, float("{:g}".format(round(participant.average(), 1))))
-            self.ui.participantsTableWidget.setItem(client.participants.index(participant), 1, item)
-            item = QtWidgets.QTableWidgetItem()
-            item.setData(QtCore.Qt.DisplayRole, participant.presence)
-            self.ui.participantsTableWidget.setItem(client.participants.index(participant), 2, item)
-            if participant.team is not None:
-                item = QtWidgets.QTableWidgetItem(participant.team.name)
-                self.ui.participantsTableWidget.setItem(client.participants.index(participant), 3, item)
-            self.ui.participantsTableWidget.showRow(client.participants.index(participant))
+        self.ui.participantsTableWidget.update_ui()
+        for i in range(self.ui.teamsTabWidget.count()):
+            tab = self.ui.teamsTabWidget.widget(i)
+            tab.update_ui()
+
+    def render_teams_widget(self):
+        self.ui.teamsTabWidget.clear()
+        for team in client.teams:
+            team_widget = TeamWidget(team)
+            self.ui.teamsTabWidget.addTab(team_widget, team.name)
 
     def can_exit(self):
         if client.is_dirty:

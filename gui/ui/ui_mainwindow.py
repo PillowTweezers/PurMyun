@@ -16,11 +16,11 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QDockWidget, QHBoxLayout,
-    QHeaderView, QLineEdit, QMainWindow, QMenu,
+from PySide6.QtWidgets import (QApplication, QDockWidget, QMainWindow, QMenu,
     QMenuBar, QPushButton, QSizePolicy, QSpacerItem,
-    QStatusBar, QTableWidget, QTableWidgetItem, QVBoxLayout,
-    QWidget)
+    QStatusBar, QTabWidget, QVBoxLayout, QWidget)
+
+from gui.ParticipantTableWidget import ParticipantTableWidget
 import mainwindow_rc
 
 class Ui_MainWindow(object):
@@ -88,7 +88,14 @@ class Ui_MainWindow(object):
         self.recentAction4.setVisible(True)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.centralwidget.setStyleSheet(u"background-color:rgb(139, 139, 139)")
+        self.centralwidget.setStyleSheet(u"")
+        self.verticalLayout_3 = QVBoxLayout(self.centralwidget)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.teamsTabWidget = QTabWidget(self.centralwidget)
+        self.teamsTabWidget.setObjectName(u"teamsTabWidget")
+
+        self.verticalLayout_3.addWidget(self.teamsTabWidget)
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -125,6 +132,11 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.createTeamBtn)
 
+        self.assignTeamsBtn = QPushButton(self.dockWidgetContents)
+        self.assignTeamsBtn.setObjectName(u"assignTeamsBtn")
+
+        self.verticalLayout.addWidget(self.assignTeamsBtn)
+
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout.addItem(self.verticalSpacer)
@@ -135,46 +147,22 @@ class Ui_MainWindow(object):
         self.participantsDock.setObjectName(u"participantsDock")
         self.participantsDock.setMinimumSize(QSize(253, 532))
         self.participantsDock.setFeatures(QDockWidget.DockWidgetFloatable|QDockWidget.DockWidgetMovable)
-        self.dockWidgetContents_2 = QWidget()
-        self.dockWidgetContents_2.setObjectName(u"dockWidgetContents_2")
-        self.verticalLayout_2 = QVBoxLayout(self.dockWidgetContents_2)
+        self.participantDockLayout = QWidget()
+        self.participantDockLayout.setObjectName(u"participantDockLayout")
+        self.verticalLayout_2 = QVBoxLayout(self.participantDockLayout)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.horizontalLayout = QHBoxLayout()
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.participantsFilterLineEdt = QLineEdit(self.dockWidgetContents_2)
-        self.participantsFilterLineEdt.setObjectName(u"participantsFilterLineEdt")
-
-        self.horizontalLayout.addWidget(self.participantsFilterLineEdt)
-
-        self.addParticipantBtn = QPushButton(self.dockWidgetContents_2)
-        self.addParticipantBtn.setObjectName(u"addParticipantBtn")
-        icon7 = QIcon()
-        icon7.addFile(u":/assets/add.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.addParticipantBtn.setIcon(icon7)
-
-        self.horizontalLayout.addWidget(self.addParticipantBtn)
-
-        self.removeParticipantBtn = QPushButton(self.dockWidgetContents_2)
-        self.removeParticipantBtn.setObjectName(u"removeParticipantBtn")
-        icon8 = QIcon()
-        icon8.addFile(u":/assets/remove.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.removeParticipantBtn.setIcon(icon8)
-
-        self.horizontalLayout.addWidget(self.removeParticipantBtn)
-
-
-        self.verticalLayout_2.addLayout(self.horizontalLayout)
-
-        self.participantsTableWidget = QTableWidget(self.dockWidgetContents_2)
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.participantsTableWidget = ParticipantTableWidget(self.participantDockLayout)
         self.participantsTableWidget.setObjectName(u"participantsTableWidget")
-        self.participantsTableWidget.setMinimumSize(QSize(0, 454))
-        self.participantsTableWidget.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
-        self.participantsTableWidget.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
-        self.participantsTableWidget.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.participantsTableWidget.sizePolicy().hasHeightForWidth())
+        self.participantsTableWidget.setSizePolicy(sizePolicy)
 
         self.verticalLayout_2.addWidget(self.participantsTableWidget)
 
-        self.participantsDock.setWidget(self.dockWidgetContents_2)
+        self.participantsDock.setWidget(self.participantDockLayout)
         MainWindow.addDockWidget(Qt.LeftDockWidgetArea, self.participantsDock)
 
         self.menubar.addAction(self.menuFile.menuAction())
@@ -193,6 +181,9 @@ class Ui_MainWindow(object):
         self.menuFile.addAction(self.quitAction)
 
         self.retranslateUi(MainWindow)
+
+        self.teamsTabWidget.setCurrentIndex(-1)
+
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
@@ -241,10 +232,7 @@ class Ui_MainWindow(object):
         self.menuHelp.setTitle(QCoreApplication.translate("MainWindow", u"\u05e2\u05d6\u05e8\u05d4", None))
         self.controlsDock.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u05e4\u05e2\u05d5\u05dc\u05d5\u05ea", None))
         self.createTeamBtn.setText(QCoreApplication.translate("MainWindow", u"\u05e6\u05d5\u05e8 \u05e7\u05d1\u05d5\u05e6\u05d4", None))
+        self.assignTeamsBtn.setText(QCoreApplication.translate("MainWindow", u"\u05de\u05e6\u05e0\u05e4\u05ea \u05d4\u05de\u05d9\u05d5\u05df", None))
         self.participantsDock.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u05de\u05e9\u05ea\u05ea\u05e4\u05d9\u05dd", None))
-        self.participantsFilterLineEdt.setText("")
-        self.participantsFilterLineEdt.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u05e4\u05d9\u05dc\u05d8\u05e8", None))
-        self.addParticipantBtn.setText("")
-        self.removeParticipantBtn.setText("")
     # retranslateUi
 

@@ -22,11 +22,10 @@ class TeamCreationDialog(QtWidgets.QDialog):
     def accept_button_clicked(self):
         weights = Weights()
         weights.square = self.ui.squareSlider.value()
-        weights.cross = self.ui.squareSlider.value()
-        weights.parallel = self.ui.squareSlider.value()
-        weights.tripod = self.ui.squareSlider.value()
-        weights.anchoring = self.ui.squareSlider.value()
-        weights.macrame = self.ui.squareSlider.value()
-        weights.size = self.ui.squareSlider.value()
+        weights.cross = self.ui.crossSlider.value()
+        weights.parallel = self.ui.parallelSlider.value()
+        weights.tripod = self.ui.tripodSlider.value()
+        weights.anchoring = self.ui.anchoringSlider.value()
+        weights.macrame = self.ui.macrameSlider.value()
+        weights.size = -1
         client.create_team(self.ui.teamNameEdt.text(), weights)
-        client.print_all_teams()

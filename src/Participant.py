@@ -53,8 +53,17 @@ class Participant:
         # iteration 3:
         return (math.pow(math.log10(self.presence), 3) + (self.motivation - 1) / 40) / 1.1
 
+    def calculatePreference(self, weights: Weights):
+        if weights.name == self.team_preference1:
+            return 5
+        elif weights.name == self.team_preference2:
+            return 3
+        elif weights.name == self.team_preference3:
+            return 1
+        return 0
+
     def calculateGrade(self, weights: Weights):
-        return self.calculateProfession(weights) * self.calculateMotivation()
+        return self.calculateProfession(weights) * self.calculateMotivation() + self.calculatePreference(weights)
 
     def __str__(self):
         return f"{self.name} - {self.grade} - {self.team_preference1} - {self.team_preference2} - {self.team_preference3} - {self.motivation} - {self.square} - {self.cross} - {self.parallel} - {self.tripod} - {self.anchoring} - {self.macrame} - {self.appearance}"

@@ -49,14 +49,19 @@ def assign_to_teams():
                 lst.pop(i)
                 break
 
+    if len(teams) == 0:
+        return
+    for team in teams:
+        team.clearParticipants()
     participants_listings = dict()
     for team in teams:
         participants_listings[team.name] = participants.copy()
         participants_listings[team.name].sort(key=lambda par: par.calculateGrade(team.weights), reverse=True)
     running = True
     while running:
-        shuffle(teams)
-        for team in teams:
+        teams_copy = teams.copy()
+        shuffle(teams_copy)
+        for team in teams_copy:
             if len(participants_listings[team.name]) == 0:
                 running = False
                 break

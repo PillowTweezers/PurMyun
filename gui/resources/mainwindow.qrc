@@ -10,5 +10,6 @@
         <file>../../assets/save.png</file>
         <file>../../assets/saveAs.png</file>
         <file>../../assets/exit.png</file>
+        <file>../../assets/edit.png</file>
     </qresource>
 </RCC>

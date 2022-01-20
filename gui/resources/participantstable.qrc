@@ -1,0 +1,8 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource>
+        <file>../../assets/remove.png</file>
+        <file>../../assets/add.png</file>
+        <file>../../assets/assign.png</file>
+    </qresource>
+</RCC>

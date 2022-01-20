@@ -24,8 +24,17 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
-    <string notr="true">background-color:rgb(139, 139, 139)</string>
+    <string notr="true"/>
    </property>
+   <layout class="QVBoxLayout" name="verticalLayout_3">
+    <item>
+     <widget class="QTabWidget" name="teamsTabWidget">
+      <property name="currentIndex">
+       <number>-1</number>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -110,6 +119,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="assignTeamsBtn">
+       <property name="text">
+        <string>מצנפת המיון</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer name="verticalSpacer">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
@@ -141,60 +157,27 @@
    <attribute name="dockWidgetArea">
     <number>1</number>
    </attribute>
-   <widget class="QWidget" name="dockWidgetContents_2">
+   <widget class="QWidget" name="participantDockLayout">
     <layout class="QVBoxLayout" name="verticalLayout_2">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QLineEdit" name="participantsFilterLineEdt">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="placeholderText">
-          <string>פילטר</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="addParticipantBtn">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="mainwindow.qrc">
-           <normaloff>:/assets/add.png</normaloff>:/assets/add.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="removeParticipantBtn">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="mainwindow.qrc">
-           <normaloff>:/assets/remove.png</normaloff>:/assets/remove.png</iconset>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <widget class="QTableWidget" name="participantsTableWidget">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>454</height>
-        </size>
-       </property>
-       <property name="verticalScrollBarPolicy">
-        <enum>Qt::ScrollBarAsNeeded</enum>
-       </property>
-       <property name="horizontalScrollBarPolicy">
-        <enum>Qt::ScrollBarAsNeeded</enum>
-       </property>
-       <property name="sizeAdjustPolicy">
-        <enum>QAbstractScrollArea::AdjustToContents</enum>
+      <widget class="ParticipantTableWidget" name="participantsTableWidget" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
        </property>
       </widget>
      </item>
@@ -344,6 +327,14 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ParticipantTableWidget</class>
+   <extends>QWidget</extends>
+   <header>gui.ParticipantTableWidget</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="mainwindow.qrc"/>
  </resources>
