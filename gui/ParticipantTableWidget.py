@@ -38,10 +38,12 @@ class ParticipantTableWidget(QWidget):
         self.ui.participantsTableWidget.setHorizontalHeaderLabels(["שם", "ממוצע", "מחויבות", "צוות"])
 
         self.ui.participantsTableWidget.doubleClicked.connect(self.participants_double_clicked)
-        self.ui.participantsTableWidget.setAlternatingRowColors(True)
         self.ui.participantsTableWidget.setSortingEnabled(True)
         self.ui.participantsTableWidget.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.ui.participantsFilterLineEdt.textChanged.connect(self.filter_participants)
+
+    def assign_participant(self):
+        pass
 
     def showEvent(self, event: QtGui.QShowEvent) -> None:
         super(ParticipantTableWidget, self).showEvent(event)
@@ -130,20 +132,24 @@ class ParticipantTableWidget(QWidget):
         participants = self.team.participants if self.team else client.participants
         self.ui.participantsTableWidget.setRowCount(len(participants))
         for participant in participants:
+            color = QtGui.QColor(QtCore.Qt.white)
             item = QtWidgets.QTableWidgetItem(participant.name)
+            if participant.team is not None and hasattr(participant, "color") and participant.color is not None:
+                color = participant.team.color
             item.setData(QtCore.Qt.UserRole, participant.id)
-            # if participant.team is not None:
-            #     item.setBackground(participant.team.)
-            # item.setBackground(QtGui.QColor(participant.team))
+            item.setBackground(color)
             self.ui.participantsTableWidget.setItem(participants.index(participant), 0, item)
             item = QtWidgets.QTableWidgetItem()
             item.setData(QtCore.Qt.DisplayRole, float("{:g}".format(round(participant.average(), 1))))
+            item.setBackground(color)
             self.ui.participantsTableWidget.setItem(participants.index(participant), 1, item)
             item = QtWidgets.QTableWidgetItem()
             item.setData(QtCore.Qt.DisplayRole, participant.presence)
+            item.setBackground(color)
             self.ui.participantsTableWidget.setItem(participants.index(participant), 2, item)
             if participant.team is not None:
                 item = QtWidgets.QTableWidgetItem(participant.team.name)
+                item.setBackground(color)
                 self.ui.participantsTableWidget.setItem(participants.index(participant), 3, item)
             self.ui.participantsTableWidget.showRow(participants.index(participant))
 

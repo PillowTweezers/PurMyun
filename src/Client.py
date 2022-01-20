@@ -31,11 +31,11 @@ def load_participants(file_path):
     return participants.copy(), 0
 
 
-def create_team(team_name: str, team_weights: Weights):
+def create_team(team_name: str, team_weights: Weights, color=None):
     global is_dirty
     is_dirty = True
     team_weights.name = team_name
-    team = Team(name=team_name, weights=team_weights)
+    team = Team(name=team_name, weights=team_weights, color=color)
     teams.append(team)
 
 

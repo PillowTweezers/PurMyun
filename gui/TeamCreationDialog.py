@@ -12,12 +12,13 @@ class TeamCreationDialog(QtWidgets.QDialog):
         self.ui.setupUi(self)
         self.ui.colorPickerBtn.clicked.connect(self.color_button_clicked)
         self.ui.buttonBox.accepted.connect(self.accept_button_clicked)
+        self.color = None
 
     def color_button_clicked(self):
         colorPicker = QtWidgets.QColorDialog()
-        color = colorPicker.getColor()
+        self.color = colorPicker.getColor()
         self.ui.colorPickerBtn.setStyleSheet(
-            "background-color: rgb({}, {}, {});".format(color.red(), color.green(), color.blue()))
+            "background-color: rgb({}, {}, {});".format(self.color.red(), self.color.green(), self.color.blue()))
 
     def accept_button_clicked(self):
         weights = Weights()
@@ -28,4 +29,4 @@ class TeamCreationDialog(QtWidgets.QDialog):
         weights.anchoring = self.ui.anchoringSlider.value()
         weights.macrame = self.ui.macrameSlider.value()
         weights.size = -1
-        client.create_team(self.ui.teamNameEdt.text(), weights)
+        client.create_team(self.ui.teamNameEdt.text(), weights, self.color)

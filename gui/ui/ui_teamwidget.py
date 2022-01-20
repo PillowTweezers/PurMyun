@@ -17,7 +17,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFormLayout, QGridLayout, QGroupBox,
     QHBoxLayout, QLabel, QProgressBar, QPushButton,
-    QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
+    QScrollArea, QSizePolicy, QSpacerItem, QVBoxLayout,
+    QWidget)
 
 from gui.ParticipantTableWidget import ParticipantTableWidget
 import mainwindow_rc
@@ -26,27 +27,36 @@ class Ui_TeamWidget(object):
     def setupUi(self, TeamWidget):
         if not TeamWidget.objectName():
             TeamWidget.setObjectName(u"TeamWidget")
-        TeamWidget.resize(550, 906)
+        TeamWidget.resize(539, 568)
         TeamWidget.setLayoutDirection(Qt.RightToLeft)
         self.verticalLayout = QVBoxLayout(TeamWidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(1, 1, 1, 1)
+        self.scrollArea = QScrollArea(TeamWidget)
+        self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollAreaWidgetContents = QWidget()
+        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 535, 564))
+        self.verticalLayout_3 = QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.formLayout = QFormLayout()
         self.formLayout.setObjectName(u"formLayout")
-        self.label = QLabel(TeamWidget)
+        self.label = QLabel(self.scrollAreaWidgetContents)
         self.label.setObjectName(u"label")
         self.label.setStyleSheet(u"font-size:16px;font-weight:bold;")
 
         self.formLayout.setWidget(0, QFormLayout.LabelRole, self.label)
 
-        self.teamNameLbl = QLabel(TeamWidget)
+        self.teamNameLbl = QLabel(self.scrollAreaWidgetContents)
         self.teamNameLbl.setObjectName(u"teamNameLbl")
 
         self.formLayout.setWidget(0, QFormLayout.FieldRole, self.teamNameLbl)
 
 
-        self.verticalLayout.addLayout(self.formLayout)
+        self.verticalLayout_3.addLayout(self.formLayout)
 
-        self.groupBox = QGroupBox(TeamWidget)
+        self.groupBox = QGroupBox(self.scrollAreaWidgetContents)
         self.groupBox.setObjectName(u"groupBox")
         self.groupBox.setStyleSheet(u"")
         self.gridLayout = QGridLayout(self.groupBox)
@@ -160,7 +170,7 @@ class Ui_TeamWidget(object):
         self.gridLayout.addWidget(self.crossBar, 2, 1, 1, 1)
 
 
-        self.verticalLayout.addWidget(self.groupBox)
+        self.verticalLayout_3.addWidget(self.groupBox)
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -168,21 +178,21 @@ class Ui_TeamWidget(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
 
-        self.cancelEditBtn = QPushButton(TeamWidget)
+        self.cancelEditBtn = QPushButton(self.scrollAreaWidgetContents)
         self.cancelEditBtn.setObjectName(u"cancelEditBtn")
         self.cancelEditBtn.setEnabled(True)
         self.cancelEditBtn.setStyleSheet(u"")
 
         self.horizontalLayout.addWidget(self.cancelEditBtn)
 
-        self.applyEditBtn = QPushButton(TeamWidget)
+        self.applyEditBtn = QPushButton(self.scrollAreaWidgetContents)
         self.applyEditBtn.setObjectName(u"applyEditBtn")
         self.applyEditBtn.setEnabled(True)
         self.applyEditBtn.setStyleSheet(u"")
 
         self.horizontalLayout.addWidget(self.applyEditBtn)
 
-        self.editBtn = QPushButton(TeamWidget)
+        self.editBtn = QPushButton(self.scrollAreaWidgetContents)
         self.editBtn.setObjectName(u"editBtn")
         icon = QIcon()
         icon.addFile(u":/assets/edit.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -191,14 +201,14 @@ class Ui_TeamWidget(object):
         self.horizontalLayout.addWidget(self.editBtn)
 
 
-        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.verticalLayout_3.addLayout(self.horizontalLayout)
 
-        self.label_2 = QLabel(TeamWidget)
+        self.label_2 = QLabel(self.scrollAreaWidgetContents)
         self.label_2.setObjectName(u"label_2")
 
-        self.verticalLayout.addWidget(self.label_2)
+        self.verticalLayout_3.addWidget(self.label_2)
 
-        self.widget = QWidget(TeamWidget)
+        self.widget = QWidget(self.scrollAreaWidgetContents)
         self.widget.setObjectName(u"widget")
         self.verticalLayout_2 = QVBoxLayout(self.widget)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
@@ -214,7 +224,15 @@ class Ui_TeamWidget(object):
         self.verticalLayout_2.addLayout(self.horizontalLayout_2)
 
 
-        self.verticalLayout.addWidget(self.widget)
+        self.verticalLayout_3.addWidget(self.widget)
+
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_3.addItem(self.verticalSpacer)
+
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+
+        self.verticalLayout.addWidget(self.scrollArea)
 
 
         self.retranslateUi(TeamWidget)
