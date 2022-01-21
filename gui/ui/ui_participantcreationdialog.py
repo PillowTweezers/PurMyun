@@ -25,7 +25,7 @@ class Ui_ParticipantCreationDialog(object):
     def setupUi(self, ParticipantCreationDialog):
         if not ParticipantCreationDialog.objectName():
             ParticipantCreationDialog.setObjectName(u"ParticipantCreationDialog")
-        ParticipantCreationDialog.resize(608, 471)
+        ParticipantCreationDialog.resize(608, 531)
         ParticipantCreationDialog.setLayoutDirection(Qt.RightToLeft)
         self.verticalLayout = QVBoxLayout(ParticipantCreationDialog)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -267,6 +267,78 @@ class Ui_ParticipantCreationDialog(object):
 
         self.formLayout.setLayout(0, QFormLayout.FieldRole, self.horizontalLayout_2)
 
+        self.label_4 = QLabel(ParticipantCreationDialog)
+        self.label_4.setObjectName(u"label_4")
+
+        self.formLayout.setWidget(4, QFormLayout.LabelRole, self.label_4)
+
+        self.groupBox_2 = QGroupBox(ParticipantCreationDialog)
+        self.groupBox_2.setObjectName(u"groupBox_2")
+        self.formLayout_2 = QFormLayout(self.groupBox_2)
+        self.formLayout_2.setObjectName(u"formLayout_2")
+        self.label_19 = QLabel(self.groupBox_2)
+        self.label_19.setObjectName(u"label_19")
+        self.label_19.setStyleSheet(u"font-size:16px;")
+
+        self.formLayout_2.setWidget(0, QFormLayout.LabelRole, self.label_19)
+
+        self.label_21 = QLabel(self.groupBox_2)
+        self.label_21.setObjectName(u"label_21")
+        self.label_21.setStyleSheet(u"font-size:16px;")
+
+        self.formLayout_2.setWidget(2, QFormLayout.LabelRole, self.label_21)
+
+        self.label_20 = QLabel(self.groupBox_2)
+        self.label_20.setObjectName(u"label_20")
+        self.label_20.setStyleSheet(u"font-size:16px;")
+
+        self.formLayout_2.setWidget(4, QFormLayout.LabelRole, self.label_20)
+
+        self.horizontalLayout_4 = QHBoxLayout()
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.preferenceAComboBox = QComboBox(self.groupBox_2)
+        self.preferenceAComboBox.setObjectName(u"preferenceAComboBox")
+
+        self.horizontalLayout_4.addWidget(self.preferenceAComboBox)
+
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_4.addItem(self.horizontalSpacer_3)
+
+
+        self.formLayout_2.setLayout(0, QFormLayout.FieldRole, self.horizontalLayout_4)
+
+        self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.preferenceBComboBox = QComboBox(self.groupBox_2)
+        self.preferenceBComboBox.setObjectName(u"preferenceBComboBox")
+
+        self.horizontalLayout_5.addWidget(self.preferenceBComboBox)
+
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_5.addItem(self.horizontalSpacer_4)
+
+
+        self.formLayout_2.setLayout(2, QFormLayout.FieldRole, self.horizontalLayout_5)
+
+        self.horizontalLayout_6 = QHBoxLayout()
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.preferenceCComboBox = QComboBox(self.groupBox_2)
+        self.preferenceCComboBox.setObjectName(u"preferenceCComboBox")
+
+        self.horizontalLayout_6.addWidget(self.preferenceCComboBox)
+
+        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_6.addItem(self.horizontalSpacer_5)
+
+
+        self.formLayout_2.setLayout(4, QFormLayout.FieldRole, self.horizontalLayout_6)
+
+
+        self.formLayout.setWidget(4, QFormLayout.FieldRole, self.groupBox_2)
+
 
         self.verticalLayout.addLayout(self.formLayout)
 
@@ -305,5 +377,10 @@ class Ui_ParticipantCreationDialog(object):
         self.label_18.setText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05de\u05e7\u05e8\u05de\u05d4", None))
         self.label_3.setText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05e9\u05db\u05d1\u05d4:", None))
         self.nameLineEdt.setPlaceholderText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05e9\u05dd \u05de\u05dc\u05d0", None))
+        self.label_4.setText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05d4\u05e2\u05d3\u05e4\u05d5\u05ea:", None))
+        self.groupBox_2.setTitle("")
+        self.label_19.setText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05d0':", None))
+        self.label_21.setText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05d1':", None))
+        self.label_20.setText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05d2':", None))
     # retranslateUi
 

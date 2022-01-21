@@ -119,7 +119,7 @@
         <string notr="true">text-align: center;</string>
        </property>
        <property name="text">
-        <string>צור קבוצה</string>
+        <string>צור צוות</string>
        </property>
        <property name="icon">
         <iconset resource="mainwindow.qrc">
