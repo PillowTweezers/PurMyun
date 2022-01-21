@@ -44,7 +44,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.loadParticipantsFileAction.triggered.connect(self.load_participants_file)
         self.ui.saveAsAction.triggered.connect(self.save_as)
         self.ui.saveAction.triggered.connect(self.save)
-        self.ui.quitAction.triggered.connect(self.quit)
+        self.ui.quitAction.triggered.connect(self.close)
         self.ui.openAction.triggered.connect(self.open_project)
         self.ui.newAction.triggered.connect(self.new_project)
         self.ui.exportExcelAction.triggered.connect(self.export_to_excel)
@@ -185,11 +185,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.render_participants_table()
         self.statusBar().showMessage("משתתפים נטענו")
 
-    @Slot()
-    def quit(self):
-        if self.can_exit():
-            self.close()
-
     def render_participants_table(self):
         self.ui.participantsTableWidget.update_ui()
 
@@ -275,7 +270,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.recent_actions[i].setVisible(False)
 
     def export_to_excel(self):
-        if len(client.grades) != 3:
+        if not client.has_grades():
             self.open_grades_dialog()
         saveDialog = QtWidgets.QFileDialog()
         saveDialog.setAcceptMode(QtWidgets.QFileDialog.AcceptSave)

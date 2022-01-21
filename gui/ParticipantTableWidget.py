@@ -2,6 +2,7 @@ from PySide6 import QtWidgets, QtCore, QtGui
 from PySide6.QtCore import Slot
 from PySide6.QtWidgets import QWidget
 
+from gui.GradesDialog import GradesDialog
 from gui.ParticipantCreationDialog import ParticipantCreationDialog
 from gui.ParticipantDialog import ParticipantDialog
 from gui.ui.ui_participanttablewidget import Ui_ParticipantTableWidget
@@ -142,9 +143,15 @@ class ParticipantTableWidget(QWidget):
 
     @Slot()
     def create_participant(self):
+        if not client.has_grades():
+            self.open_grades_dialog()
         participantCreationDialog = ParticipantCreationDialog()
         if participantCreationDialog.exec() == QtWidgets.QDialog.Accepted:
             self.render_participants_table()
+
+    def open_grades_dialog(self):
+        dialog = GradesDialog(self)
+        dialog.exec_()
 
     @Slot()
     def filter_participants(self):

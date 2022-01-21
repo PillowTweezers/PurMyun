@@ -11,9 +11,16 @@ class ParticipantCreationDialog(QDialog):
         self.ui = Ui_ParticipantCreationDialog()
         self.ui.setupUi(self)
 
-        self.ui.buttonBox.accepted.connect(self.accept_clicked)
+        self.create_grades_combobox()
 
-    def accept_clicked(self):
+    def create_grades_combobox(self):
+        for grade in client.grades:
+            self.ui.gradesComboBox.addItem(grade)
+
+    def accept(self) -> None:
+        if not self.can_accept():
+            self.ui.nameLineEdt.setFocus()
+            return
         participant = Participant()
         participant.name = self.ui.nameLineEdt.text()
         participant.presence = self.ui.presenceSlider.value()
@@ -25,3 +32,7 @@ class ParticipantCreationDialog(QDialog):
         participant.anchoring = self.ui.anchoringSlider.value()
         participant.macrame = self.ui.macrameSlider.value()
         client.add_participant(participant)
+        self.done(QDialog.Accepted)
+
+    def can_accept(self):
+        return self.ui.nameLineEdt.text() != ""

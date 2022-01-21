@@ -4,7 +4,9 @@ import csv
 import os
 import pickle
 from random import shuffle
+
 import xlsxwriter
+
 from src.Participant import Participant
 from src.Team import Team
 from src.Weights import Weights
@@ -243,6 +245,10 @@ def export_to_excel(filename: str = "results.xlsx"):
         return True
     except xlsxwriter.exceptions.FileCreateError or PermissionError:
         return False
+
+
+def has_grades() -> bool:
+    return len(grades) == 3
 
 
 def new_project():

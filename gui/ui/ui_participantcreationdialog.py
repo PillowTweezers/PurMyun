@@ -15,16 +15,17 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractButton, QApplication, QDialog, QDialogButtonBox,
-    QFormLayout, QFrame, QGridLayout, QGroupBox,
-    QLabel, QLineEdit, QSizePolicy, QSlider,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractButton, QApplication, QComboBox, QDialog,
+    QDialogButtonBox, QFormLayout, QFrame, QGridLayout,
+    QGroupBox, QHBoxLayout, QLabel, QLineEdit,
+    QSizePolicy, QSlider, QSpacerItem, QVBoxLayout,
+    QWidget)
 
 class Ui_ParticipantCreationDialog(object):
     def setupUi(self, ParticipantCreationDialog):
         if not ParticipantCreationDialog.objectName():
             ParticipantCreationDialog.setObjectName(u"ParticipantCreationDialog")
-        ParticipantCreationDialog.resize(594, 449)
+        ParticipantCreationDialog.resize(608, 471)
         ParticipantCreationDialog.setLayoutDirection(Qt.RightToLeft)
         self.verticalLayout = QVBoxLayout(ParticipantCreationDialog)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -35,10 +36,10 @@ class Ui_ParticipantCreationDialog(object):
 
         self.formLayout.setWidget(0, QFormLayout.LabelRole, self.label)
 
-        self.nameLineEdt = QLineEdit(ParticipantCreationDialog)
-        self.nameLineEdt.setObjectName(u"nameLineEdt")
+        self.label_2 = QLabel(ParticipantCreationDialog)
+        self.label_2.setObjectName(u"label_2")
 
-        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.nameLineEdt)
+        self.formLayout.setWidget(3, QFormLayout.LabelRole, self.label_2)
 
         self.verticalLayout_2 = QVBoxLayout()
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
@@ -90,22 +91,11 @@ class Ui_ParticipantCreationDialog(object):
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setHorizontalSpacing(1)
         self.gridLayout_2.setVerticalSpacing(2)
-        self.crossSlider = QSlider(self.groupBox)
-        self.crossSlider.setObjectName(u"crossSlider")
+        self.anchoringSlider = QSlider(self.groupBox)
+        self.anchoringSlider.setObjectName(u"anchoringSlider")
         sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.crossSlider.sizePolicy().hasHeightForWidth())
-        self.crossSlider.setSizePolicy(sizePolicy)
-        self.crossSlider.setMinimumSize(QSize(0, 140))
-        self.crossSlider.setMinimum(1)
-        self.crossSlider.setMaximum(5)
-        self.crossSlider.setOrientation(Qt.Vertical)
-
-        self.gridLayout_2.addWidget(self.crossSlider, 0, 5, 1, 1)
-
-        self.anchoringSlider = QSlider(self.groupBox)
-        self.anchoringSlider.setObjectName(u"anchoringSlider")
         sizePolicy.setHeightForWidth(self.anchoringSlider.sizePolicy().hasHeightForWidth())
         self.anchoringSlider.setSizePolicy(sizePolicy)
         self.anchoringSlider.setMinimumSize(QSize(0, 140))
@@ -113,7 +103,59 @@ class Ui_ParticipantCreationDialog(object):
         self.anchoringSlider.setMaximum(5)
         self.anchoringSlider.setOrientation(Qt.Vertical)
 
-        self.gridLayout_2.addWidget(self.anchoringSlider, 0, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.anchoringSlider, 0, 10, 1, 1)
+
+        self.label_15 = QLabel(self.groupBox)
+        self.label_15.setObjectName(u"label_15")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.label_15.sizePolicy().hasHeightForWidth())
+        self.label_15.setSizePolicy(sizePolicy1)
+        self.label_15.setStyleSheet(u"margin-left:4;margin-right:4;font-size:16px;")
+        self.label_15.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+
+        self.gridLayout_2.addWidget(self.label_15, 1, 8, 1, 1)
+
+        self.label_16 = QLabel(self.groupBox)
+        self.label_16.setObjectName(u"label_16")
+        sizePolicy1.setHeightForWidth(self.label_16.sizePolicy().hasHeightForWidth())
+        self.label_16.setSizePolicy(sizePolicy1)
+        self.label_16.setStyleSheet(u"margin-left:4;margin-right:4;font-size:16px;")
+        self.label_16.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+
+        self.gridLayout_2.addWidget(self.label_16, 1, 7, 1, 1)
+
+        self.label_13 = QLabel(self.groupBox)
+        self.label_13.setObjectName(u"label_13")
+        sizePolicy1.setHeightForWidth(self.label_13.sizePolicy().hasHeightForWidth())
+        self.label_13.setSizePolicy(sizePolicy1)
+        self.label_13.setStyleSheet(u"margin-left:4;margin-right:4;font-size:16px;")
+        self.label_13.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+
+        self.gridLayout_2.addWidget(self.label_13, 1, 10, 1, 1)
+
+        self.tripodSlider = QSlider(self.groupBox)
+        self.tripodSlider.setObjectName(u"tripodSlider")
+        sizePolicy.setHeightForWidth(self.tripodSlider.sizePolicy().hasHeightForWidth())
+        self.tripodSlider.setSizePolicy(sizePolicy)
+        self.tripodSlider.setMinimumSize(QSize(0, 140))
+        self.tripodSlider.setMinimum(1)
+        self.tripodSlider.setMaximum(5)
+        self.tripodSlider.setOrientation(Qt.Vertical)
+
+        self.gridLayout_2.addWidget(self.tripodSlider, 0, 9, 1, 1)
+
+        self.crossSlider = QSlider(self.groupBox)
+        self.crossSlider.setObjectName(u"crossSlider")
+        sizePolicy.setHeightForWidth(self.crossSlider.sizePolicy().hasHeightForWidth())
+        self.crossSlider.setSizePolicy(sizePolicy)
+        self.crossSlider.setMinimumSize(QSize(0, 140))
+        self.crossSlider.setMinimum(1)
+        self.crossSlider.setMaximum(5)
+        self.crossSlider.setOrientation(Qt.Vertical)
+
+        self.gridLayout_2.addWidget(self.crossSlider, 0, 7, 1, 1)
 
         self.squareSlider = QSlider(self.groupBox)
         self.squareSlider.setObjectName(u"squareSlider")
@@ -126,17 +168,6 @@ class Ui_ParticipantCreationDialog(object):
 
         self.gridLayout_2.addWidget(self.squareSlider, 0, 6, 1, 1)
 
-        self.tripodSlider = QSlider(self.groupBox)
-        self.tripodSlider.setObjectName(u"tripodSlider")
-        sizePolicy.setHeightForWidth(self.tripodSlider.sizePolicy().hasHeightForWidth())
-        self.tripodSlider.setSizePolicy(sizePolicy)
-        self.tripodSlider.setMinimumSize(QSize(0, 140))
-        self.tripodSlider.setMinimum(1)
-        self.tripodSlider.setMaximum(5)
-        self.tripodSlider.setOrientation(Qt.Vertical)
-
-        self.gridLayout_2.addWidget(self.tripodSlider, 0, 2, 1, 1)
-
         self.parallelSlider = QSlider(self.groupBox)
         self.parallelSlider.setObjectName(u"parallelSlider")
         sizePolicy.setHeightForWidth(self.parallelSlider.sizePolicy().hasHeightForWidth())
@@ -146,30 +177,16 @@ class Ui_ParticipantCreationDialog(object):
         self.parallelSlider.setMaximum(5)
         self.parallelSlider.setOrientation(Qt.Vertical)
 
-        self.gridLayout_2.addWidget(self.parallelSlider, 0, 4, 1, 1)
+        self.gridLayout_2.addWidget(self.parallelSlider, 0, 8, 1, 1)
 
-        self.label_13 = QLabel(self.groupBox)
-        self.label_13.setObjectName(u"label_13")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.label_13.sizePolicy().hasHeightForWidth())
-        self.label_13.setSizePolicy(sizePolicy1)
-        self.label_13.setStyleSheet(u"margin-left:4;margin-right:4;font-size:16px;")
-        self.label_13.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+        self.label_17 = QLabel(self.groupBox)
+        self.label_17.setObjectName(u"label_17")
+        sizePolicy1.setHeightForWidth(self.label_17.sizePolicy().hasHeightForWidth())
+        self.label_17.setSizePolicy(sizePolicy1)
+        self.label_17.setStyleSheet(u"margin-left:4;margin-right:4;font-size:16px;")
+        self.label_17.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
-        self.gridLayout_2.addWidget(self.label_13, 1, 1, 1, 1)
-
-        self.macrameSlider = QSlider(self.groupBox)
-        self.macrameSlider.setObjectName(u"macrameSlider")
-        sizePolicy.setHeightForWidth(self.macrameSlider.sizePolicy().hasHeightForWidth())
-        self.macrameSlider.setSizePolicy(sizePolicy)
-        self.macrameSlider.setMinimumSize(QSize(0, 140))
-        self.macrameSlider.setMinimum(1)
-        self.macrameSlider.setMaximum(5)
-        self.macrameSlider.setOrientation(Qt.Vertical)
-
-        self.gridLayout_2.addWidget(self.macrameSlider, 0, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.label_17, 1, 9, 1, 1)
 
         self.label_14 = QLabel(self.groupBox)
         self.label_14.setObjectName(u"label_14")
@@ -180,32 +197,16 @@ class Ui_ParticipantCreationDialog(object):
 
         self.gridLayout_2.addWidget(self.label_14, 1, 6, 1, 1)
 
-        self.label_15 = QLabel(self.groupBox)
-        self.label_15.setObjectName(u"label_15")
-        sizePolicy1.setHeightForWidth(self.label_15.sizePolicy().hasHeightForWidth())
-        self.label_15.setSizePolicy(sizePolicy1)
-        self.label_15.setStyleSheet(u"margin-left:4;margin-right:4;font-size:16px;")
-        self.label_15.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+        self.macrameSlider = QSlider(self.groupBox)
+        self.macrameSlider.setObjectName(u"macrameSlider")
+        sizePolicy.setHeightForWidth(self.macrameSlider.sizePolicy().hasHeightForWidth())
+        self.macrameSlider.setSizePolicy(sizePolicy)
+        self.macrameSlider.setMinimumSize(QSize(0, 140))
+        self.macrameSlider.setMinimum(1)
+        self.macrameSlider.setMaximum(5)
+        self.macrameSlider.setOrientation(Qt.Vertical)
 
-        self.gridLayout_2.addWidget(self.label_15, 1, 4, 1, 1)
-
-        self.label_16 = QLabel(self.groupBox)
-        self.label_16.setObjectName(u"label_16")
-        sizePolicy1.setHeightForWidth(self.label_16.sizePolicy().hasHeightForWidth())
-        self.label_16.setSizePolicy(sizePolicy1)
-        self.label_16.setStyleSheet(u"margin-left:4;margin-right:4;font-size:16px;")
-        self.label_16.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
-
-        self.gridLayout_2.addWidget(self.label_16, 1, 5, 1, 1)
-
-        self.label_17 = QLabel(self.groupBox)
-        self.label_17.setObjectName(u"label_17")
-        sizePolicy1.setHeightForWidth(self.label_17.sizePolicy().hasHeightForWidth())
-        self.label_17.setSizePolicy(sizePolicy1)
-        self.label_17.setStyleSheet(u"margin-left:4;margin-right:4;font-size:16px;")
-        self.label_17.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
-
-        self.gridLayout_2.addWidget(self.label_17, 1, 2, 1, 1)
+        self.gridLayout_2.addWidget(self.macrameSlider, 0, 11, 1, 1)
 
         self.label_18 = QLabel(self.groupBox)
         self.label_18.setObjectName(u"label_18")
@@ -214,7 +215,7 @@ class Ui_ParticipantCreationDialog(object):
         self.label_18.setStyleSheet(u"margin-left:4;margin-right:4;font-size:16px;")
         self.label_18.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
-        self.gridLayout_2.addWidget(self.label_18, 1, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.label_18, 1, 11, 1, 1)
 
 
         self.verticalLayout_3.addLayout(self.gridLayout_2)
@@ -223,12 +224,48 @@ class Ui_ParticipantCreationDialog(object):
         self.verticalLayout_2.addWidget(self.groupBox)
 
 
-        self.formLayout.setLayout(1, QFormLayout.FieldRole, self.verticalLayout_2)
+        self.formLayout.setLayout(3, QFormLayout.FieldRole, self.verticalLayout_2)
 
-        self.label_2 = QLabel(ParticipantCreationDialog)
-        self.label_2.setObjectName(u"label_2")
+        self.label_3 = QLabel(ParticipantCreationDialog)
+        self.label_3.setObjectName(u"label_3")
 
-        self.formLayout.setWidget(1, QFormLayout.LabelRole, self.label_2)
+        self.formLayout.setWidget(1, QFormLayout.LabelRole, self.label_3)
+
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.gradesComboBox = QComboBox(ParticipantCreationDialog)
+        self.gradesComboBox.setObjectName(u"gradesComboBox")
+
+        self.horizontalLayout.addWidget(self.gradesComboBox)
+
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer)
+
+
+        self.formLayout.setLayout(1, QFormLayout.FieldRole, self.horizontalLayout)
+
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.nameLineEdt = QLineEdit(ParticipantCreationDialog)
+        self.nameLineEdt.setObjectName(u"nameLineEdt")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.nameLineEdt.sizePolicy().hasHeightForWidth())
+        self.nameLineEdt.setSizePolicy(sizePolicy2)
+        self.nameLineEdt.setMinimumSize(QSize(180, 0))
+        self.nameLineEdt.setDragEnabled(False)
+        self.nameLineEdt.setClearButtonEnabled(True)
+
+        self.horizontalLayout_2.addWidget(self.nameLineEdt)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_2)
+
+
+        self.formLayout.setLayout(0, QFormLayout.FieldRole, self.horizontalLayout_2)
 
 
         self.verticalLayout.addLayout(self.formLayout)
@@ -251,21 +288,22 @@ class Ui_ParticipantCreationDialog(object):
     def retranslateUi(self, ParticipantCreationDialog):
         ParticipantCreationDialog.setWindowTitle(QCoreApplication.translate("ParticipantCreationDialog", u"\u05d9\u05e6\u05d9\u05e8\u05ea \u05de\u05e9\u05ea\u05ea\u05e3", None))
         self.label.setText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05e9\u05dd:", None))
-        self.nameLineEdt.setPlaceholderText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05e9\u05dd \u05de\u05dc\u05d0", None))
+        self.label_2.setText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05de\u05d3\u05d3\u05d9\u05dd:", None))
         self.groupBox.setTitle("")
         self.label_11.setText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05de\u05d7\u05d5\u05d9\u05d1\u05d5\u05ea:", None))
         self.label_12.setText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05de\u05d5\u05d8\u05d9\u05d1\u05e6\u05d9\u05d4:", None))
-        self.label_13.setText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05e2\u05d9\u05d2\u05d5\u05df\n"
-"\u05d9\u05ea\u05e8\u05d9\u05dd", None))
-        self.label_14.setText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05db\u05e4\u05d9\u05ea\u05d4\n"
-"\u05de\u05e8\u05d5\u05d1\u05e2\u05ea", None))
         self.label_15.setText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05db\u05e4\u05d9\u05ea\u05d4\n"
 "\u05de\u05e7\u05d1\u05d9\u05dc\u05d4", None))
         self.label_16.setText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05db\u05e4\u05d9\u05ea\u05d4\n"
 "\u05de\u05d5\u05e6\u05dc\u05d1\u05ea", None))
+        self.label_13.setText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05e2\u05d9\u05d2\u05d5\u05df\n"
+"\u05d9\u05ea\u05e8\u05d9\u05dd", None))
         self.label_17.setText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05db\u05e4\u05d9\u05ea\u05ea\n"
 "\u05d7\u05e6\u05d5\u05d1\u05d4", None))
+        self.label_14.setText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05db\u05e4\u05d9\u05ea\u05d4\n"
+"\u05de\u05e8\u05d5\u05d1\u05e2\u05ea", None))
         self.label_18.setText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05de\u05e7\u05e8\u05de\u05d4", None))
-        self.label_2.setText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05de\u05d3\u05d3\u05d9\u05dd:", None))
+        self.label_3.setText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05e9\u05db\u05d1\u05d4:", None))
+        self.nameLineEdt.setPlaceholderText(QCoreApplication.translate("ParticipantCreationDialog", u"\u05e9\u05dd \u05de\u05dc\u05d0", None))
     # retranslateUi
 

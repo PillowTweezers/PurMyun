@@ -27,7 +27,7 @@ class GradesDialog(QDialog):
             self.parent().error_text("אנא מלא את כל השדות")
 
     def reject(self) -> None:
-        if len(client.grades) != 3:
+        if not client.has_grades():
             self.parent().error_text("לא ניתן לבטל את הטופס,\nאנא מלא את כל השדות")
         else:
             self.done(QDialog.Rejected)
