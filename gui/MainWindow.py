@@ -188,7 +188,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def render_teams_widget(self):
         current_teams = []
-        for i in range(self.ui.teamsTabWidget.count()):
+        for i in range(self.ui.teamsTabWidget.count() - 1, -1, -1):
             tab = self.ui.teamsTabWidget.widget(i)
             if tab.team not in client.teams:
                 self.ui.teamsTabWidget.removeTab(i)

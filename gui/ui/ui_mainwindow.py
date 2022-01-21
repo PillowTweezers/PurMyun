@@ -16,9 +16,10 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QDockWidget, QMainWindow, QMenu,
-    QMenuBar, QPushButton, QSizePolicy, QSpacerItem,
-    QStatusBar, QTabWidget, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QDockWidget, QFrame, QMainWindow,
+    QMenu, QMenuBar, QPushButton, QSizePolicy,
+    QSpacerItem, QStatusBar, QTabWidget, QVBoxLayout,
+    QWidget)
 
 from gui.ParticipantTableWidget import ParticipantTableWidget
 import mainwindow_rc
@@ -129,11 +130,28 @@ class Ui_MainWindow(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.createTeamBtn = QPushButton(self.dockWidgetContents)
         self.createTeamBtn.setObjectName(u"createTeamBtn")
+        self.createTeamBtn.setStyleSheet(u"text-align: center;")
+        icon7 = QIcon()
+        icon7.addFile(u":/assets/create_team.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.createTeamBtn.setIcon(icon7)
 
         self.verticalLayout.addWidget(self.createTeamBtn)
 
+        self.line = QFrame(self.dockWidgetContents)
+        self.line.setObjectName(u"line")
+        self.line.setLineWidth(1)
+        self.line.setMidLineWidth(0)
+        self.line.setFrameShape(QFrame.HLine)
+        self.line.setFrameShadow(QFrame.Sunken)
+
+        self.verticalLayout.addWidget(self.line)
+
         self.assignTeamsBtn = QPushButton(self.dockWidgetContents)
         self.assignTeamsBtn.setObjectName(u"assignTeamsBtn")
+        self.assignTeamsBtn.setStyleSheet(u"text-align: center;")
+        icon8 = QIcon()
+        icon8.addFile(u":/assets/sorting_hat.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.assignTeamsBtn.setIcon(icon8)
 
         self.verticalLayout.addWidget(self.assignTeamsBtn)
 

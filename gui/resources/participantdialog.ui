@@ -1,357 +1,421 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
-    <class>ParticipantDialog</class>
-    <widget class="QDialog" name="ParticipantDialog">
-        <property name="geometry">
-            <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>452</width>
-                <height>429</height>
-            </rect>
+ <class>ParticipantDialog</class>
+ <widget class="QDialog" name="ParticipantDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>492</width>
+    <height>510</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QWidget" name="widget" native="true">
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="styleSheet">
+         <string notr="true">font-size:16px;font-weight:bold;</string>
         </property>
-        <property name="windowTitle">
-            <string>Dialog</string>
+        <property name="text">
+         <string>שם:</string>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout">
-            <item>
-                <widget class="QWidget" name="widget" native="true">
-                    <property name="layoutDirection">
-                        <enum>Qt::RightToLeft</enum>
-                    </property>
-                    <layout class="QFormLayout" name="formLayout">
-                        <item row="0" column="0">
-                            <widget class="QLabel" name="label">
-                                <property name="styleSheet">
-                                    <string notr="true">font-size:16px;font-weight:bold;</string>
-                                </property>
-                                <property name="text">
-                                    <string>שם:</string>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="0" column="1">
-                            <widget class="QLabel" name="nameLbl">
-                                <property name="styleSheet">
-                                    <string notr="true">font-size:16px;</string>
-                                </property>
-                                <property name="text">
-                                    <string/>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="1" column="0">
-                            <widget class="QLabel" name="label_3">
-                                <property name="styleSheet">
-                                    <string notr="true">font-size:16px;font-weight:bold;</string>
-                                </property>
-                                <property name="text">
-                                    <string>צוות:</string>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="1" column="1">
-                            <widget class="QLabel" name="teamLbl">
-                                <property name="styleSheet">
-                                    <string notr="true">font-size:16px;</string>
-                                </property>
-                                <property name="text">
-                                    <string>אינו מצוות</string>
-                                </property>
-                            </widget>
-                        </item>
-                    </layout>
-                </widget>
-            </item>
-            <item>
-                <widget class="QGroupBox" name="groupBox">
-                    <property name="sizePolicy">
-                        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="layoutDirection">
-                        <enum>Qt::RightToLeft</enum>
-                    </property>
-                    <property name="title">
-                        <string>מדדים</string>
-                    </property>
-                    <property name="alignment">
-                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                    </property>
-                    <property name="flat">
-                        <bool>false</bool>
-                    </property>
-                    <layout class="QGridLayout" name="gridLayout">
-                        <property name="verticalSpacing">
-                            <number>6</number>
-                        </property>
-                        <item row="7" column="0">
-                            <widget class="QLabel" name="label_11">
-                                <property name="text">
-                                    <string>מקרמה</string>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="0" column="1">
-                            <widget class="QProgressBar" name="presenceBar">
-                                <property name="layoutDirection">
-                                    <enum>Qt::RightToLeft</enum>
-                                </property>
-                                <property name="value">
-                                    <number>0</number>
-                                </property>
-                                <property name="format">
-                                    <string/>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="6" column="1">
-                            <widget class="QProgressBar" name="anchoringBar">
-                                <property name="value">
-                                    <number>0</number>
-                                </property>
-                                <property name="format">
-                                    <string/>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="2" column="1">
-                            <widget class="QProgressBar" name="squareBar">
-                                <property name="value">
-                                    <number>0</number>
-                                </property>
-                                <property name="format">
-                                    <string/>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="7" column="1">
-                            <widget class="QProgressBar" name="macrameBar">
-                                <property name="value">
-                                    <number>0</number>
-                                </property>
-                                <property name="format">
-                                    <string/>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="6" column="0">
-                            <widget class="QLabel" name="label_10">
-                                <property name="text">
-                                    <string>עיגון
-יתרים</string>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="3" column="1">
-                            <widget class="QProgressBar" name="crossBar">
-                                <property name="value">
-                                    <number>0</number>
-                                </property>
-                                <property name="format">
-                                    <string/>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="4" column="2">
-                            <widget class="QLabel" name="parallelLbl">
-                                <property name="styleSheet">
-                                    <string notr="true">font-weight:bold;font-size:16px;</string>
-                                </property>
-                                <property name="text">
-                                    <string/>
-                                </property>
-                                <property name="alignment">
-                                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="5" column="1">
-                            <widget class="QProgressBar" name="tripodBar">
-                                <property name="value">
-                                    <number>0</number>
-                                </property>
-                                <property name="format">
-                                    <string/>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="4" column="1">
-                            <widget class="QProgressBar" name="parallelBar">
-                                <property name="value">
-                                    <number>0</number>
-                                </property>
-                                <property name="format">
-                                    <string/>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="5" column="0">
-                            <widget class="QLabel" name="label_9">
-                                <property name="text">
-                                    <string>כפיתת
-חצובה</string>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="2" column="2">
-                            <widget class="QLabel" name="squareLbl">
-                                <property name="styleSheet">
-                                    <string notr="true">font-weight:bold;font-size:16px;</string>
-                                </property>
-                                <property name="text">
-                                    <string/>
-                                </property>
-                                <property name="alignment">
-                                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="3" column="2">
-                            <widget class="QLabel" name="crossLbl">
-                                <property name="styleSheet">
-                                    <string notr="true">font-weight:bold;font-size:16px;</string>
-                                </property>
-                                <property name="text">
-                                    <string/>
-                                </property>
-                                <property name="alignment">
-                                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="4" column="0">
-                            <widget class="QLabel" name="label_8">
-                                <property name="text">
-                                    <string>כפיתה
-מקבילה</string>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="5" column="2">
-                            <widget class="QLabel" name="tripodLbl">
-                                <property name="styleSheet">
-                                    <string notr="true">font-weight:bold;font-size:16px;</string>
-                                </property>
-                                <property name="text">
-                                    <string/>
-                                </property>
-                                <property name="alignment">
-                                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="0" column="2">
-                            <widget class="QLabel" name="presenceLbl">
-                                <property name="styleSheet">
-                                    <string notr="true">font-weight:bold;font-size:16px;</string>
-                                </property>
-                                <property name="text">
-                                    <string/>
-                                </property>
-                                <property name="alignment">
-                                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="0" column="0">
-                            <widget class="QLabel" name="label_5">
-                                <property name="text">
-                                    <string>מחויבות</string>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="2" column="0">
-                            <widget class="QLabel" name="label_6">
-                                <property name="text">
-                                    <string>כפיתה
-מרובעת</string>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="3" column="0">
-                            <widget class="QLabel" name="label_7">
-                                <property name="text">
-                                    <string>כפיתה
-מוצלבת</string>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="6" column="2">
-                            <widget class="QLabel" name="anchoringLbl">
-                                <property name="styleSheet">
-                                    <string notr="true">font-weight:bold;font-size:16px;</string>
-                                </property>
-                                <property name="text">
-                                    <string/>
-                                </property>
-                                <property name="alignment">
-                                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="7" column="2">
-                            <widget class="QLabel" name="macrameLbl">
-                                <property name="styleSheet">
-                                    <string notr="true">font-weight:bold;font-size:16px;</string>
-                                </property>
-                                <property name="text">
-                                    <string/>
-                                </property>
-                                <property name="alignment">
-                                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="1" column="1">
-                            <widget class="Line" name="line">
-                                <property name="frameShadow">
-                                    <enum>QFrame::Sunken</enum>
-                                </property>
-                                <property name="lineWidth">
-                                    <number>2</number>
-                                </property>
-                                <property name="midLineWidth">
-                                    <number>1</number>
-                                </property>
-                                <property name="orientation">
-                                    <enum>Qt::Horizontal</enum>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="1" column="0">
-                            <widget class="Line" name="line_2">
-                                <property name="lineWidth">
-                                    <number>2</number>
-                                </property>
-                                <property name="midLineWidth">
-                                    <number>1</number>
-                                </property>
-                                <property name="orientation">
-                                    <enum>Qt::Horizontal</enum>
-                                </property>
-                            </widget>
-                        </item>
-                        <item row="1" column="2">
-                            <widget class="Line" name="line_3">
-                                <property name="lineWidth">
-                                    <number>2</number>
-                                </property>
-                                <property name="midLineWidth">
-                                    <number>1</number>
-                                </property>
-                                <property name="orientation">
-                                    <enum>Qt::Horizontal</enum>
-                                </property>
-                            </widget>
-                        </item>
-                    </layout>
-                </widget>
-            </item>
-        </layout>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="nameLbl">
+        <property name="styleSheet">
+         <string notr="true">font-size:16px;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="styleSheet">
+         <string notr="true">font-size:16px;font-weight:bold;</string>
+        </property>
+        <property name="text">
+         <string>צוות:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="teamLbl">
+        <property name="styleSheet">
+         <string notr="true">font-size:16px;</string>
+        </property>
+        <property name="text">
+         <string>אינו מצוות</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
-    <resources/>
-    <connections/>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <property name="verticalSpacing">
+       <number>6</number>
+      </property>
+      <item row="7" column="0">
+       <widget class="QLabel" name="label_11">
+        <property name="text">
+         <string>מקרמה</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QProgressBar" name="presenceBar">
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="value">
+         <number>0</number>
+        </property>
+        <property name="format">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QProgressBar" name="anchoringBar">
+        <property name="value">
+         <number>0</number>
+        </property>
+        <property name="format">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QProgressBar" name="squareBar">
+        <property name="value">
+         <number>0</number>
+        </property>
+        <property name="format">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QProgressBar" name="macrameBar">
+        <property name="value">
+         <number>0</number>
+        </property>
+        <property name="format">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="label_10">
+        <property name="text">
+         <string>עיגון
+יתרים</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QProgressBar" name="crossBar">
+        <property name="value">
+         <number>0</number>
+        </property>
+        <property name="format">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="2">
+       <widget class="QLabel" name="parallelLbl">
+        <property name="styleSheet">
+         <string notr="true">font-weight:bold;font-size:16px;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QProgressBar" name="tripodBar">
+        <property name="value">
+         <number>0</number>
+        </property>
+        <property name="format">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QProgressBar" name="parallelBar">
+        <property name="value">
+         <number>0</number>
+        </property>
+        <property name="format">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_9">
+        <property name="text">
+         <string>כפיתת
+חצובה</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLabel" name="squareLbl">
+        <property name="styleSheet">
+         <string notr="true">font-weight:bold;font-size:16px;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QLabel" name="crossLbl">
+        <property name="styleSheet">
+         <string notr="true">font-weight:bold;font-size:16px;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_8">
+        <property name="text">
+         <string>כפיתה
+מקבילה</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="2">
+       <widget class="QLabel" name="tripodLbl">
+        <property name="styleSheet">
+         <string notr="true">font-weight:bold;font-size:16px;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="presenceLbl">
+        <property name="styleSheet">
+         <string notr="true">font-weight:bold;font-size:16px;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>מחויבות</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>כפיתה
+מרובעת</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>כפיתה
+מוצלבת</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="2">
+       <widget class="QLabel" name="anchoringLbl">
+        <property name="styleSheet">
+         <string notr="true">font-weight:bold;font-size:16px;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="2">
+       <widget class="QLabel" name="macrameLbl">
+        <property name="styleSheet">
+         <string notr="true">font-weight:bold;font-size:16px;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="Line" name="line">
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+        <property name="lineWidth">
+         <number>2</number>
+        </property>
+        <property name="midLineWidth">
+         <number>1</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="Line" name="line_2">
+        <property name="lineWidth">
+         <number>2</number>
+        </property>
+        <property name="midLineWidth">
+         <number>1</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="Line" name="line_3">
+        <property name="lineWidth">
+         <number>2</number>
+        </property>
+        <property name="midLineWidth">
+         <number>1</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="Line" name="line_5">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget_2" native="true">
+     <property name="layoutDirection">
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <layout class="QFormLayout" name="formLayout_3">
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item row="1" column="1">
+       <widget class="QLabel" name="preferencesA">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_14">
+        <property name="text">
+         <string>עדיפות א':</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_16">
+        <property name="text">
+         <string>עדיפות ב':</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="preferencesB">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_13">
+        <property name="text">
+         <string>עדיפות ג':</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLabel" name="preferencesC">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
 </ui>

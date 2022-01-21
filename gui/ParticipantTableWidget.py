@@ -23,19 +23,19 @@ class ParticipantTableWidget(QWidget):
         self.ui.setupUi(self)
 
         self.update_ui_callback = update_ui_callback
+        self.team = team
 
         if team is not None:
             self.ui.addParticipantBtn.hide()
         else:
             self.ui.assignParticipantBtn.hide()
 
-        self.team = team
-
         self.ui.addParticipantBtn.clicked.connect(self.create_participant)
         self.ui.removeParticipantBtn.clicked.connect(self.remove_participants)
         self.ui.assignParticipantBtn.clicked.connect(self.assign_participant)
 
         self.ui.participantsTableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+
         self.ui.participantsTableWidget.setColumnCount(4)
         self.ui.participantsTableWidget.setHorizontalHeaderLabels(["שם", "ממוצע", "מחויבות", "צוות"])
 
@@ -52,10 +52,10 @@ class ParticipantTableWidget(QWidget):
     def showEvent(self, event: QtGui.QShowEvent) -> None:
         super(ParticipantTableWidget, self).showEvent(event)
         width = self.ui.participantsTableWidget.width()
-        self.ui.participantsTableWidget.setColumnWidth(0, width * COLUMN_RATIOS[0])
-        self.ui.participantsTableWidget.setColumnWidth(1, width * COLUMN_RATIOS[1])
-        self.ui.participantsTableWidget.setColumnWidth(2, width * COLUMN_RATIOS[2])
-        self.ui.participantsTableWidget.setColumnWidth(3, width * COLUMN_RATIOS[3] - 1)
+        for (i, column_ratio) in enumerate(COLUMN_RATIOS):
+            self.ui.participantsTableWidget.setColumnWidth(i, int(width * column_ratio))
+        header = self.ui.participantsTableWidget.horizontalHeader()
+        header.setStretchLastSection(True)
 
     @Slot()
     def participants_double_clicked(self):
@@ -146,16 +146,6 @@ class ParticipantTableWidget(QWidget):
         if participantCreationDialog.exec() == QtWidgets.QDialog.Accepted:
             self.render_participants_table()
 
-    def load_participants(self):
-        if self.team is None:
-            self.participants = client.participants
-            return
-        self.participants = []
-        for participant in client.participants:
-            if participant.team == self.team:
-                self.participants.append(participant)
-        self.render_participants_table()
-
     @Slot()
     def filter_participants(self):
         filter_str = self.ui.participantsFilterLineEdt.text()
@@ -202,7 +192,7 @@ class ParticipantTableWidget(QWidget):
             item.setData(QtCore.Qt.DisplayRole, participant.presence)
             item.setBackground(color)
             self.ui.participantsTableWidget.setItem(participants.index(participant), 2, item)
-            if participant.team is not None:
+            if participant.team is not None and self.team is None:
                 item = QtWidgets.QTableWidgetItem(participant.team.name)
                 item.setBackground(color)
                 self.ui.participantsTableWidget.setItem(participants.index(participant), 3, item)
@@ -213,6 +203,8 @@ class ParticipantTableWidget(QWidget):
         self.team = team
         self.ui.addParticipantBtn.hide()
         self.ui.assignParticipantBtn.show()
+        self.ui.participantsTableWidget.setColumnCount(3)
+        self.ui.participantsTableWidget.setHorizontalHeaderLabels(["שם", "ממוצע", "מחויבות"])
         self.update_ui()
 
     def update_ui(self):

@@ -23,7 +23,7 @@ class Ui_ParticipantDialog(object):
     def setupUi(self, ParticipantDialog):
         if not ParticipantDialog.objectName():
             ParticipantDialog.setObjectName(u"ParticipantDialog")
-        ParticipantDialog.resize(452, 429)
+        ParticipantDialog.resize(492, 519)
         self.verticalLayout = QVBoxLayout(ParticipantDialog)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.widget = QWidget(ParticipantDialog)
@@ -57,6 +57,19 @@ class Ui_ParticipantDialog(object):
 
 
         self.verticalLayout.addWidget(self.widget)
+
+        self.line_4 = QFrame(ParticipantDialog)
+        self.line_4.setObjectName(u"line_4")
+        self.line_4.setFrameShape(QFrame.HLine)
+        self.line_4.setFrameShadow(QFrame.Sunken)
+
+        self.verticalLayout.addWidget(self.line_4)
+
+        self.label_2 = QLabel(ParticipantDialog)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setStyleSheet(u"font-size:16px;font-weight:bold;")
+
+        self.verticalLayout.addWidget(self.label_2)
 
         self.groupBox = QGroupBox(ParticipantDialog)
         self.groupBox.setObjectName(u"groupBox")
@@ -228,6 +241,52 @@ class Ui_ParticipantDialog(object):
 
         self.verticalLayout.addWidget(self.groupBox)
 
+        self.line_5 = QFrame(ParticipantDialog)
+        self.line_5.setObjectName(u"line_5")
+        self.line_5.setFrameShape(QFrame.HLine)
+        self.line_5.setFrameShadow(QFrame.Sunken)
+
+        self.verticalLayout.addWidget(self.line_5)
+
+        self.widget_2 = QWidget(ParticipantDialog)
+        self.widget_2.setObjectName(u"widget_2")
+        self.widget_2.setLayoutDirection(Qt.RightToLeft)
+        self.formLayout_3 = QFormLayout(self.widget_2)
+        self.formLayout_3.setObjectName(u"formLayout_3")
+        self.formLayout_3.setContentsMargins(-1, 0, -1, 0)
+        self.preferencesA = QLabel(self.widget_2)
+        self.preferencesA.setObjectName(u"preferencesA")
+
+        self.formLayout_3.setWidget(1, QFormLayout.FieldRole, self.preferencesA)
+
+        self.label_14 = QLabel(self.widget_2)
+        self.label_14.setObjectName(u"label_14")
+
+        self.formLayout_3.setWidget(1, QFormLayout.LabelRole, self.label_14)
+
+        self.label_16 = QLabel(self.widget_2)
+        self.label_16.setObjectName(u"label_16")
+
+        self.formLayout_3.setWidget(2, QFormLayout.LabelRole, self.label_16)
+
+        self.preferencesB = QLabel(self.widget_2)
+        self.preferencesB.setObjectName(u"preferencesB")
+
+        self.formLayout_3.setWidget(2, QFormLayout.FieldRole, self.preferencesB)
+
+        self.label_13 = QLabel(self.widget_2)
+        self.label_13.setObjectName(u"label_13")
+
+        self.formLayout_3.setWidget(4, QFormLayout.LabelRole, self.label_13)
+
+        self.preferencesC = QLabel(self.widget_2)
+        self.preferencesC.setObjectName(u"preferencesC")
+
+        self.formLayout_3.setWidget(4, QFormLayout.FieldRole, self.preferencesC)
+
+
+        self.verticalLayout.addWidget(self.widget_2)
+
 
         self.retranslateUi(ParticipantDialog)
 
@@ -240,7 +299,8 @@ class Ui_ParticipantDialog(object):
         self.nameLbl.setText("")
         self.label_3.setText(QCoreApplication.translate("ParticipantDialog", u"\u05e6\u05d5\u05d5\u05ea:", None))
         self.teamLbl.setText(QCoreApplication.translate("ParticipantDialog", u"\u05d0\u05d9\u05e0\u05d5 \u05de\u05e6\u05d5\u05d5\u05ea", None))
-        self.groupBox.setTitle(QCoreApplication.translate("ParticipantDialog", u"\u05de\u05d3\u05d3\u05d9\u05dd", None))
+        self.label_2.setText(QCoreApplication.translate("ParticipantDialog", u"\u05de\u05d3\u05d3\u05d9\u05dd:", None))
+        self.groupBox.setTitle("")
         self.label_11.setText(QCoreApplication.translate("ParticipantDialog", u"\u05de\u05e7\u05e8\u05de\u05d4", None))
         self.presenceBar.setFormat("")
         self.anchoringBar.setFormat("")
@@ -267,5 +327,11 @@ class Ui_ParticipantDialog(object):
 "\u05de\u05d5\u05e6\u05dc\u05d1\u05ea", None))
         self.anchoringLbl.setText("")
         self.macrameLbl.setText("")
+        self.preferencesA.setText("")
+        self.label_14.setText(QCoreApplication.translate("ParticipantDialog", u"\u05e2\u05d3\u05d9\u05e4\u05d5\u05ea \u05d0':", None))
+        self.label_16.setText(QCoreApplication.translate("ParticipantDialog", u"\u05e2\u05d3\u05d9\u05e4\u05d5\u05ea \u05d1':", None))
+        self.preferencesB.setText("")
+        self.label_13.setText(QCoreApplication.translate("ParticipantDialog", u"\u05e2\u05d3\u05d9\u05e4\u05d5\u05ea \u05d2':", None))
+        self.preferencesC.setText("")
     # retranslateUi
 

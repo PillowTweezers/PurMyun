@@ -113,15 +113,42 @@
      </property>
      <item>
       <widget class="QPushButton" name="createTeamBtn">
+       <property name="styleSheet">
+        <string notr="true">text-align: center;</string>
+       </property>
        <property name="text">
         <string>צור קבוצה</string>
+       </property>
+       <property name="icon">
+        <iconset resource="mainwindow.qrc">
+         <normaloff>:/assets/create_team.png</normaloff>:/assets/create_team.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="Line" name="line">
+       <property name="lineWidth">
+        <number>1</number>
+       </property>
+       <property name="midLineWidth">
+        <number>0</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="assignTeamsBtn">
+       <property name="styleSheet">
+        <string notr="true">text-align: center;</string>
+       </property>
        <property name="text">
         <string>מצנפת המיון</string>
+       </property>
+       <property name="icon">
+        <iconset resource="mainwindow.qrc">
+         <normaloff>:/assets/sorting_hat.png</normaloff>:/assets/sorting_hat.png</iconset>
        </property>
       </widget>
      </item>

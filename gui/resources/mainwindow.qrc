@@ -1,8 +1,6 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
     <qresource>
-        <file>../../assets/remove.png</file>
-        <file>../../assets/add.png</file>
         <file>../../assets/form.png</file>
         <file>../../assets/new.png</file>
         <file>../../assets/recent.png</file>
@@ -11,5 +9,7 @@
         <file>../../assets/saveAs.png</file>
         <file>../../assets/exit.png</file>
         <file>../../assets/edit.png</file>
+        <file>../../assets/create_team.png</file>
+        <file>../../assets/sorting_hat.png</file>
     </qresource>
 </RCC>

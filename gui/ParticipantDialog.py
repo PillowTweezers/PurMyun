@@ -12,6 +12,8 @@ class ParticipantDialog(QDialog):
 
         self.setWindowTitle(participant.name)
         self.ui.nameLbl.setText(participant.name)
+        if participant.team is not None:
+            self.ui.teamLbl.setText(participant.team.name)
 
         self.ui.presenceBar.setValue(participant.presence)
         self.ui.presenceBar.setMaximum(MAX_PRESENCE)
