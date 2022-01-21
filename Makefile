@@ -10,7 +10,7 @@ UI_FILES = mainwindow.ui participantdialog.ui teamcreationdialog.ui participantc
 participanttablewidget.ui gradedialog.ui
 
 #Qt resource files to compile
-RESOURCES = mainwindow.qrc participantstable.qrc
+RESOURCES = mainwindow.qrc participantstable.qrc window.qrc
  
 #pyuic4 and pyrcc4 binaries
 PYUIC = pyside6-uic
