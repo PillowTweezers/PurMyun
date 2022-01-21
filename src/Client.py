@@ -1,8 +1,10 @@
+from __future__ import annotations
+
 import csv
 import os
 import pickle
 from random import shuffle
-
+import xlsxwriter
 from src.Participant import Participant
 from src.Team import Team
 from src.Weights import Weights
@@ -187,6 +189,60 @@ def remove_participant_from_team(participant_id, team: Team):
     global is_dirty
     is_dirty = True
     team.remove_participant_by_id(participant_id)
+
+
+def sort_participants(participants_list: list[Participant]):
+    return sorted(participants_list, key=lambda par: (grades.index(par.grade), par.name), reverse=False)
+
+
+def export_to_excel(filename: str = "results.xlsx"):
+    workbook = xlsxwriter.Workbook(filename)
+    worksheet = workbook.add_worksheet()
+    bold = workbook.add_format({'bold': True})
+
+    def draw_table(row: int, col: int, team: Team):
+        if team.color is not None:
+            background_color = workbook.add_format({'bg_color': team.color.name()})
+        else:
+            background_color = None
+        worksheet.write(row, col + 1, team.name, bold)
+        row += 1
+        worksheet.write(row, col, "שכבה", bold)
+        worksheet.write(row, col + 1, "שם", bold)
+        row += 1
+        for par in sort_participants(team.participants):
+            worksheet.write(row, col, par.grade, background_color)
+            worksheet.write(row, col + 1, par.name, background_color)
+            row += 1
+        return 0, col + 4
+
+    def getUnassignedParticipants():
+        unassigned = []
+        for participant in participants:
+            if participant.team is None:
+                unassigned.append(participant)
+        return unassigned
+
+    start_row = 0
+    start_col = 0
+    for group in teams:
+        start_row, start_col = draw_table(start_row, start_col, group)
+    unsigned_participants = getUnassignedParticipants()
+    if len(unsigned_participants) > 0:
+        worksheet.write(start_row, start_col + 1, "ללא צוות", bold)
+        start_row += 1
+        worksheet.write(start_row, start_col, "שכבה", bold)
+        worksheet.write(start_row, start_col + 1, "שם", bold)
+        start_row += 1
+        for par in sort_participants(getUnassignedParticipants()):
+            worksheet.write(start_row, start_col, par.grade)
+            worksheet.write(start_row, start_col + 1, par.name)
+            start_row += 1
+    try:
+        workbook.close()
+        return True
+    except xlsxwriter.exceptions.FileCreateError or PermissionError:
+        return False
 
 
 def new_project():
