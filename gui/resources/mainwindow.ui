@@ -73,7 +73,7 @@
     <addaction name="separator"/>
     <addaction name="loadParticipantsFileAction"/>
     <addaction name="separator"/>
-    <addaction name="action_3"/>
+    <addaction name="exportExcelAction"/>
     <addaction name="separator"/>
     <addaction name="quitAction"/>
    </widget>
@@ -355,7 +355,7 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="action_3">
+  <action name="exportExcelAction">
    <property name="text">
     <string>יצא לאקסל...</string>
    </property>
