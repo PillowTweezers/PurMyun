@@ -47,7 +47,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.quitAction.triggered.connect(self.quit)
         self.ui.openAction.triggered.connect(self.open_project)
         self.ui.newAction.triggered.connect(self.new_project)
-        self.ui.exportExcelAction.triggered.connect(self.exportExcel)
+        self.ui.exportExcelAction.triggered.connect(self.export_to_excel)
 
     def create_recent_menu(self):
         for i in range(self.MAX_RECENT_FILES):
@@ -274,8 +274,9 @@ class MainWindow(QtWidgets.QMainWindow):
         for i in range(num_recent_files, self.MAX_RECENT_FILES):
             self.recent_actions[i].setVisible(False)
 
-
-    def exportExcel(self):
+    def export_to_excel(self):
+        if len(client.grades) != 3:
+            self.open_grades_dialog()
         saveDialog = QtWidgets.QFileDialog()
         saveDialog.setAcceptMode(QtWidgets.QFileDialog.AcceptSave)
         saveDialog.setNameFilter("")
