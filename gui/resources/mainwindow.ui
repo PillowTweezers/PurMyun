@@ -73,6 +73,8 @@
     <addaction name="separator"/>
     <addaction name="loadParticipantsFileAction"/>
     <addaction name="separator"/>
+    <addaction name="action_3"/>
+    <addaction name="separator"/>
     <addaction name="quitAction"/>
    </widget>
    <widget class="QMenu" name="menuEfit">
@@ -351,6 +353,11 @@
    </property>
    <property name="visible">
     <bool>true</bool>
+   </property>
+  </action>
+  <action name="action_3">
+   <property name="text">
+    <string>יצא לאקסל...</string>
    </property>
   </action>
  </widget>
