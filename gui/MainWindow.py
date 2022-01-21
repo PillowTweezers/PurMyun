@@ -45,6 +45,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.quitAction.triggered.connect(self.quit)
         self.ui.openAction.triggered.connect(self.open_project)
         self.ui.newAction.triggered.connect(self.new_project)
+        self.ui.exportExcelAction.triggered.connect(self.exportExcel)
 
     def create_recent_menu(self):
         for i in range(self.MAX_RECENT_FILES):
@@ -266,6 +267,27 @@ class MainWindow(QtWidgets.QMainWindow):
 
         for i in range(num_recent_files, self.MAX_RECENT_FILES):
             self.recent_actions[i].setVisible(False)
+
+
+    def exportExcel(self):
+        saveDialog = QtWidgets.QFileDialog()
+        saveDialog.setAcceptMode(QtWidgets.QFileDialog.AcceptSave)
+        saveDialog.setNameFilter("")
+        saveDialog.setNameFilter("excel file (*.xlsx)")
+        saveDialog.setWindowTitle("ייצא לקובץ")
+        saveDialog.exec()
+        if saveDialog.result() == QtWidgets.QDialog.Accepted:
+            filename = saveDialog.selectedFiles()[0]
+            if filename:
+                if client.export_to_excel(filename=filename):
+                    self.statusBar().showMessage("קובץ ייוצא בהצלחה")
+                    self.alert_text("קובץ ייוצא בהצלחה")
+                    self.update_current_file()
+                    return True
+                else:
+                    self.error_text("שגיאה בייצוא קובץ")
+        self.statusBar().showMessage("שמירה בוטלה")
+        return False
 
     def alert_text(self, text: str):
         QtWidgets.QMessageBox.about(self, "Alert", text)

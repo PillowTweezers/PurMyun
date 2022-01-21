@@ -1,11 +1,11 @@
 from src.Participant import Participant
 from src.Weights import Weights
-
+from PySide6.QtGui import QColor
 MAX_WEIGHT = 5
 
 
 class Team:
-    def __init__(self, name="", weights=Weights(), color=None):
+    def __init__(self, name="", weights=Weights(), color: QColor = None):
         self.name = name
         self.weights = weights
         self.participants = []
