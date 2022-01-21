@@ -80,13 +80,14 @@ def find_participant(id):
 
 
 def move_participant(participant_id: int, team: Team):
+    global is_dirty
+    is_dirty = True
     participant = find_participant(participant_id)
     if participant is None:
         return -1
-
-    global is_dirty
-    is_dirty = True
-
+    if participant.team is not None:
+        participant.team.remove_participant(participant)
+    team.add_participant(participant)
     participant.team = team
 
 

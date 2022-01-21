@@ -75,14 +75,21 @@ class ParticipantTableWidget(QWidget):
         menu = QtWidgets.QMenu()
         remove_action = menu.addAction("הסר משתתפים" if self.team is None else "הסר מצוות")
         remove_action.triggered.connect(self.remove_participants)
-
+        if self.ui.participantsTableWidget.rowCount() == 0:
+            remove_action.setEnabled(False)
+        menu.addSeparator()
         move_menu = QtWidgets.QMenu("העבר לצוות")
         for team in client.teams:
             if team is self.team:
                 continue
             move_action = move_menu.addAction(team.name)
-            move_action.triggered.connect(lambda checked, team=team: self.move_participants(team))
-        move_menu.triggered.connect(self.move_participants)
+            # What in the name of god is this fuckery? I have 0 idea why [bool] is needed here.
+            move_action.triggered[bool].connect(lambda checked, team_=team: self.move_participants(team_))
+        menu.addMenu(move_menu)
+        if self.ui.participantsTableWidget.rowCount() == 0 or len(client.teams) == 0:
+            move_menu.setEnabled(False)
+        if len(client.teams) == 1 and self.team is not None:
+            move_menu.setEnabled(False)
         menu.exec_(QtGui.QCursor.pos())
         pass
 
@@ -127,7 +134,7 @@ class ParticipantTableWidget(QWidget):
         confirmation_box.setIcon(QtWidgets.QMessageBox.Question)
         confirmation_box.setWindowTitle("אישור העברה")
         if confirmation_box.exec() == QtWidgets.QMessageBox.Yes:
-            for row in sorted(selected_rows, reverse=True):
+            for row in selected_rows:
                 participant_id = self.ui.participantsTableWidget.item(row, 0).data(QtCore.Qt.UserRole)
                 client.move_participant(participant_id, team)
             self.update_ui_callback()
@@ -197,7 +204,6 @@ class ParticipantTableWidget(QWidget):
             self.ui.participantsTableWidget.setItem(participants.index(participant), 2, item)
             if participant.team is not None:
                 item = QtWidgets.QTableWidgetItem(participant.team.name)
-                print(item.text())
                 item.setBackground(color)
                 self.ui.participantsTableWidget.setItem(participants.index(participant), 3, item)
             self.ui.participantsTableWidget.showRow(participants.index(participant))
