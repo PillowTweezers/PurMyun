@@ -377,6 +377,10 @@
    </property>
   </action>
   <action name="exportExcelAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/assets/export_excel.png</normaloff>:/assets/export_excel.png</iconset>
+   </property>
    <property name="text">
     <string>יצא לאקסל...</string>
    </property>
