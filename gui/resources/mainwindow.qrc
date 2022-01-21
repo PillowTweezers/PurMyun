@@ -11,5 +11,6 @@
         <file>../../assets/edit.png</file>
         <file>../../assets/create_team.png</file>
         <file>../../assets/sorting_hat.png</file>
+        <file>../../assets/list.png</file>
     </qresource>
 </RCC>

@@ -157,6 +157,22 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.assignTeamsBtn)
 
+        self.line_2 = QFrame(self.dockWidgetContents)
+        self.line_2.setObjectName(u"line_2")
+        self.line_2.setFrameShape(QFrame.HLine)
+        self.line_2.setFrameShadow(QFrame.Sunken)
+
+        self.verticalLayout.addWidget(self.line_2)
+
+        self.gradesBtn = QPushButton(self.dockWidgetContents)
+        self.gradesBtn.setObjectName(u"gradesBtn")
+        self.gradesBtn.setStyleSheet(u"text-align: center;")
+        icon9 = QIcon()
+        icon9.addFile(u":/assets/list.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.gradesBtn.setIcon(icon9)
+
+        self.verticalLayout.addWidget(self.gradesBtn)
+
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout.addItem(self.verticalSpacer)
@@ -256,6 +272,7 @@ class Ui_MainWindow(object):
         self.controlsDock.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u05e4\u05e2\u05d5\u05dc\u05d5\u05ea", None))
         self.createTeamBtn.setText(QCoreApplication.translate("MainWindow", u"\u05e6\u05d5\u05e8 \u05e7\u05d1\u05d5\u05e6\u05d4", None))
         self.assignTeamsBtn.setText(QCoreApplication.translate("MainWindow", u"\u05de\u05e6\u05e0\u05e4\u05ea \u05d4\u05de\u05d9\u05d5\u05df", None))
+        self.gradesBtn.setText(QCoreApplication.translate("MainWindow", u"\u05e1\u05d3\u05e8  \u05e9\u05db\u05d1\u05d5\u05ea", None))
         self.participantsDock.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u05de\u05e9\u05ea\u05ea\u05e4\u05d9\u05dd", None))
     # retranslateUi
 

@@ -12,6 +12,7 @@ teams = []
 id_keeper = 0
 current_file = None
 is_dirty = False
+grades = []
 
 
 def load_participants(file_path):
@@ -118,7 +119,7 @@ def save_project_as(filename: str | None = "unnamed.pickle"):
     global current_file
     try:
         with open(filename, 'wb') as f:
-            pickle.dump((participants, teams), f, pickle.HIGHEST_PROTOCOL)
+            pickle.dump((participants, teams, grades), f, pickle.HIGHEST_PROTOCOL)
         is_dirty = False
         current_file = filename
         return 0
@@ -133,13 +134,26 @@ def save_project():
         return -1
 
 
+def set_grades(grades_list: list):
+    global is_dirty
+    is_dirty = True
+    global grades
+    grades = grades_list
+
+
 def open_project(filename="unnamed.pickle"):
     global is_dirty
     global current_file
     try:
         with open(filename, 'rb') as f:
-            global participants, teams
-            participants, teams = pickle.load(f)
+            global participants, teams, grades
+            participants, teams, grades = pickle.load(f)
+            max_id = 0
+            for participant in participants:
+                if participant.id > max_id:
+                    max_id = participant.id
+            global id_keeper
+            id_keeper = max_id + 1
         current_file = filename
         is_dirty = False
         return 0

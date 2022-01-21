@@ -12,6 +12,7 @@ class ParticipantDialog(QDialog):
 
         self.setWindowTitle(participant.name)
         self.ui.nameLbl.setText(participant.name)
+        self.ui.gradeLbl.setText(participant.grade)
         if participant.team is not None:
             self.ui.teamLbl.setText(participant.team.name)
 
@@ -42,3 +43,7 @@ class ParticipantDialog(QDialog):
         self.ui.macrameBar.setValue(participant.macrame)
         self.ui.macrameBar.setMaximum(MAX_OTHER)
         self.ui.macrameLbl.setText(f"{participant.macrame}/{MAX_OTHER}")
+
+        self.ui.preferenceALbl.setText(participant.team_preference1)
+        self.ui.preferenceBLbl.setText(participant.team_preference2)
+        self.ui.preferenceCLbl.setText(participant.team_preference3)

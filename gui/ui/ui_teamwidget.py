@@ -225,8 +225,8 @@ class Ui_TeamWidget(object):
 
         self.line = QFrame(self.scrollAreaWidgetContents)
         self.line.setObjectName(u"line")
-        self.line.setLineWidth(2)
-        self.line.setMidLineWidth(1)
+        self.line.setLineWidth(1)
+        self.line.setMidLineWidth(0)
         self.line.setFrameShape(QFrame.HLine)
         self.line.setFrameShadow(QFrame.Sunken)
 

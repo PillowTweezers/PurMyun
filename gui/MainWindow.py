@@ -4,6 +4,7 @@ from PySide6 import QtWidgets, QtCore
 from PySide6.QtCore import QSettings, Slot
 from PySide6.QtGui import QAction
 
+from gui.GradesDialog import GradesDialog
 from gui.TeamCreationDialog import TeamCreationDialog
 from gui.TeamWidget import TeamWidget
 from gui.ui.ui_mainwindow import Ui_MainWindow
@@ -37,6 +38,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def assign_buttons(self):
         self.ui.createTeamBtn.clicked.connect(self.create_team)
         self.ui.assignTeamsBtn.clicked.connect(self.assign_teams)
+        self.ui.gradesBtn.clicked.connect(self.open_grades_dialog)
 
     def assign_actions(self):
         self.ui.loadParticipantsFileAction.triggered.connect(self.load_participants_file)
@@ -64,6 +66,10 @@ class MainWindow(QtWidgets.QMainWindow):
             event.accept()
         else:
             event.ignore()
+
+    def open_grades_dialog(self):
+        dialog = GradesDialog(self)
+        dialog.exec_()
 
     @Slot()
     def new_project(self):
