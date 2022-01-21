@@ -17,10 +17,12 @@ class ParticipantTableWidget(QWidget):
     It has two modes: global and team view, the latter accessible via passing a team object.
     """
 
-    def __init__(self, parent=None, team: Team = None):
+    def __init__(self, parent=None, team: Team = None, update_ui_callback=None):
         super(ParticipantTableWidget, self).__init__(parent)
         self.ui = Ui_ParticipantTableWidget()
         self.ui.setupUi(self)
+
+        self.update_ui_callback = update_ui_callback
 
         if team is not None:
             self.ui.addParticipantBtn.hide()
@@ -38,6 +40,8 @@ class ParticipantTableWidget(QWidget):
         self.ui.participantsTableWidget.setHorizontalHeaderLabels(["שם", "ממוצע", "מחויבות", "צוות"])
 
         self.ui.participantsTableWidget.doubleClicked.connect(self.participants_double_clicked)
+        self.ui.participantsTableWidget.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.ui.participantsTableWidget.customContextMenuRequested.connect(self.participants_right_clicked)
         self.ui.participantsTableWidget.setSortingEnabled(True)
         self.ui.participantsTableWidget.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.ui.participantsFilterLineEdt.textChanged.connect(self.filter_participants)
@@ -67,6 +71,22 @@ class ParticipantTableWidget(QWidget):
         participantDialog.exec()
 
     @Slot()
+    def participants_right_clicked(self):
+        menu = QtWidgets.QMenu()
+        remove_action = menu.addAction("הסר משתתפים" if self.team is None else "הסר מצוות")
+        remove_action.triggered.connect(self.remove_participants)
+
+        move_menu = QtWidgets.QMenu("העבר לצוות")
+        for team in client.teams:
+            if team is self.team:
+                continue
+            move_action = move_menu.addAction(team.name)
+            move_action.triggered.connect(lambda checked, team=team: self.move_participants(team))
+        move_menu.triggered.connect(self.move_participants)
+        menu.exec_(QtGui.QCursor.pos())
+        pass
+
+    @Slot()
     def remove_participants(self):
         selected_items = self.ui.participantsTableWidget.selectedItems()
         selected_rows = set()
@@ -88,7 +108,29 @@ class ParticipantTableWidget(QWidget):
             for row in sorted(selected_rows, reverse=True):
                 participant_id = self.ui.participantsTableWidget.item(row, 0).data(QtCore.Qt.UserRole)
                 self.remove_participant(participant_id)
-                self.ui.participantsTableWidget.removeRow(row)
+            self.update_ui_callback()
+            self.ui.participantsTableWidget.clearSelection()
+
+    @Slot()
+    def move_participants(self, team: Team):
+        selected_items = self.ui.participantsTableWidget.selectedItems()
+        selected_rows = set()
+        for item in selected_items:
+            selected_rows.add(item.row())
+        if len(selected_rows) == 0:
+            self.alert_text("לא נבחרו משתתפים")
+            return
+        confirmation_box = QtWidgets.QMessageBox()
+        confirmation_box.setText("האם אתה בטוח שברצונך להעביר את חברי הצוות שנבחרו?")
+        confirmation_box.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+        confirmation_box.setDefaultButton(QtWidgets.QMessageBox.No)
+        confirmation_box.setIcon(QtWidgets.QMessageBox.Question)
+        confirmation_box.setWindowTitle("אישור העברה")
+        if confirmation_box.exec() == QtWidgets.QMessageBox.Yes:
+            for row in sorted(selected_rows, reverse=True):
+                participant_id = self.ui.participantsTableWidget.item(row, 0).data(QtCore.Qt.UserRole)
+                client.move_participant(participant_id, team)
+            self.update_ui_callback()
             self.ui.participantsTableWidget.clearSelection()
 
     @Slot()
@@ -122,16 +164,22 @@ class ParticipantTableWidget(QWidget):
         self.ui.participantsTableWidget.clearSelection()
 
     def remove_participant(self, participant_id):
-        participants = self.team.participants if self.team else client.participants
-        for participant in participants:
-            if participant.id == participant_id:
-                participants.remove(participant)
-                break
+        if self.team is None:
+            client.remove_participant(participant_id)
+        else:
+            client.remove_participant_from_team(participant_id, self.team)
+
+    def clean_table(self):
+        self.ui.participantsTableWidget.clearContents()
+        self.ui.participantsTableWidget.setRowCount(0)
 
     def render_participants_table(self):
+        self.ui.participantsTableWidget.setSortingEnabled(False)
         participants = self.team.participants if self.team else client.participants
+        self.clean_table()
         self.ui.participantsTableWidget.setRowCount(len(participants))
         for participant in participants:
+            # TODO: Set to basic color from computer theme.
             color = QtGui.QColor(QtCore.Qt.white)
             item = QtWidgets.QTableWidgetItem(participant.name)
             if participant.team is not None and hasattr(participant, "color") and participant.color is not None:
@@ -149,9 +197,11 @@ class ParticipantTableWidget(QWidget):
             self.ui.participantsTableWidget.setItem(participants.index(participant), 2, item)
             if participant.team is not None:
                 item = QtWidgets.QTableWidgetItem(participant.team.name)
+                print(item.text())
                 item.setBackground(color)
                 self.ui.participantsTableWidget.setItem(participants.index(participant), 3, item)
             self.ui.participantsTableWidget.showRow(participants.index(participant))
+        self.ui.participantsTableWidget.setSortingEnabled(True)
 
     def set_team(self, team: Team):
         self.team = team

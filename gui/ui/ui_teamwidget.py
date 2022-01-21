@@ -48,10 +48,19 @@ class Ui_TeamWidget(object):
 
         self.formLayout.setWidget(0, QFormLayout.LabelRole, self.label)
 
+        self.horizontalLayout_4 = QHBoxLayout()
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.teamNameLbl = QLabel(self.scrollAreaWidgetContents)
         self.teamNameLbl.setObjectName(u"teamNameLbl")
 
-        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.teamNameLbl)
+        self.horizontalLayout_4.addWidget(self.teamNameLbl)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_4.addItem(self.horizontalSpacer_2)
+
+
+        self.formLayout.setLayout(0, QFormLayout.FieldRole, self.horizontalLayout_4)
 
 
         self.verticalLayout_3.addLayout(self.formLayout)

@@ -72,6 +72,24 @@ def assign_to_teams():
                 remove_participant_from_list(recruit, participants_listing)
 
 
+def find_participant(id):
+    for participant in participants:
+        if participant.id == id:
+            return participant
+    return None
+
+
+def move_participant(participant_id: int, team: Team):
+    participant = find_participant(participant_id)
+    if participant is None:
+        return -1
+
+    global is_dirty
+    is_dirty = True
+
+    participant.team = team
+
+
 def save_teams_to_file():
     with open('teams.pickle', 'wb') as f:
         pickle.dump(teams, f, pickle.HIGHEST_PROTOCOL)
@@ -144,8 +162,16 @@ def remove_participant(participant_id):
     is_dirty = True
     for participant in participants:
         if participant.id == participant_id:
+            if participant.team:
+                participant.team.remove_participant(participant)
             participants.remove(participant)
             break
+
+
+def remove_participant_from_team(participant_id, team: Team):
+    global is_dirty
+    is_dirty = True
+    team.remove_participant_by_id(participant_id)
 
 
 def new_project():

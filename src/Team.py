@@ -1,5 +1,5 @@
-from src.Weights import Weights
 from src.Participant import Participant
+from src.Weights import Weights
 
 MAX_WEIGHT = 5
 
@@ -10,6 +10,19 @@ class Team:
         self.weights = weights
         self.participants = []
         self.color = color
+
+    def remove_participant_by_id(self, participant_id):
+        particpant = self.find_participant(participant_id)
+        self.remove_participant(particpant)
+
+    def remove_participant(self, participant: Participant):
+        self.participants.remove(participant)
+        participant.team = None
+
+    def find_participant(self, participant_id):
+        for participant in self.participants:
+            if participant.id == participant_id:
+                return participant
 
     def add_participant(self, participant: Participant):
         self.participants.append(participant)

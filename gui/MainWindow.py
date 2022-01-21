@@ -19,33 +19,39 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        # Local variables
         self.recent_actions = []
+        self.settings = QSettings("settings.ini", QSettings.IniFormat)
 
-        # Connect All Buttons to their corresponding slots
+        self.ui.participantsTableWidget.update_ui_callback = self.update_ui
+
+        self.assign_buttons()
+        self.assign_actions()
+        self.create_recent_menu()
+        self.restore_state()
+        self.statusBar().showMessage("מוכן")
+
+    def restore_state(self):
+        self.restoreGeometry(self.settings.value("geometry"))
+        self.restoreState(self.settings.value("windowState"))
+
+    def assign_buttons(self):
         self.ui.createTeamBtn.clicked.connect(self.create_team)
+        self.ui.assignTeamsBtn.clicked.connect(self.assign_teams)
 
-        # Connect all Action signals to their corresponding slots
+    def assign_actions(self):
         self.ui.loadParticipantsFileAction.triggered.connect(self.load_participants_file)
         self.ui.saveAsAction.triggered.connect(self.save_as)
         self.ui.saveAction.triggered.connect(self.save)
         self.ui.quitAction.triggered.connect(self.quit)
         self.ui.openAction.triggered.connect(self.open_project)
         self.ui.newAction.triggered.connect(self.new_project)
-        self.ui.assignTeamsBtn.clicked.connect(self.assign_teams)
-        # Create recent files menu actions
+
+    def create_recent_menu(self):
         for i in range(self.MAX_RECENT_FILES):
             self.recent_actions.append(
                 QAction(self, visible=False, triggered=self.open_recent_file))
             self.ui.recentFilesMenu.insertAction(self.ui.quitAction, self.recent_actions[i])
         self.update_recent_files_menu()
-
-        # Load past window state
-        self.settings = QSettings("settings.ini", QSettings.IniFormat)
-        self.restoreGeometry(self.settings.value("geometry"))
-        self.restoreState(self.settings.value("windowState"))
-
-        self.statusBar().showMessage("מוכן")
 
     def update_ui(self):
         self.render_participants_table()
@@ -179,15 +185,20 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def render_participants_table(self):
         self.ui.participantsTableWidget.update_ui()
-        for i in range(self.ui.teamsTabWidget.count()):
-            tab = self.ui.teamsTabWidget.widget(i)
-            tab.update_ui()
 
     def render_teams_widget(self):
-        self.ui.teamsTabWidget.clear()
-        for team in client.teams:
-            team_widget = TeamWidget(team)
-            self.ui.teamsTabWidget.addTab(team_widget, team.name)
+        current_teams = []
+        for i in range(self.ui.teamsTabWidget.count()):
+            tab = self.ui.teamsTabWidget.widget(i)
+            if tab.team not in client.teams:
+                self.ui.teamsTabWidget.removeTab(i)
+                continue
+            current_teams.append(tab.team)
+            tab.update_ui()
+        for i, team in enumerate(client.teams):
+            if team not in current_teams:
+                team_widget = TeamWidget(team, update_ui_callback=self.update_ui)
+                self.ui.teamsTabWidget.insertTab(i, team_widget, team.name)
 
     def can_exit(self):
         if client.is_dirty:

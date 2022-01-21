@@ -5,7 +5,7 @@ from src.Team import MAX_WEIGHT
 
 
 class TeamWidget(QWidget):
-    def __init__(self, team, parent=None):
+    def __init__(self, team, parent=None, update_ui_callback=None):
         super().__init__(parent)
         self.ui = Ui_TeamWidget()
         self.ui.setupUi(self)
@@ -37,6 +37,9 @@ class TeamWidget(QWidget):
 
         self.ui.applyEditBtn.hide()
         self.ui.cancelEditBtn.hide()
+
+        self.team = team
+        self.ui.participantTableWidget.update_ui_callback = update_ui_callback
 
         self.ui.participantTableWidget.set_team(team)
 
