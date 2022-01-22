@@ -189,7 +189,8 @@ class ParticipantTableWidget(QWidget):
             # TODO: Set to basic color from computer theme.
             color = QtGui.QColor(QtCore.Qt.white)
             item = QtWidgets.QTableWidgetItem(participant.name)
-            if participant.team is not None and hasattr(participant, "color") and participant.color is not None:
+            if participant.team is not None and hasattr(participant.team,
+                                                        "color") and participant.team.color is not None:
                 color = participant.team.color
             item.setData(QtCore.Qt.UserRole, participant.id)
             item.setBackground(color)

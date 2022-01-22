@@ -261,6 +261,11 @@ class MainWindow(QtWidgets.QMainWindow):
     def update_recent_files_menu(self):
         settings = QtCore.QSettings('settings.ini', QtCore.QSettings.IniFormat)
         files = settings.value('recentFileList', [])
+        # TODO: Sometimes None is added to the list. This is only a workaround. SOLVE IT!
+        for file in files:
+            if file is None:
+                files.remove(file)
+                settings.setValue('recentFileList', files)
         if isinstance(files, str):
             files = [files]
 
