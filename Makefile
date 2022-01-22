@@ -7,7 +7,7 @@ COMPILED_DIR = gui/ui
  
 #UI files to compile
 UI_FILES = mainwindow.ui participantdialog.ui teamcreationdialog.ui participantcreationdialog.ui teamwidget.ui \
-participanttablewidget.ui gradedialog.ui fancyslider.ui statsWidget.ui
+participanttablewidget.ui gradedialog.ui fancysliderwidget.ui statswidget.ui fancysliderhorizontalwidget.ui
 
 #Qt resource files to compile
 RESOURCES = mainwindow.qrc participantstable.qrc window.qrc

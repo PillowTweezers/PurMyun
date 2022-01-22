@@ -1,12 +1,16 @@
 from PySide6.QtWidgets import QWidget
 
-from gui.ui.ui_fancyslider import Ui_FancySliderWidget
+from gui.ui.ui_fancysliderwidget import Ui_FancySliderWidget
+from gui.ui.ui_fancysliderhorizontalwidget import Ui_FancySliderHorizontalWidget
 
 
-class FancySlider(QWidget):
-    def __init__(self, parent=None, min_value=0, max_value=100, value=0):
+class FancySliderWidget(QWidget):
+    def __init__(self, parent=None, min_value=0, max_value=100, value=0, horizontal=False):
         super().__init__(parent)
-        self.ui = Ui_FancySliderWidget()
+        if horizontal:
+            self.ui = Ui_FancySliderHorizontalWidget()
+        else:
+            self.ui = Ui_FancySliderWidget()
         self.ui.setupUi(self)
 
         self.ui.slider.setMinimum(min_value)
@@ -31,6 +35,6 @@ class FancySlider(QWidget):
     def set_value(self, value):
         self.ui.slider.setValue(value)
         self.ui.spinBox.setValue(value)
-        
+
     def get_value(self):
         return self.ui.slider.value()

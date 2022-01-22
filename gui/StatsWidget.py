@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QWidget
 
-from gui.ui.ui_statsWidget import Ui_StatsWidget
+from gui.ui.ui_statswidget import Ui_StatsWidget
 
 
 class StatsWidget(QWidget):
