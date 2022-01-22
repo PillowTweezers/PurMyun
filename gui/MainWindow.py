@@ -9,7 +9,7 @@ from gui.TeamCreationDialog import TeamCreationDialog
 from gui.TeamWidget import TeamWidget
 from gui.ui.ui_mainwindow import Ui_MainWindow
 from src import Client as client
-
+import os
 
 class MainWindow(QtWidgets.QMainWindow):
     MAX_RECENT_FILES = 4
@@ -21,7 +21,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
 
         self.recent_actions = []
-        self.settings = QSettings("settings.ini", QSettings.IniFormat)
+        self.settings_path = os.getenv("APPDATA")+"/PurMyun/settings.ini"
+        self.settings = QSettings(self.settings_path, QSettings.IniFormat)
 
         self.ui.participantsTableWidget.update_ui_callback = self.update_ui
 
@@ -241,7 +242,7 @@ class MainWindow(QtWidgets.QMainWindow):
         return True
 
     def update_current_file(self):
-        settings = QtCore.QSettings('settings.ini', QtCore.QSettings.IniFormat)
+        settings = QtCore.QSettings(self.settings_path, QtCore.QSettings.IniFormat)
         files = settings.value('recentFileList', [])
         if isinstance(files, str):
             files = [files]
@@ -259,7 +260,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.update_recent_files_menu()
 
     def update_recent_files_menu(self):
-        settings = QtCore.QSettings('settings.ini', QtCore.QSettings.IniFormat)
+        settings = QtCore.QSettings(self.settings_path, QtCore.QSettings.IniFormat)
         files = settings.value('recentFileList', [])
         # TODO: Sometimes None is added to the list. This is only a workaround. SOLVE IT!
         for file in files:
