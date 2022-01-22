@@ -7,7 +7,7 @@ from PySide6.QtGui import QIcon
 
 import gui.ui.window_rc
 
-dont_remove_this_import = gui.ui.window_rc.qt_resource_name
+_ = gui.ui.window_rc.qt_resource_name
 
 sys.path.insert(0, str(pathlib.Path('./gui/ui').resolve()))
 from gui.MainWindow import MainWindow
