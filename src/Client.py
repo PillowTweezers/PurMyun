@@ -261,3 +261,18 @@ def new_project():
     id_keeper = 0
     global current_file
     current_file = None
+
+
+def update_team(team: Team, name, weights: Weights, color):
+    global is_dirty
+    is_dirty = True
+    team.name = name
+    team.weights = weights
+    team.color = color
+
+
+def delete_team(team):
+    global is_dirty
+    is_dirty = True
+    team.remove_all_participants()
+    teams.remove(team)

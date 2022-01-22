@@ -193,20 +193,6 @@ class Ui_TeamWidget(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
 
-        self.cancelEditBtn = QPushButton(self.scrollAreaWidgetContents)
-        self.cancelEditBtn.setObjectName(u"cancelEditBtn")
-        self.cancelEditBtn.setEnabled(True)
-        self.cancelEditBtn.setStyleSheet(u"text-align: center;")
-
-        self.horizontalLayout.addWidget(self.cancelEditBtn)
-
-        self.applyEditBtn = QPushButton(self.scrollAreaWidgetContents)
-        self.applyEditBtn.setObjectName(u"applyEditBtn")
-        self.applyEditBtn.setEnabled(True)
-        self.applyEditBtn.setStyleSheet(u"text-align: center;")
-
-        self.horizontalLayout.addWidget(self.applyEditBtn)
-
         self.editBtn = QPushButton(self.scrollAreaWidgetContents)
         self.editBtn.setObjectName(u"editBtn")
         self.editBtn.setStyleSheet(u"text-align: center;")
@@ -242,7 +228,7 @@ class Ui_TeamWidget(object):
         self.widget.setObjectName(u"widget")
         self.verticalLayout_2 = QVBoxLayout(self.widget)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout_2.setContentsMargins(80, 0, 80, -1)
+        self.verticalLayout_2.setContentsMargins(80, 0, 80, 0)
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.participantTableWidget = ParticipantTableWidget(self.widget)
@@ -255,6 +241,35 @@ class Ui_TeamWidget(object):
 
 
         self.verticalLayout_3.addWidget(self.widget)
+
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_5)
+
+        self.deleteTeamBtn = QPushButton(self.scrollAreaWidgetContents)
+        self.deleteTeamBtn.setObjectName(u"deleteTeamBtn")
+        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.deleteTeamBtn.sizePolicy().hasHeightForWidth())
+        self.deleteTeamBtn.setSizePolicy(sizePolicy)
+        self.deleteTeamBtn.setMinimumSize(QSize(180, 0))
+        self.deleteTeamBtn.setStyleSheet(u"font-weight:bold;font-size:18px;background:darkred;text-align: center;")
+        icon1 = QIcon()
+        icon1.addFile(u":/assets/remove.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.deleteTeamBtn.setIcon(icon1)
+        self.deleteTeamBtn.setIconSize(QSize(18, 18))
+
+        self.horizontalLayout_3.addWidget(self.deleteTeamBtn)
+
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_4)
+
+
+        self.verticalLayout_3.addLayout(self.horizontalLayout_3)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
@@ -299,9 +314,8 @@ class Ui_TeamWidget(object):
 "\u05d9\u05ea\u05e8\u05d9\u05dd", None))
         self.macrameBar.setFormat("")
         self.tripodBar.setFormat("")
-        self.cancelEditBtn.setText(QCoreApplication.translate("TeamWidget", u"\u05d1\u05d8\u05dc", None))
-        self.applyEditBtn.setText(QCoreApplication.translate("TeamWidget", u"\u05d4\u05d7\u05dc", None))
         self.editBtn.setText(QCoreApplication.translate("TeamWidget", u"\u05e2\u05e8\u05d5\u05da", None))
         self.label_2.setText(QCoreApplication.translate("TeamWidget", u"\u05d7\u05d1\u05e8\u05d9 \u05e6\u05d5\u05d5\u05ea:", None))
+        self.deleteTeamBtn.setText(QCoreApplication.translate("TeamWidget", u"\u05de\u05d7\u05e7 \u05e6\u05d5\u05d5\u05ea", None))
     # retranslateUi
 

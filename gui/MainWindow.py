@@ -183,6 +183,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     @Slot()
     def load_participants_file(self):
+        self.open_grades_dialog()
         self.statusBar().showMessage("טוען משתתפים...")
         filePath, _ = QtWidgets.QFileDialog.getOpenFileName(self, str("Choose File"), "", str("*.csv"))
         _, exit_code = client.load_participants(filePath)
