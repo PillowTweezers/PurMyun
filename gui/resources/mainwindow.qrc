@@ -15,5 +15,6 @@
         <file>../../assets/export_excel.png</file>
         <file>../../assets/reset_view.png</file>
         <file>../../assets/resize_tables.png</file>
+        <file>../../assets/remove.png</file>
     </qresource>
 </RCC>

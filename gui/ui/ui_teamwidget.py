@@ -256,7 +256,11 @@ class Ui_TeamWidget(object):
         sizePolicy.setHeightForWidth(self.deleteTeamBtn.sizePolicy().hasHeightForWidth())
         self.deleteTeamBtn.setSizePolicy(sizePolicy)
         self.deleteTeamBtn.setMinimumSize(QSize(180, 0))
-        self.deleteTeamBtn.setStyleSheet(u"font-weight:bold;font-size:18px;background:darkred;")
+        self.deleteTeamBtn.setStyleSheet(u"font-weight:bold;font-size:18px;background:darkred;text-align: center;")
+        icon1 = QIcon()
+        icon1.addFile(u":/assets/remove.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.deleteTeamBtn.setIcon(icon1)
+        self.deleteTeamBtn.setIconSize(QSize(18, 18))
 
         self.horizontalLayout_3.addWidget(self.deleteTeamBtn)
 

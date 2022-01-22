@@ -1,3 +1,4 @@
+from PySide6 import QtWidgets
 from PySide6.QtWidgets import QWidget, QDialog
 
 from gui.TeamCreationDialog import TeamCreationDialog
@@ -57,8 +58,15 @@ class TeamWidget(QWidget):
             self.update_ui_callback()
 
     def delete_team_clicked(self):
-        client.delete_team(self.team)
-        self.update_ui_callback()
+        confirm_dialog = QtWidgets.QMessageBox()
+        confirm_dialog.setWindowTitle("אישור מחיקת צוות")
+        confirm_dialog.setText(f"האם אתה בטוח שברצונך למחוק את צוות {self.team.name}?")
+        confirm_dialog.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+        confirm_dialog.setDefaultButton(QtWidgets.QMessageBox.No)
+        confirm_dialog.setIcon(QtWidgets.QMessageBox.Warning)
+        if confirm_dialog.exec() == QtWidgets.QMessageBox.Yes:
+            client.delete_team(self.team)
+            self.update_ui_callback()
 
     def resize_table_header(self):
         self.ui.participantTableWidget.resize_header()
