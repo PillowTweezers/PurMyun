@@ -4,7 +4,10 @@ import sys
 from PySide6 import QtWidgets
 # This is bad, yet it's the only way to get the app to work.
 from PySide6.QtGui import QIcon
+
 import gui.ui.window_rc
+
+dont_remove_this_import = gui.ui.window_rc.qt_resource_name
 
 sys.path.insert(0, str(pathlib.Path('./gui/ui').resolve()))
 from gui.MainWindow import MainWindow
