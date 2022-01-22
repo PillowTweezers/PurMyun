@@ -193,20 +193,6 @@ class Ui_TeamWidget(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
 
-        self.cancelEditBtn = QPushButton(self.scrollAreaWidgetContents)
-        self.cancelEditBtn.setObjectName(u"cancelEditBtn")
-        self.cancelEditBtn.setEnabled(True)
-        self.cancelEditBtn.setStyleSheet(u"text-align: center;")
-
-        self.horizontalLayout.addWidget(self.cancelEditBtn)
-
-        self.applyEditBtn = QPushButton(self.scrollAreaWidgetContents)
-        self.applyEditBtn.setObjectName(u"applyEditBtn")
-        self.applyEditBtn.setEnabled(True)
-        self.applyEditBtn.setStyleSheet(u"text-align: center;")
-
-        self.horizontalLayout.addWidget(self.applyEditBtn)
-
         self.editBtn = QPushButton(self.scrollAreaWidgetContents)
         self.editBtn.setObjectName(u"editBtn")
         self.editBtn.setStyleSheet(u"text-align: center;")
@@ -299,8 +285,6 @@ class Ui_TeamWidget(object):
 "\u05d9\u05ea\u05e8\u05d9\u05dd", None))
         self.macrameBar.setFormat("")
         self.tripodBar.setFormat("")
-        self.cancelEditBtn.setText(QCoreApplication.translate("TeamWidget", u"\u05d1\u05d8\u05dc", None))
-        self.applyEditBtn.setText(QCoreApplication.translate("TeamWidget", u"\u05d4\u05d7\u05dc", None))
         self.editBtn.setText(QCoreApplication.translate("TeamWidget", u"\u05e2\u05e8\u05d5\u05da", None))
         self.label_2.setText(QCoreApplication.translate("TeamWidget", u"\u05d7\u05d1\u05e8\u05d9 \u05e6\u05d5\u05d5\u05ea:", None))
     # retranslateUi

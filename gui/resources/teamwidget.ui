@@ -305,32 +305,6 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="cancelEditBtn">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">text-align: center;</string>
-           </property>
-           <property name="text">
-            <string>בטל</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="applyEditBtn">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">text-align: center;</string>
-           </property>
-           <property name="text">
-            <string>החל</string>
-           </property>
-          </widget>
-         </item>
-         <item>
           <widget class="QPushButton" name="editBtn">
            <property name="styleSheet">
             <string notr="true">text-align: center;</string>
