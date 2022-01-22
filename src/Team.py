@@ -1,6 +1,8 @@
+from PySide6.QtGui import QColor
+
 from src.Participant import Participant
 from src.Weights import Weights
-from PySide6.QtGui import QColor
+
 MAX_WEIGHT = 5
 
 
@@ -26,6 +28,11 @@ class Team:
 
     def add_participant(self, participant: Participant):
         self.participants.append(participant)
+
+    def remove_all_participants(self):
+        for participant in self.participants:
+            participant.team = None
+        self.participants = []
 
     def clearParticipants(self):
         self.participants = []

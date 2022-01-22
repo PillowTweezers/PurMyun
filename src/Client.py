@@ -269,3 +269,10 @@ def update_team(team: Team, name, weights: Weights, color):
     team.name = name
     team.weights = weights
     team.color = color
+
+
+def delete_team(team):
+    global is_dirty
+    is_dirty = True
+    team.remove_all_participants()
+    teams.remove(team)

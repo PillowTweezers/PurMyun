@@ -2,6 +2,7 @@ from PySide6.QtWidgets import QWidget, QDialog
 
 from gui.TeamCreationDialog import TeamCreationDialog
 from gui.ui.ui_teamwidget import Ui_TeamWidget
+from src import Client as client
 from src.Team import MAX_WEIGHT
 
 
@@ -16,6 +17,7 @@ class TeamWidget(QWidget):
         self.update_ui_callback = update_ui_callback
 
         self.ui.editBtn.clicked.connect(self.edit_clicked)
+        self.ui.deleteTeamBtn.clicked.connect(self.delete_team_clicked)
 
         self.ui.participantTableWidget.set_team(team)
 
@@ -53,6 +55,10 @@ class TeamWidget(QWidget):
         teamEditDialog.exec()
         if teamEditDialog.result() == QDialog.Accepted:
             self.update_ui_callback()
+
+    def delete_team_clicked(self):
+        client.delete_team(self.team)
+        self.update_ui_callback()
 
     def resize_table_header(self):
         self.ui.participantTableWidget.resize_header()
