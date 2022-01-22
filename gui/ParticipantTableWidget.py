@@ -52,11 +52,15 @@ class ParticipantTableWidget(QWidget):
 
     def showEvent(self, event: QtGui.QShowEvent) -> None:
         super(ParticipantTableWidget, self).showEvent(event)
-        width = self.ui.participantsTableWidget.width()
-        for (i, column_ratio) in enumerate(COLUMN_RATIOS):
-            self.ui.participantsTableWidget.setColumnWidth(i, int(width * column_ratio))
+        self.resize_header()
         header = self.ui.participantsTableWidget.horizontalHeader()
         header.setStretchLastSection(True)
+
+    def resize_header(self):
+        width = self.ui.participantsTableWidget.width()
+        print(width)
+        for (i, column_ratio) in enumerate(COLUMN_RATIOS):
+            self.ui.participantsTableWidget.setColumnWidth(i, int(width * column_ratio))
 
     @Slot()
     def participants_double_clicked(self):

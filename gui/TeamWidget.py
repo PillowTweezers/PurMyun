@@ -43,5 +43,8 @@ class TeamWidget(QWidget):
 
         self.ui.participantTableWidget.set_team(team)
 
+    def resize_table_header(self):
+        self.ui.participantTableWidget.resize_header()
+
     def update_ui(self):
         self.ui.participantTableWidget.update_ui()

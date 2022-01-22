@@ -13,5 +13,7 @@
         <file>../../assets/sorting_hat.png</file>
         <file>../../assets/list.png</file>
         <file>../../assets/export_excel.png</file>
+        <file>../../assets/reset_view.png</file>
+        <file>../../assets/resize_tables.png</file>
     </qresource>
 </RCC>

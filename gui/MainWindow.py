@@ -28,6 +28,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.assign_buttons()
         self.assign_actions()
         self.create_recent_menu()
+        self.save_default_state()
         self.restore_state()
         self.statusBar().showMessage("מוכן")
 
@@ -48,6 +49,15 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.openAction.triggered.connect(self.open_project)
         self.ui.newAction.triggered.connect(self.new_project)
         self.ui.exportExcelAction.triggered.connect(self.export_to_excel)
+        self.ui.resetUiAction.triggered.connect(self.reset_ui)
+        self.ui.resizeTablesAction.triggered.connect(self.resize_tables)
+
+    def reset_ui(self):
+        # FIXME: Participant tables should resize headers.
+        cur_pos = self.pos()
+        self.restoreGeometry(self.settings.value("defaultGeometry"))
+        self.restoreState(self.settings.value("defaultState"))
+        self.move(cur_pos)
 
     def create_recent_menu(self):
         for i in range(self.MAX_RECENT_FILES):
@@ -290,6 +300,17 @@ class MainWindow(QtWidgets.QMainWindow):
                     self.error_text("שגיאה בייצוא קובץ")
         self.statusBar().showMessage("שמירה בוטלה")
         return False
+
+    def save_default_state(self):
+        if not self.settings.value('defaultState'):
+            self.settings.setValue('defaultState', self.saveState())
+        if not self.settings.value('defaultGeometry'):
+            self.settings.setValue('defaultGeometry', self.saveGeometry())
+
+    def resize_tables(self):
+        self.ui.participantsTableWidget.resize_header()
+        for i in range(self.ui.teamsTabWidget.count()):
+            self.ui.teamsTabWidget.widget(i).resize_table_header()
 
     def alert_text(self, text: str):
         QtWidgets.QMessageBox.about(self, "Alert", text)

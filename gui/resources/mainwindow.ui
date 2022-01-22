@@ -86,6 +86,9 @@
     <property name="title">
      <string>תצוגה</string>
     </property>
+    <addaction name="resetUiAction"/>
+    <addaction name="separator"/>
+    <addaction name="resizeTablesAction"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -192,6 +195,9 @@
    </widget>
   </widget>
   <widget class="QDockWidget" name="participantsDock">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="minimumSize">
     <size>
      <width>253</width>
@@ -224,7 +230,7 @@
      <item>
       <widget class="ParticipantTableWidget" name="participantsTableWidget" native="true">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -383,6 +389,24 @@
    </property>
    <property name="text">
     <string>יצא לאקסל...</string>
+   </property>
+  </action>
+  <action name="resetUiAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/assets/reset_view.png</normaloff>:/assets/reset_view.png</iconset>
+   </property>
+   <property name="text">
+    <string>אפס ממשק</string>
+   </property>
+  </action>
+  <action name="resizeTablesAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/assets/resize_tables.png</normaloff>:/assets/resize_tables.png</iconset>
+   </property>
+   <property name="text">
+    <string>אפס טבלאות</string>
    </property>
   </action>
  </widget>

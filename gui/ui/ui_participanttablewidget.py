@@ -24,8 +24,8 @@ class Ui_ParticipantTableWidget(object):
     def setupUi(self, ParticipantTableWidget):
         if not ParticipantTableWidget.objectName():
             ParticipantTableWidget.setObjectName(u"ParticipantTableWidget")
-        ParticipantTableWidget.resize(314, 566)
-        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        ParticipantTableWidget.resize(317, 555)
+        sizePolicy = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(ParticipantTableWidget.sizePolicy().hasHeightForWidth())
@@ -69,10 +69,15 @@ class Ui_ParticipantTableWidget(object):
 
         self.participantsTableWidget = QTableWidget(ParticipantTableWidget)
         self.participantsTableWidget.setObjectName(u"participantsTableWidget")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.participantsTableWidget.sizePolicy().hasHeightForWidth())
+        self.participantsTableWidget.setSizePolicy(sizePolicy1)
         self.participantsTableWidget.setMinimumSize(QSize(0, 454))
         self.participantsTableWidget.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         self.participantsTableWidget.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
-        self.participantsTableWidget.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.participantsTableWidget.setSizeAdjustPolicy(QAbstractScrollArea.AdjustIgnored)
 
         self.verticalLayout.addWidget(self.participantsTableWidget)
 

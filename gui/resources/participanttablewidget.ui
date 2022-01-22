@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>314</width>
-    <height>566</height>
+    <width>317</width>
+    <height>555</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -72,6 +72,12 @@
    </item>
    <item>
     <widget class="QTableWidget" name="participantsTableWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -85,7 +91,7 @@
       <enum>Qt::ScrollBarAsNeeded</enum>
      </property>
      <property name="sizeAdjustPolicy">
-      <enum>QAbstractScrollArea::AdjustToContents</enum>
+      <enum>QAbstractScrollArea::AdjustIgnored</enum>
      </property>
     </widget>
    </item>
