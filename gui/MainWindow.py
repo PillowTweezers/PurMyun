@@ -3,12 +3,13 @@ import os
 from PySide6 import QtWidgets, QtCore
 from PySide6.QtCore import QSettings, Slot
 from PySide6.QtGui import QAction
+from appdirs import AppDirs
 
 from gui.GradesDialog import GradesDialog
 from gui.TeamCreationDialog import TeamCreationDialog
 from gui.TeamWidget import TeamWidget
 from gui.ui.ui_mainwindow import Ui_MainWindow
-from src import Client as client
+from src import client as client
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -21,7 +22,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
 
         self.recent_actions = []
-        self.settings = QSettings("settings.ini", QSettings.IniFormat)
+        settings_path = AppDirs("PurMyun", "PillowTweezers").user_config_dir
+        os.makedirs(settings_path, exist_ok=True)
+        self.settings = QSettings(settings_path + "/settings.ini", QSettings.IniFormat)
 
         self.ui.participantsTableWidget.update_ui_callback = self.update_ui
 
@@ -182,19 +185,21 @@ class MainWindow(QtWidgets.QMainWindow):
 
     @Slot()
     def load_participants_file(self):
-        self.open_grades_dialog()
-        self.statusBar().showMessage("טוען משתתפים...")
-        filePath, _ = QtWidgets.QFileDialog.getOpenFileName(self, str("Choose File"), "", str("*.csv"))
-        _, exit_code = client.load_participants(filePath)
-        if exit_code == 1:
-            self.error_text('בבקשה בחר קובץ')
-            return
-        elif exit_code == -1:
-            self.error_text('אין גישה לקובץ')
-            return
-
-        self.render_participants_table()
-        self.statusBar().showMessage("משתתפים נטענו")
+        # self.open_grades_dialog()
+        # self.statusBar().showMessage("טוען משתתפים...")
+        # filePath, _ = QtWidgets.QFileDialog.getOpenFileName(self, str("Choose File"), "", str("*.csv"))
+        # _, exit_code = client.load_participants(filePath)
+        # if exit_code == 1:
+        #     self.error_text('בבקשה בחר קובץ')
+        #     return
+        # elif exit_code == -1:
+        #     self.error_text('אין גישה לקובץ')
+        #     return
+        #
+        # self.render_participants_table()
+        # self.statusBar().showMessage("משתתפים נטענו")
+        # TODO: Implement this.
+        pass
 
     def render_participants_table(self):
         self.ui.participantsTableWidget.update_ui()
@@ -242,8 +247,7 @@ class MainWindow(QtWidgets.QMainWindow):
         return True
 
     def update_current_file(self):
-        settings = QtCore.QSettings('settings.ini', QtCore.QSettings.IniFormat)
-        files = settings.value('recentFileList', [])
+        files = self.settings.value('recentFileList', [])
         if isinstance(files, str):
             files = [files]
 
@@ -255,18 +259,17 @@ class MainWindow(QtWidgets.QMainWindow):
         files.insert(0, client.current_file)
         del files[self.MAX_RECENT_FILES:]
 
-        settings.setValue('recentFileList', files)
+        self.settings.setValue('recentFileList', files)
 
         self.update_recent_files_menu()
 
     def update_recent_files_menu(self):
-        settings = QtCore.QSettings('settings.ini', QtCore.QSettings.IniFormat)
-        files = settings.value('recentFileList', [])
+        files = self.settings.value('recentFileList', [])
         # TODO: Sometimes None is added to the list. This is only a workaround. SOLVE IT!
         for file in files:
             if file is None:
                 files.remove(file)
-                settings.setValue('recentFileList', files)
+                self.settings.setValue('recentFileList', files)
         if isinstance(files, str):
             files = [files]
 

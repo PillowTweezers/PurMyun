@@ -2,8 +2,8 @@ from PySide6 import QtWidgets
 from PySide6.QtWidgets import QDialog
 
 from gui.ui.ui_teamcreationdialog import Ui_TeamCreationDialog
-from src import Client as client
-from src.Weights import Weights
+from src import client as client
+from src.color import Color
 
 
 class TeamCreationDialog(QtWidgets.QDialog):
@@ -24,13 +24,6 @@ class TeamCreationDialog(QtWidgets.QDialog):
                 )
             )
             self.color = team.color
-            self.ui.statsWidget.ui.squareSlider.set_value(team.weights.square)
-            self.ui.statsWidget.ui.crossSlider.set_value(team.weights.cross)
-            self.ui.statsWidget.ui.parallelSlider.set_value(team.weights.parallel)
-            self.ui.statsWidget.ui.tripodSlider.set_value(team.weights.tripod)
-            self.ui.statsWidget.ui.anchoringSlider.set_value(team.weights.anchoring)
-            self.ui.statsWidget.ui.macrameSlider.set_value(team.weights.macrame)
-            # self.ui.statsWidget.ui.sizeSlider.set_value(team.weights.size)
 
     def color_button_clicked(self):
         colorPicker = QtWidgets.QColorDialog()
@@ -40,18 +33,10 @@ class TeamCreationDialog(QtWidgets.QDialog):
 
     def accept(self) -> None:
         if self.can_accept():
-            weights = Weights()
-            weights.square = self.ui.statsWidget.ui.squareSlider.get_value()
-            weights.cross = self.ui.statsWidget.ui.crossSlider.get_value()
-            weights.parallel = self.ui.statsWidget.ui.parallelSlider.get_value()
-            weights.tripod = self.ui.statsWidget.ui.tripodSlider.get_value()
-            weights.anchoring = self.ui.statsWidget.ui.anchoringSlider.get_value()
-            weights.macrame = self.ui.statsWidget.ui.macrameSlider.get_value()
-            weights.size = -1
             if self.team is None:
-                client.create_team(self.ui.teamNameEdt.text(), weights, self.color)
+                client.create_team(self.ui.teamNameEdt.text(), Color.from_qcolor(self.color))
             else:
-                client.update_team(self.team, self.ui.teamNameEdt.text(), weights, self.color)
+                client.update_team(self.team, self.ui.teamNameEdt.text(), Color.from_qcolor(self.color))
             self.done(QDialog.Accepted)
         else:
             self.focus_on_empty()

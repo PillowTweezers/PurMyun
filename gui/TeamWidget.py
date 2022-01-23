@@ -3,8 +3,7 @@ from PySide6.QtWidgets import QWidget, QDialog
 
 from gui.TeamCreationDialog import TeamCreationDialog
 from gui.ui.ui_teamwidget import Ui_TeamWidget
-from src import Client as client
-from src.Team import MAX_WEIGHT
+from src import client as client
 
 
 class TeamWidget(QWidget):
@@ -26,30 +25,6 @@ class TeamWidget(QWidget):
 
     def show_team_data(self):
         self.ui.teamNameLbl.setText(self.team.name)
-
-        self.ui.squareBar.setValue(self.team.weights.square)
-        self.ui.squareBar.setMaximum(MAX_WEIGHT)
-        self.ui.squareLbl.setText(f"{self.team.weights.square}/{MAX_WEIGHT}")
-
-        self.ui.crossBar.setValue(self.team.weights.cross)
-        self.ui.crossBar.setMaximum(MAX_WEIGHT)
-        self.ui.crossLbl.setText(f"{self.team.weights.cross}/{MAX_WEIGHT}")
-
-        self.ui.parallelBar.setValue(self.team.weights.parallel)
-        self.ui.parallelBar.setMaximum(MAX_WEIGHT)
-        self.ui.parallelLbl.setText(f"{self.team.weights.parallel}/{MAX_WEIGHT}")
-
-        self.ui.tripodBar.setValue(self.team.weights.tripod)
-        self.ui.tripodBar.setMaximum(MAX_WEIGHT)
-        self.ui.tripodLbl.setText(f"{self.team.weights.tripod}/{MAX_WEIGHT}")
-
-        self.ui.anchoringBar.setValue(self.team.weights.anchoring)
-        self.ui.anchoringBar.setMaximum(MAX_WEIGHT)
-        self.ui.anchoringLbl.setText(f"{self.team.weights.anchoring}/{MAX_WEIGHT}")
-
-        self.ui.macrameBar.setValue(self.team.weights.macrame)
-        self.ui.macrameBar.setMaximum(MAX_WEIGHT)
-        self.ui.macrameLbl.setText(f"{self.team.weights.macrame}/{MAX_WEIGHT}")
 
     def edit_clicked(self):
         teamEditDialog = TeamCreationDialog(parent=self, team=self.team)

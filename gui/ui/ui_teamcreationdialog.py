@@ -16,17 +16,15 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractButton, QApplication, QDialog, QDialogButtonBox,
-    QFormLayout, QGroupBox, QHBoxLayout, QLabel,
-    QLineEdit, QPushButton, QSizePolicy, QSpacerItem,
-    QVBoxLayout, QWidget)
-
-from gui.StatsWidget import StatsWidget
+    QFormLayout, QHBoxLayout, QLabel, QLineEdit,
+    QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
+    QWidget)
 
 class Ui_TeamCreationDialog(object):
     def setupUi(self, TeamCreationDialog):
         if not TeamCreationDialog.objectName():
             TeamCreationDialog.setObjectName(u"TeamCreationDialog")
-        TeamCreationDialog.resize(700, 478)
+        TeamCreationDialog.resize(285, 143)
         TeamCreationDialog.setLayoutDirection(Qt.RightToLeft)
         self.verticalLayout = QVBoxLayout(TeamCreationDialog)
         self.verticalLayout.setSpacing(12)
@@ -47,7 +45,7 @@ class Ui_TeamCreationDialog(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.teamNameEdt.sizePolicy().hasHeightForWidth())
         self.teamNameEdt.setSizePolicy(sizePolicy)
-        self.teamNameEdt.setMinimumSize(QSize(180, 0))
+        self.teamNameEdt.setMinimumSize(QSize(220, 0))
         self.teamNameEdt.setClearButtonEnabled(True)
 
         self.horizontalLayout_4.addWidget(self.teamNameEdt)
@@ -64,17 +62,11 @@ class Ui_TeamCreationDialog(object):
 
         self.formLayout.setWidget(1, QFormLayout.LabelRole, self.label_2)
 
-        self.label_9 = QLabel(TeamCreationDialog)
-        self.label_9.setObjectName(u"label_9")
-        self.label_9.setStyleSheet(u"")
-
-        self.formLayout.setWidget(2, QFormLayout.LabelRole, self.label_9)
-
         self.horizontalLayout_5 = QHBoxLayout()
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.colorPickerBtn = QPushButton(TeamCreationDialog)
         self.colorPickerBtn.setObjectName(u"colorPickerBtn")
-        self.colorPickerBtn.setMinimumSize(QSize(180, 0))
+        self.colorPickerBtn.setMinimumSize(QSize(220, 0))
         self.colorPickerBtn.setFlat(False)
 
         self.horizontalLayout_5.addWidget(self.colorPickerBtn)
@@ -85,24 +77,6 @@ class Ui_TeamCreationDialog(object):
 
 
         self.formLayout.setLayout(1, QFormLayout.FieldRole, self.horizontalLayout_5)
-
-        self.groupBox = QGroupBox(TeamCreationDialog)
-        self.groupBox.setObjectName(u"groupBox")
-        self.verticalLayout_2 = QVBoxLayout(self.groupBox)
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.statsWidget = StatsWidget(self.groupBox)
-        self.statsWidget.setObjectName(u"statsWidget")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.statsWidget.sizePolicy().hasHeightForWidth())
-        self.statsWidget.setSizePolicy(sizePolicy1)
-
-        self.verticalLayout_2.addWidget(self.statsWidget)
-
-
-        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.groupBox)
 
 
         self.verticalLayout.addLayout(self.formLayout)
@@ -133,9 +107,6 @@ class Ui_TeamCreationDialog(object):
         self.label.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05e9\u05dd:", None))
         self.teamNameEdt.setPlaceholderText(QCoreApplication.translate("TeamCreationDialog", u"\u05e9\u05dd \u05d4\u05e7\u05d1\u05d5\u05e6\u05d4", None))
         self.label_2.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05e6\u05d1\u05e2:", None))
-        self.label_9.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05de\u05d3\u05d3\u05d9\n"
-"\u05d7\u05e9\u05d9\u05d1\u05d5\u05ea:", None))
         self.colorPickerBtn.setText(QCoreApplication.translate("TeamCreationDialog", u"\u05d1\u05d7\u05e8 \u05e6\u05d1\u05e2", None))
-        self.groupBox.setTitle("")
     # retranslateUi
 

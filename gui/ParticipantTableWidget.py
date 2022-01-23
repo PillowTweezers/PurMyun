@@ -1,15 +1,16 @@
 from PySide6 import QtWidgets, QtCore, QtGui
 from PySide6.QtCore import Slot
+from PySide6.QtGui import QColor
 from PySide6.QtWidgets import QWidget
 
 from gui.GradesDialog import GradesDialog
 from gui.ParticipantCreationDialog import ParticipantCreationDialog
 from gui.ParticipantDialog import ParticipantDialog
 from gui.ui.ui_participanttablewidget import Ui_ParticipantTableWidget
-from src import Client as client
-from src.Team import Team
+from src import client as client
+from src.team import Team
 
-COLUMN_RATIOS = [0.315, 0.2165, 0.2165, 0.252]
+COLUMN_RATIOS = [0.5, 0.2, 0.3]
 
 
 class ParticipantTableWidget(QWidget):
@@ -37,8 +38,8 @@ class ParticipantTableWidget(QWidget):
 
         self.ui.participantsTableWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
 
-        self.ui.participantsTableWidget.setColumnCount(4)
-        self.ui.participantsTableWidget.setHorizontalHeaderLabels(["שם", "ממוצע", "מחויבות", "צוות"])
+        self.ui.participantsTableWidget.setColumnCount(3)
+        self.ui.participantsTableWidget.setHorizontalHeaderLabels(["שם", "ציון", "צוות"])
 
         self.ui.participantsTableWidget.doubleClicked.connect(self.participants_double_clicked)
         self.ui.participantsTableWidget.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
@@ -54,6 +55,7 @@ class ParticipantTableWidget(QWidget):
         super(ParticipantTableWidget, self).showEvent(event)
         self.resize_header()
         header = self.ui.participantsTableWidget.horizontalHeader()
+        header.setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
         header.setStretchLastSection(True)
 
     def resize_header(self):
@@ -65,11 +67,7 @@ class ParticipantTableWidget(QWidget):
     def participants_double_clicked(self):
         row = self.ui.participantsTableWidget.currentRow()
         participant_id = self.ui.participantsTableWidget.item(row, 0).data(QtCore.Qt.UserRole)
-
-        def find_by_id(p): return p.id == participant_id
-
-        participants = self.team.participants if self.team else client.participants
-        participant = next(filter(find_by_id, participants), None)
+        participant = client.find_participant(participant_id)
         # self.statusBar().showMessage("פותח תפריט עבור משתתף: " + participant.name)
         participantDialog = ParticipantDialog(participant)
         participantDialog.exec()
@@ -140,7 +138,7 @@ class ParticipantTableWidget(QWidget):
         if confirmation_box.exec() == QtWidgets.QMessageBox.Yes:
             for row in selected_rows:
                 participant_id = self.ui.participantsTableWidget.item(row, 0).data(QtCore.Qt.UserRole)
-                client.move_participant(participant_id, team)
+                client.move_participant_by_id(participant_id, team)
             self.update_ui_callback()
             self.ui.participantsTableWidget.clearSelection()
 
@@ -191,7 +189,7 @@ class ParticipantTableWidget(QWidget):
             item = QtWidgets.QTableWidgetItem(participant.name)
             if participant.team is not None and hasattr(participant.team,
                                                         "color") and participant.team.color is not None:
-                color = participant.team.color
+                color = QColor.fromRgb(participant.team.color.r, participant.team.color.g, participant.team.color.b)
             item.setData(QtCore.Qt.UserRole, participant.id)
             item.setBackground(color)
             self.ui.participantsTableWidget.setItem(participants.index(participant), 0, item)
@@ -199,14 +197,10 @@ class ParticipantTableWidget(QWidget):
             item.setData(QtCore.Qt.DisplayRole, float("{:g}".format(round(participant.average(), 1))))
             item.setBackground(color)
             self.ui.participantsTableWidget.setItem(participants.index(participant), 1, item)
-            item = QtWidgets.QTableWidgetItem()
-            item.setData(QtCore.Qt.DisplayRole, participant.presence)
-            item.setBackground(color)
-            self.ui.participantsTableWidget.setItem(participants.index(participant), 2, item)
             if participant.team is not None and self.team is None:
                 item = QtWidgets.QTableWidgetItem(participant.team.name)
                 item.setBackground(color)
-                self.ui.participantsTableWidget.setItem(participants.index(participant), 3, item)
+                self.ui.participantsTableWidget.setItem(participants.index(participant), 2, item)
             self.ui.participantsTableWidget.showRow(participants.index(participant))
         self.ui.participantsTableWidget.setSortingEnabled(True)
 

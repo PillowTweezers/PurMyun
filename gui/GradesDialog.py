@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QDialog
 
 from gui.ui.ui_gradedialog import Ui_GradesDialog
-from src import Client as client
+from src import client as client
 
 
 class GradesDialog(QDialog):
