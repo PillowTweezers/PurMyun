@@ -13,7 +13,7 @@ class ParticipantDialog(QDialog):
         self.setWindowTitle(participant.name)
         self.ui.nameLbl.setText(participant.name)
         self.ui.gradeLbl.setText(participant.grade)
-        self.ui.progressBarWidget.setMaximum(MAX_SCORE)
-        self.ui.progressBarWidget.setValue(participant.score)
+        self.ui.progressBarWidget.set_maximum(MAX_SCORE)
+        self.ui.progressBarWidget.set_value(participant.score)
         if participant.team is not None:
             self.ui.teamLbl.setText(participant.team.name)

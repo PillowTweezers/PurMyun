@@ -78,7 +78,7 @@ def assign_to_teams() -> int:
 
 def find_participant(participant_id: int) -> Optional[Participant]:
     for participant in participants:
-        if participant.id == participant_id:
+        if participant.participant_id == participant_id:
             return participant
     return None
 

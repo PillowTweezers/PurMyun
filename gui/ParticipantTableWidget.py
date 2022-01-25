@@ -55,7 +55,7 @@ class ParticipantTableWidget(QWidget):
         super(ParticipantTableWidget, self).showEvent(event)
         self.resize_header()
         header = self.ui.participantsTableWidget.horizontalHeader()
-        header.setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
+        # header.setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
         header.setStretchLastSection(True)
 
     def resize_header(self):
@@ -79,7 +79,9 @@ class ParticipantTableWidget(QWidget):
         remove_action.triggered.connect(self.remove_participants)
         if self.ui.participantsTableWidget.rowCount() == 0:
             remove_action.setEnabled(False)
+
         menu.addSeparator()
+
         move_menu = QtWidgets.QMenu("העבר לצוות")
         for team in client.teams:
             if team is self.team:
@@ -92,15 +94,13 @@ class ParticipantTableWidget(QWidget):
             move_menu.setEnabled(False)
         if len(client.teams) == 1 and self.team is not None:
             move_menu.setEnabled(False)
+
         menu.exec_(QtGui.QCursor.pos())
         pass
 
     @Slot()
     def remove_participants(self):
-        selected_items = self.ui.participantsTableWidget.selectedItems()
-        selected_rows = set()
-        for item in selected_items:
-            selected_rows.add(item.row())
+        selected_rows = self.ui.participantsTableWidget.selectionModel().selectedRows()
         if len(selected_rows) == 0:
             self.alert_text("לא נבחרו משתתפים")
             return
@@ -115,7 +115,7 @@ class ParticipantTableWidget(QWidget):
         confirmation_box.setWindowTitle("אישור מחיקה")
         if confirmation_box.exec() == QtWidgets.QMessageBox.Yes:
             for row in sorted(selected_rows, reverse=True):
-                participant_id = self.ui.participantsTableWidget.item(row, 0).data(QtCore.Qt.UserRole)
+                participant_id = row.item(0).data(QtCore.Qt.UserRole)
                 self.remove_participant(participant_id)
             self.update_ui_callback()
             self.ui.participantsTableWidget.clearSelection()
@@ -137,7 +137,7 @@ class ParticipantTableWidget(QWidget):
         confirmation_box.setWindowTitle("אישור העברה")
         if confirmation_box.exec() == QtWidgets.QMessageBox.Yes:
             for row in selected_rows:
-                participant_id = self.ui.participantsTableWidget.item(row, 0).data(QtCore.Qt.UserRole)
+                participant_id = row
                 client.move_participant_by_id(participant_id, team)
             self.update_ui_callback()
             self.ui.participantsTableWidget.clearSelection()
@@ -149,6 +149,8 @@ class ParticipantTableWidget(QWidget):
         participantCreationDialog = ParticipantCreationDialog()
         if participantCreationDialog.exec() == QtWidgets.QDialog.Accepted:
             self.render_participants_table()
+            if self.ui.participantsFilterLineEdt.text() != "":
+                self.filter_participants()
 
     def open_grades_dialog(self):
         dialog = GradesDialog(self)
@@ -179,30 +181,34 @@ class ParticipantTableWidget(QWidget):
         self.ui.participantsTableWidget.setRowCount(0)
 
     def render_participants_table(self):
-        self.ui.participantsTableWidget.setSortingEnabled(False)
-        participants = self.team.participants if self.team else client.participants
         self.clean_table()
-        self.ui.participantsTableWidget.setRowCount(len(participants))
-        for participant in participants:
-            # TODO: Set to basic color from computer theme.
-            color = QtGui.QColor(QtCore.Qt.white)
-            item = QtWidgets.QTableWidgetItem(participant.name)
-            if participant.team is not None and hasattr(participant.team,
-                                                        "color") and participant.team.color is not None:
-                color = QColor.fromRgb(participant.team.color.r, participant.team.color.g, participant.team.color.b)
-            item.setData(QtCore.Qt.UserRole, participant.id)
-            item.setBackground(color)
-            self.ui.participantsTableWidget.setItem(participants.index(participant), 0, item)
-            item = QtWidgets.QTableWidgetItem()
-            item.setData(QtCore.Qt.DisplayRole, float("{:g}".format(round(participant.average(), 1))))
-            item.setBackground(color)
-            self.ui.participantsTableWidget.setItem(participants.index(participant), 1, item)
-            if participant.team is not None and self.team is None:
-                item = QtWidgets.QTableWidgetItem(participant.team.name)
-                item.setBackground(color)
-                self.ui.participantsTableWidget.setItem(participants.index(participant), 2, item)
-            self.ui.participantsTableWidget.showRow(participants.index(participant))
+        self.ui.participantsTableWidget.setSortingEnabled(False)
+
+        participants = self.team.participants if self.team else client.participants
+        for (i, participant) in enumerate(participants):
+            self.ui.participantsTableWidget.setRowCount(i + 1)
+            self.create_participant_row(participant)
+
         self.ui.participantsTableWidget.setSortingEnabled(True)
+
+    def create_participant_row(self, participant):
+        name_item = QtWidgets.QTableWidgetItem(participant.name)
+        name_item.setData(QtCore.Qt.UserRole, participant.participant_id)
+        color = name_item.background() if participant.team is None else QColor.fromRgb(participant.team.color.r,
+                                                                                       participant.team.color.g,
+                                                                                       participant.team.color.b)
+        name_item.setBackground(color)
+        self.ui.participantsTableWidget.setItem(self.ui.participantsTableWidget.rowCount() - 1, 0, name_item)
+
+        score_item = QtWidgets.QTableWidgetItem()
+        score_item.setData(QtCore.Qt.DisplayRole, participant.score)
+        score_item.setBackground(color)
+        self.ui.participantsTableWidget.setItem(self.ui.participantsTableWidget.rowCount() - 1, 1, score_item)
+
+        if participant.team is not None:
+            team_item = QtWidgets.QTableWidgetItem(participant.team.name)
+            team_item.setBackground(color)
+            self.ui.participantsTableWidget.setItem(self.ui.participantsTableWidget.rowCount() - 1, 2, team_item)
 
     def set_team(self, team: Team):
         self.team = team
