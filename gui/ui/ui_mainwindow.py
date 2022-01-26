@@ -18,10 +18,10 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QTransform)
 from PySide6.QtWidgets import (QApplication, QDockWidget, QFrame, QMainWindow,
     QMenu, QMenuBar, QPushButton, QSizePolicy,
-    QSpacerItem, QStatusBar, QTabWidget, QVBoxLayout,
-    QWidget)
+    QSpacerItem, QStatusBar, QVBoxLayout, QWidget)
 
 from gui.participanttablewidget import ParticipantTableWidget
+from gui.teamstabwidget import TeamsTabWidget
 from  . import mainwindow_rc
 
 class Ui_MainWindow(object):
@@ -113,7 +113,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_3 = QVBoxLayout(self.centralwidget)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.verticalLayout_3.setContentsMargins(0, 9, 0, 0)
-        self.teamsTabWidget = QTabWidget(self.centralwidget)
+        self.teamsTabWidget = TeamsTabWidget(self.centralwidget)
         self.teamsTabWidget.setObjectName(u"teamsTabWidget")
         self.teamsTabWidget.setElideMode(Qt.ElideNone)
         self.teamsTabWidget.setTabsClosable(True)

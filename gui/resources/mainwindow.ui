@@ -40,7 +40,7 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="QTabWidget" name="teamsTabWidget">
+     <widget class="TeamsTabWidget" name="teamsTabWidget">
       <property name="currentIndex">
        <number>-1</number>
       </property>
@@ -452,6 +452,12 @@
    <class>ParticipantTableWidget</class>
    <extends>QWidget</extends>
    <header>gui.participanttablewidget</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TeamsTabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>gui.teamstabwidget</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

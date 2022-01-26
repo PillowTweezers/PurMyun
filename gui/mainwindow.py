@@ -9,7 +9,6 @@ from gui.aboutdialog import AboutDialog
 from gui.gradesdialog import GradesDialog
 from gui.participantcreationdialog import ParticipantCreationDialog
 from gui.teamcreationdialog import TeamCreationDialog
-from gui.teamwidget import TeamWidget
 from gui.ui.ui_mainwindow import Ui_MainWindow
 from src import client as client
 
@@ -29,19 +28,13 @@ class MainWindow(QtWidgets.QMainWindow):
         os.makedirs(settings_path, exist_ok=True)
         self.settings = QSettings(settings_path + "/settings.ini", QSettings.IniFormat)
 
-        self.ui.participantsTableWidget.update_ui_callback = self.update_ui
-
-        self.create_new_tab_button()
+        self.ui.teamsTabWidget.update_ui_callback = self.update_ui
         self.assign_buttons()
         self.assign_actions()
         self.create_recent_menu()
         self.save_default_state()
         self.restore_state()
         self.statusBar().showMessage("מוכן")
-
-    def restore_state(self):
-        self.restoreGeometry(self.settings.value("geometry"))
-        self.restoreState(self.settings.value("windowState"))
 
     def assign_buttons(self):
         self.ui.createTeamBtn.clicked.connect(self.create_team)
@@ -59,14 +52,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.resetUiAction.triggered.connect(self.reset_ui)
         self.ui.resizeTablesAction.triggered.connect(self.resize_tables)
         self.ui.aboutAction.triggered.connect(self.about)
-        self.ui.teamsTabWidget.tabCloseRequested.connect(lambda i: self.close_team_tab(i))
-
-    def reset_ui(self):
-        # FIXME: Participant tables should resize headers.
-        cur_pos = self.pos()
-        self.restoreGeometry(self.settings.value("defaultGeometry"))
-        self.restoreState(self.settings.value("defaultState"))
-        self.move(cur_pos)
 
     def create_recent_menu(self):
         for i in range(MAX_RECENT_FILES):
@@ -74,6 +59,17 @@ class MainWindow(QtWidgets.QMainWindow):
                 QAction(self, visible=False, triggered=self.open_recent_file))
             self.ui.recentFilesMenu.insertAction(self.ui.quitAction, self.recent_actions[i])
         self.update_recent_files_menu()
+
+    def restore_state(self):
+        self.restoreGeometry(self.settings.value("geometry"))
+        self.restoreState(self.settings.value("windowState"))
+
+    def reset_ui(self):
+        # FIXME: Participant tables should resize headers.
+        cur_pos = self.pos()
+        self.restoreGeometry(self.settings.value("defaultGeometry"))
+        self.restoreState(self.settings.value("defaultState"))
+        self.move(cur_pos)
 
     def update_ui(self):
         self.render_participants_table()
@@ -173,28 +169,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.statusBar().showMessage("שמירה בוטלה")
         return False
 
-    def close_team_tab(self, index: int):
-        tab = self.ui.teamsTabWidget.widget(index)
-        confirm_dialog = QtWidgets.QMessageBox()
-        confirm_dialog.setWindowTitle("אישור מחיקת צוות")
-        confirm_dialog.setText(f"האם אתה בטוח שברצונך למחוק את צוות {tab.team.name}?")
-        confirm_dialog.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
-        confirm_dialog.setDefaultButton(QtWidgets.QMessageBox.No)
-        confirm_dialog.setIcon(QtWidgets.QMessageBox.Warning)
-        if confirm_dialog.exec() == QtWidgets.QMessageBox.Yes:
-            client.delete_team(tab.team)
-            self.update_ui()
-
-    def create_new_tab_button(self):
-        tb = QtWidgets.QToolButton()
-        # TODO: uncomment this when the icon is ready and can be centered
-        # tb.setIcon(QtGui.QIcon(QtGui.QPixmap(u":/assets/add.png")))
-        # tb.setIconSize(QtCore.QSize(16, 16))
-        tb.setText("+")
-        tb.setToolTip("צור צוות חדש")
-        tb.clicked.connect(self.create_team)
-        self.ui.teamsTabWidget.setCornerWidget(tb)
-
     @Slot()
     def create_team(self):
         self.statusBar().showMessage("יוצר צוות...")
@@ -240,18 +214,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.participantsTableWidget.update_ui()
 
     def render_teams_widget(self):
-        current_teams = []
-        for i in range(self.ui.teamsTabWidget.count() - 1, -1, -1):
-            tab = self.ui.teamsTabWidget.widget(i)
-            if tab.team not in client.teams:
-                self.ui.teamsTabWidget.removeTab(i)
-                continue
-            current_teams.append(tab.team)
-            tab.update_ui()
-        for i, team in enumerate(client.teams):
-            if team not in current_teams:
-                team_widget = TeamWidget(team, update_ui_callback=self.update_ui)
-                self.ui.teamsTabWidget.insertTab(i, team_widget, team.name)
+        self.ui.teamsTabWidget.update_ui()
 
     def can_exit(self):
         if client.is_dirty:
@@ -349,16 +312,9 @@ class MainWindow(QtWidgets.QMainWindow):
         dialog = AboutDialog(parent=self)
         dialog.exec()
 
-    def save_default_state(self):
-        if not self.settings.value('defaultState'):
-            self.settings.setValue('defaultState', self.saveState())
-        if not self.settings.value('defaultGeometry'):
-            self.settings.setValue('defaultGeometry', self.saveGeometry())
-
     def resize_tables(self):
         self.ui.participantsTableWidget.resize_header()
-        for i in range(self.ui.teamsTabWidget.count()):
-            self.ui.teamsTabWidget.widget(i).resize_table_header()
+        self.ui.teamsTabWidget.resize_headers()
 
     def alert_text(self, text: str):
         QtWidgets.QMessageBox.about(self, "Alert", text)
