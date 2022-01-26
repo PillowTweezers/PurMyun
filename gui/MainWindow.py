@@ -1,6 +1,6 @@
 import os
 
-from PySide6 import QtWidgets
+from PySide6 import QtWidgets, QtGui, QtCore
 from PySide6.QtCore import QSettings, Slot
 from PySide6.QtGui import QAction
 from appdirs import AppDirs
@@ -183,6 +183,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def create_new_tab_button(self):
         tb = QtWidgets.QToolButton()
+        # TODO: uncomment this when the icon is ready and can be centered
+        # tb.setIcon(QtGui.QIcon(QtGui.QPixmap(u":/assets/add.png")))
+        # tb.setIconSize(QtCore.QSize(16, 16))
         tb.setText("+")
         tb.setToolTip("צור צוות חדש")
         tb.clicked.connect(self.create_team)
