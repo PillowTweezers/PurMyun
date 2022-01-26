@@ -5,6 +5,7 @@ from PySide6.QtCore import QSettings, Slot
 from PySide6.QtGui import QAction
 from appdirs import AppDirs
 
+from gui.aboutdialog import AboutDialog
 from gui.gradesdialog import GradesDialog
 from gui.participantcreationdialog import ParticipantCreationDialog
 from gui.teamcreationdialog import TeamCreationDialog
@@ -57,6 +58,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.exportExcelAction.triggered.connect(self.export_to_excel)
         self.ui.resetUiAction.triggered.connect(self.reset_ui)
         self.ui.resizeTablesAction.triggered.connect(self.resize_tables)
+        self.ui.aboutAction.triggered.connect(self.about)
         self.ui.teamsTabWidget.tabCloseRequested.connect(lambda i: self.close_team_tab(i))
 
     def reset_ui(self):
@@ -196,8 +198,8 @@ class MainWindow(QtWidgets.QMainWindow):
     @Slot()
     def create_team(self):
         self.statusBar().showMessage("יוצר צוות...")
-        teamCreationDialog = TeamCreationDialog()
-        if teamCreationDialog.exec() == QtWidgets.QDialog.Accepted:
+        dialog = TeamCreationDialog(parent=self)
+        if dialog.exec() == QtWidgets.QDialog.Accepted:
             self.statusBar().showMessage("צוות נוצר")
             self.render_teams_widget()
         else:
@@ -342,6 +344,10 @@ class MainWindow(QtWidgets.QMainWindow):
                     self.error_text("שגיאה בייצוא קובץ")
         self.statusBar().showMessage("שמירה בוטלה")
         return False
+
+    def about(self):
+        dialog = AboutDialog(parent=self)
+        dialog.exec()
 
     def save_default_state(self):
         if not self.settings.value('defaultState'):

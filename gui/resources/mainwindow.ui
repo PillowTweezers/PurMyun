@@ -115,6 +115,7 @@
     <property name="title">
      <string>עזרה</string>
     </property>
+    <addaction name="aboutAction"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEfit"/>
@@ -434,6 +435,15 @@
    </property>
    <property name="text">
     <string>אפס טבלאות</string>
+   </property>
+  </action>
+  <action name="aboutAction">
+   <property name="icon">
+    <iconset resource="mainwindow.qrc">
+     <normaloff>:/assets/about.png</normaloff>:/assets/about.png</iconset>
+   </property>
+   <property name="text">
+    <string>אודות</string>
    </property>
   </action>
  </widget>

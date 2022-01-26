@@ -68,8 +68,8 @@ class ParticipantTableWidget(QWidget):
         participant_id = self.ui.participantsTableWidget.item(row, 0).data(QtCore.Qt.UserRole)
         participant = client.find_participant(participant_id)
         # self.statusBar().showMessage("פותח תפריט עבור משתתף: " + participant.name)
-        participantDialog = ParticipantCreationDialog(participant=participant, parent=self)
-        if participantDialog.exec() == QtWidgets.QDialog.Accepted:
+        dialog = ParticipantCreationDialog(participant=participant, parent=self)
+        if dialog.exec() == QtWidgets.QDialog.Accepted:
             self.update_ui_callback()
 
     @Slot()
@@ -151,8 +151,8 @@ class ParticipantTableWidget(QWidget):
         if not client.has_grades():
             self.open_grades_dialog()
 
-        participantCreationDialog = ParticipantCreationDialog()
-        if participantCreationDialog.exec() == QtWidgets.QDialog.Accepted:
+        dialog = ParticipantCreationDialog(parent=self)
+        if dialog.exec() == QtWidgets.QDialog.Accepted:
             self.render_participants_table()
 
     def open_grades_dialog(self):
