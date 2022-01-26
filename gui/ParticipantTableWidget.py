@@ -5,7 +5,6 @@ from PySide6.QtWidgets import QWidget
 
 from gui.GradesDialog import GradesDialog
 from gui.ParticipantCreationDialog import ParticipantCreationDialog
-from gui.ParticipantDialog import ParticipantDialog
 from gui.ui.ui_participanttablewidget import Ui_ParticipantTableWidget
 from src import client as client
 from src.team import Team
@@ -69,8 +68,9 @@ class ParticipantTableWidget(QWidget):
         participant_id = self.ui.participantsTableWidget.item(row, 0).data(QtCore.Qt.UserRole)
         participant = client.find_participant(participant_id)
         # self.statusBar().showMessage("פותח תפריט עבור משתתף: " + participant.name)
-        participantDialog = ParticipantDialog(participant)
-        participantDialog.exec()
+        participantDialog = ParticipantCreationDialog(participant=participant, parent=self)
+        if participantDialog.exec() == QtWidgets.QDialog.Accepted:
+            self.update_ui_callback()
 
     @Slot()
     def participants_right_clicked(self):

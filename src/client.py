@@ -47,6 +47,17 @@ def remove_participant_from_team(participant: Participant) -> int:
     return -1
 
 
+def update_participant(participant: Participant, name: Optional[str] = None, grade: Optional[str] = None,
+                       score: Optional[int] = None) -> None:
+    __set_dirty(True)
+    if name is not None:
+        participant.name = name
+    if grade is not None:
+        participant.grade = grade
+    if score is not None:
+        participant.score = score
+
+
 def update_team(team: Team, name: Optional[str] = None, color: Optional[Color] = None) -> None:
     __set_dirty(True)
     if name is not None:

@@ -26,7 +26,7 @@ class Ui_ParticipantCreationDialog(object):
     def setupUi(self, ParticipantCreationDialog):
         if not ParticipantCreationDialog.objectName():
             ParticipantCreationDialog.setObjectName(u"ParticipantCreationDialog")
-        ParticipantCreationDialog.resize(295, 155)
+        ParticipantCreationDialog.resize(315, 155)
         ParticipantCreationDialog.setLayoutDirection(Qt.RightToLeft)
         self.verticalLayout = QVBoxLayout(ParticipantCreationDialog)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -46,7 +46,7 @@ class Ui_ParticipantCreationDialog(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.nameLineEdt.sizePolicy().hasHeightForWidth())
         self.nameLineEdt.setSizePolicy(sizePolicy)
-        self.nameLineEdt.setMinimumSize(QSize(220, 0))
+        self.nameLineEdt.setMinimumSize(QSize(240, 0))
         self.nameLineEdt.setDragEnabled(False)
         self.nameLineEdt.setClearButtonEnabled(True)
 
