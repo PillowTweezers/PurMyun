@@ -9,3 +9,4 @@ class AboutDialog(QDialog):
         self.ui = Ui_AboutDialog()
         self.ui.setupUi(self)
         self.ui.dataLabel.setOpenExternalLinks(True)
+        self.ui.creditsTextBrowser.setOpenExternalLinks(True)

@@ -24,7 +24,7 @@ class Ui_AboutDialog(object):
     def setupUi(self, AboutDialog):
         if not AboutDialog.objectName():
             AboutDialog.setObjectName(u"AboutDialog")
-        AboutDialog.resize(486, 314)
+        AboutDialog.resize(488, 314)
         AboutDialog.setLayoutDirection(Qt.RightToLeft)
         self.verticalLayout = QVBoxLayout(AboutDialog)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -63,11 +63,11 @@ class Ui_AboutDialog(object):
         self.verticalLayout_4 = QVBoxLayout(self.groupBox)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
-        self.textBrowser = QTextBrowser(self.groupBox)
-        self.textBrowser.setObjectName(u"textBrowser")
-        self.textBrowser.setStyleSheet(u"background : transparent;border:0px;")
+        self.creditsTextBrowser = QTextBrowser(self.groupBox)
+        self.creditsTextBrowser.setObjectName(u"creditsTextBrowser")
+        self.creditsTextBrowser.setStyleSheet(u"background : transparent;border:0px;")
 
-        self.verticalLayout_4.addWidget(self.textBrowser)
+        self.verticalLayout_4.addWidget(self.creditsTextBrowser)
 
 
         self.verticalLayout_3.addWidget(self.groupBox)
@@ -110,11 +110,14 @@ class Ui_AboutDialog(object):
 "<p align=\"right\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">.\u05ea\u05d5\u05db\u05e0\u05ea \u05e2\u05d6\u05e8 \u05dc\u05d4\u05dc\u05d9\u05db\u05d9 \u05e4\u05d5\u05e8\u05d9\u05de\u05d5\u05df \u05de\u05d5\u05e6\u05dc\u05d7\u05d9\u05dd \u05d1\u05e6\u05d5\u05e4\u05d9\u05dd</p>\n"
 "<p align=\"right\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Copyright (C) 2022 PillowTweezers</p></body></html>", None))
         self.groupBox.setTitle(QCoreApplication.translate("AboutDialog", u"\u05e7\u05e8\u05d3\u05d9\u05d8\u05d9\u05dd", None))
-        self.textBrowser.setHtml(QCoreApplication.translate("AboutDialog", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.creditsTextBrowser.setHtml(QCoreApplication.translate("AboutDialog", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Alon Schwartzblat&lt;alon.ponch@gmail.com&gt;</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Roi Klevansky&lt;roiklevansky@gmail.com&gt;</p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Roi Klevansky&lt;roiklevansky@gmail.com&gt;</p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Icons by - <a href=\"https://icons"
+                        "8.com\"><span style=\" text-decoration: underline; color:#0000ff;\">https://icons8.com</span></a></p></body></html>", None))
     # retranslateUi
 
