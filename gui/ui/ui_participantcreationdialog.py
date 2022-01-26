@@ -20,7 +20,7 @@ from PySide6.QtWidgets import (QAbstractButton, QApplication, QComboBox, QDialog
     QLineEdit, QSizePolicy, QSpacerItem, QVBoxLayout,
     QWidget)
 
-from gui.FancySliderHorizontalWidget import FancySliderHorizontalWidget
+from gui.fancysliderhorizontalwidget import FancySliderHorizontalWidget
 
 class Ui_ParticipantCreationDialog(object):
     def setupUi(self, ParticipantCreationDialog):

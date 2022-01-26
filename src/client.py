@@ -2,7 +2,7 @@ import json
 from random import shuffle
 from typing import Optional
 
-from src.client_json_encoder import ClientJSONEncoder
+from src.clientjsonencoder import ClientJSONEncoder
 from src.color import Color
 from src.participant import Participant
 from src.team import Team

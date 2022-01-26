@@ -1,4 +1,4 @@
-from gui.FancySliderWidget import FancySliderWidget
+from gui.fancysliderwidget import FancySliderWidget
 
 
 class FancySliderHorizontalWidget(FancySliderWidget):

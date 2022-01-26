@@ -19,7 +19,7 @@ from PySide6.QtWidgets import (QApplication, QFormLayout, QFrame, QHBoxLayout,
     QLabel, QPushButton, QScrollArea, QSizePolicy,
     QSpacerItem, QVBoxLayout, QWidget)
 
-from gui.ParticipantTableWidget import ParticipantTableWidget
+from gui.participanttablewidget import ParticipantTableWidget
 from  . import mainwindow_rc
 
 class Ui_TeamWidget(object):

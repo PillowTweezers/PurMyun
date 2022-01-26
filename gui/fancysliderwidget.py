@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QWidget
 
-from gui.ui.ui_fancysliderwidget import Ui_FancySliderWidget
 from gui.ui.ui_fancysliderhorizontalwidget import Ui_FancySliderHorizontalWidget
+from gui.ui.ui_fancysliderwidget import Ui_FancySliderWidget
 
 
 class FancySliderWidget(QWidget):

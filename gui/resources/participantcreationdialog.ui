@@ -139,7 +139,7 @@
   <customwidget>
    <class>FancySliderHorizontalWidget</class>
    <extends>QWidget</extends>
-   <header>gui.FancySliderHorizontalWidget</header>
+   <header>gui.fancysliderhorizontalwidget</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

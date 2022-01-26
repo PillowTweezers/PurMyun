@@ -1,9 +1,7 @@
-from PySide6 import QtWidgets
 from PySide6.QtWidgets import QWidget, QDialog
 
-from gui.TeamCreationDialog import TeamCreationDialog
+from gui.teamcreationdialog import TeamCreationDialog
 from gui.ui.ui_teamwidget import Ui_TeamWidget
-from src import client as client
 
 
 class TeamWidget(QWidget):

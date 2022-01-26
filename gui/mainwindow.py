@@ -1,19 +1,21 @@
 import os
 
-from PySide6 import QtWidgets, QtGui, QtCore
+from PySide6 import QtWidgets
 from PySide6.QtCore import QSettings, Slot
 from PySide6.QtGui import QAction
 from appdirs import AppDirs
 
-from gui.GradesDialog import GradesDialog
-from gui.TeamCreationDialog import TeamCreationDialog
-from gui.TeamWidget import TeamWidget
+from gui.gradesdialog import GradesDialog
+from gui.participantcreationdialog import ParticipantCreationDialog
+from gui.teamcreationdialog import TeamCreationDialog
+from gui.teamwidget import TeamWidget
 from gui.ui.ui_mainwindow import Ui_MainWindow
 from src import client as client
 
+MAX_RECENT_FILES = 4
+
 
 class MainWindow(QtWidgets.QMainWindow):
-    MAX_RECENT_FILES = 4
 
     def __init__(self):
         super(MainWindow, self).__init__()
@@ -65,7 +67,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.move(cur_pos)
 
     def create_recent_menu(self):
-        for i in range(self.MAX_RECENT_FILES):
+        for i in range(MAX_RECENT_FILES):
             self.recent_actions.append(
                 QAction(self, visible=False, triggered=self.open_recent_file))
             self.ui.recentFilesMenu.insertAction(self.ui.quitAction, self.recent_actions[i])
@@ -209,21 +211,28 @@ class MainWindow(QtWidgets.QMainWindow):
 
     @Slot()
     def load_participants_file(self):
-        # self.open_grades_dialog()
-        # self.statusBar().showMessage("טוען משתתפים...")
-        # filePath, _ = QtWidgets.QFileDialog.getOpenFileName(self, str("Choose File"), "", str("*.csv"))
-        # _, exit_code = client.load_participants(filePath)
-        # if exit_code == 1:
-        #     self.error_text('בבקשה בחר קובץ')
-        #     return
-        # elif exit_code == -1:
-        #     self.error_text('אין גישה לקובץ')
-        #     return
-        #
-        # self.render_participants_table()
-        # self.statusBar().showMessage("משתתפים נטענו")
-        # TODO: Implement this.
-        pass
+        if not client.has_grades():
+            self.open_grades_dialog()
+        self.statusBar().showMessage("טוען משתתפים...")
+        file_path, _ = QtWidgets.QFileDialog.getOpenFileName(self, str("בחר קובץ"), "", str("*.txt"))
+        if file_path:
+            try:
+                with (open(file_path, "r", encoding="utf-8")) as file:
+                    for line in file:
+                        name = line.rstrip("\n")
+                        if name:
+                            dialog = ParticipantCreationDialog(self)
+                            dialog.set_participant_name(name)
+                            if dialog.exec() == QtWidgets.QDialog.Accepted:
+                                self.statusBar().showMessage(f"משתתף {name} נוצר")
+                                self.update_ui()
+                            else:
+                                self.statusBar().showMessage("משתתף לא נוצר")
+            except FileNotFoundError:
+                self.error_text("קובץ לא נמצא")
+            except PermissionError as e:
+                self.error_text(f"קובץ לא ניתן לקרוא: {e}")
+        self.statusBar().showMessage("טעינת משתתפים בוטלה")
 
     def render_participants_table(self):
         self.ui.participantsTableWidget.update_ui()
@@ -281,7 +290,7 @@ class MainWindow(QtWidgets.QMainWindow):
             pass
 
         files.insert(0, client.current_file)
-        del files[self.MAX_RECENT_FILES:]
+        del files[MAX_RECENT_FILES:]
 
         self.settings.setValue('recentFileList', files)
 
@@ -301,7 +310,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if files:
             files_no = len(files)
 
-        num_recent_files = min(files_no, self.MAX_RECENT_FILES)
+        num_recent_files = min(files_no, MAX_RECENT_FILES)
 
         for i in range(num_recent_files):
             text = "&{}. {}".format(i + 1, os.path.basename(files[i]))
@@ -309,7 +318,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.recent_actions[i].setData(files[i])
             self.recent_actions[i].setVisible(True)
 
-        for i in range(num_recent_files, self.MAX_RECENT_FILES):
+        for i in range(num_recent_files, MAX_RECENT_FILES):
             self.recent_actions[i].setVisible(False)
 
     def export_to_excel(self):

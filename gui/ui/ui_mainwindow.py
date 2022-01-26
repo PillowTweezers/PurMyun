@@ -21,7 +21,7 @@ from PySide6.QtWidgets import (QApplication, QDockWidget, QFrame, QMainWindow,
     QSpacerItem, QStatusBar, QTabWidget, QVBoxLayout,
     QWidget)
 
-from gui.ParticipantTableWidget import ParticipantTableWidget
+from gui.participanttablewidget import ParticipantTableWidget
 from  . import mainwindow_rc
 
 class Ui_MainWindow(object):
@@ -119,7 +119,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 920, 24))
+        self.menubar.setGeometry(QRect(0, 0, 920, 22))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
         self.menuFile.setLayoutDirection(Qt.RightToLeft)

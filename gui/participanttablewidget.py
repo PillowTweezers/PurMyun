@@ -3,8 +3,8 @@ from PySide6.QtCore import Slot
 from PySide6.QtGui import QColor
 from PySide6.QtWidgets import QWidget
 
-from gui.GradesDialog import GradesDialog
-from gui.ParticipantCreationDialog import ParticipantCreationDialog
+from gui.gradesdialog import GradesDialog
+from gui.participantcreationdialog import ParticipantCreationDialog
 from gui.ui.ui_participanttablewidget import Ui_ParticipantTableWidget
 from src import client as client
 from src.team import Team

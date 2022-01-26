@@ -46,3 +46,7 @@ class ParticipantCreationDialog(QDialog):
         self.ui.scoreSliderWidget.set_value(MIN_SCORE if self.participant is None else self.participant.score)
         self.ui.scoreSliderWidget.set_min(MIN_SCORE)
         self.ui.scoreSliderWidget.set_max(MAX_SCORE)
+
+    def set_participant_name(self, name):
+        self.ui.nameLineEdt.setText(name)
+        pass

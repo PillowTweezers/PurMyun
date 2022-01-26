@@ -6,16 +6,17 @@ RESOURCE_DIR = gui/resources
 COMPILED_DIR = gui/ui
  
 #UI files to compile
-UI_FILES = mainwindow.ui participantdialog.ui teamcreationdialog.ui participantcreationdialog.ui teamwidget.ui \
+UI_FILES = mainwindow.ui teamcreationdialog.ui participantcreationdialog.ui teamwidget.ui \
 participanttablewidget.ui gradedialog.ui fancysliderwidget.ui fancysliderhorizontalwidget.ui fancyprogressbarwidget.ui
 
 #Qt resource files to compile
 RESOURCES = mainwindow.qrc participantstable.qrc window.qrc
  
 #pyuic4 and pyrcc4 binaries
-PYUIC = pyside6-uic --from-imports
-PYRCC = pyside6-rcc
- 
+PYUIC = pyside6-uic.exe --from-imports
+PYRCC = pyside6-rcc.exe
+
+
 #################################
 # DO NOT EDIT FOLLOWING
  

@@ -246,7 +246,7 @@
   <customwidget>
    <class>ParticipantTableWidget</class>
    <extends>QWidget</extends>
-   <header>gui.ParticipantTableWidget</header>
+   <header>gui.participanttablewidget</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
