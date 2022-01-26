@@ -64,6 +64,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self.restoreGeometry(self.settings.value("geometry"))
         self.restoreState(self.settings.value("windowState"))
 
+    def save_default_state(self):
+        if not self.settings.value('defaultState'):
+            self.settings.setValue('defaultState', self.saveState())
+        if not self.settings.value('defaultGeometry'):
+            self.settings.setValue('defaultGeometry', self.saveGeometry())
+
     def reset_ui(self):
         # FIXME: Participant tables should resize headers.
         cur_pos = self.pos()
