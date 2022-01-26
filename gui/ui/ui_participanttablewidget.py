@@ -33,6 +33,7 @@ class Ui_ParticipantTableWidget(object):
         ParticipantTableWidget.setLayoutDirection(Qt.RightToLeft)
         self.verticalLayout = QVBoxLayout(ParticipantTableWidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.participantsFilterLineEdt = QLineEdit(ParticipantTableWidget)

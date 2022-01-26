@@ -107,6 +107,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setStyleSheet(u"")
         self.verticalLayout_3 = QVBoxLayout(self.centralwidget)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.verticalLayout_3.setContentsMargins(0, 9, 0, 0)
         self.teamsTabWidget = QTabWidget(self.centralwidget)
         self.teamsTabWidget.setObjectName(u"teamsTabWidget")
         self.teamsTabWidget.setElideMode(Qt.ElideNone)
@@ -146,6 +147,7 @@ class Ui_MainWindow(object):
         self.verticalLayout = QVBoxLayout(self.dockWidgetContents)
         self.verticalLayout.setSpacing(6)
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(-1, 3, -1, -1)
         self.createTeamBtn = QPushButton(self.dockWidgetContents)
         self.createTeamBtn.setObjectName(u"createTeamBtn")
         self.createTeamBtn.setStyleSheet(u"text-align: center;")
@@ -204,7 +206,7 @@ class Ui_MainWindow(object):
         self.participantDockLayout.setObjectName(u"participantDockLayout")
         self.verticalLayout_2 = QVBoxLayout(self.participantDockLayout)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_2.setContentsMargins(9, 3, 0, 0)
         self.participantsTableWidget = ParticipantTableWidget(self.participantDockLayout)
         self.participantsTableWidget.setObjectName(u"participantsTableWidget")
         sizePolicy = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
@@ -212,6 +214,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.participantsTableWidget.sizePolicy().hasHeightForWidth())
         self.participantsTableWidget.setSizePolicy(sizePolicy)
+        self.participantsTableWidget.setStyleSheet(u"")
 
         self.verticalLayout_2.addWidget(self.participantsTableWidget)
 

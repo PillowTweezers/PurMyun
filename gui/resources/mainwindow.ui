@@ -27,6 +27,18 @@
     <string notr="true"/>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_3">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>9</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
     <item>
      <widget class="QTabWidget" name="teamsTabWidget">
       <property name="currentIndex">
@@ -124,6 +136,9 @@
     <layout class="QVBoxLayout" name="verticalLayout">
      <property name="spacing">
       <number>6</number>
+     </property>
+     <property name="topMargin">
+      <number>3</number>
      </property>
      <item>
       <widget class="QPushButton" name="createTeamBtn">
@@ -225,10 +240,10 @@
    <widget class="QWidget" name="participantDockLayout">
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <property name="leftMargin">
-      <number>0</number>
+      <number>9</number>
      </property>
      <property name="topMargin">
-      <number>0</number>
+      <number>3</number>
      </property>
      <property name="rightMargin">
       <number>0</number>
@@ -243,6 +258,9 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
        </property>
       </widget>
      </item>
