@@ -61,6 +61,34 @@ class Ui_TeamWidget(object):
 
         self.formLayout.setLayout(0, QFormLayout.FieldRole, self.horizontalLayout_4)
 
+        self.label_3 = QLabel(self.scrollAreaWidgetContents)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setStyleSheet(u"font-size:16px;font-weight:bold;")
+        self.label_3.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+
+        self.formLayout.setWidget(1, QFormLayout.LabelRole, self.label_3)
+
+        self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.colorWidget = QWidget(self.scrollAreaWidgetContents)
+        self.colorWidget.setObjectName(u"colorWidget")
+        sizePolicy = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.colorWidget.sizePolicy().hasHeightForWidth())
+        self.colorWidget.setSizePolicy(sizePolicy)
+        self.colorWidget.setMinimumSize(QSize(100, 0))
+        self.colorWidget.setStyleSheet(u"")
+
+        self.horizontalLayout_5.addWidget(self.colorWidget)
+
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_5.addItem(self.horizontalSpacer_6)
+
+
+        self.formLayout.setLayout(1, QFormLayout.FieldRole, self.horizontalLayout_5)
+
 
         self.verticalLayout_3.addLayout(self.formLayout)
 
@@ -119,35 +147,6 @@ class Ui_TeamWidget(object):
 
         self.verticalLayout_3.addWidget(self.widget)
 
-        self.horizontalLayout_3 = QHBoxLayout()
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_3.addItem(self.horizontalSpacer_5)
-
-        self.deleteTeamBtn = QPushButton(self.scrollAreaWidgetContents)
-        self.deleteTeamBtn.setObjectName(u"deleteTeamBtn")
-        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.deleteTeamBtn.sizePolicy().hasHeightForWidth())
-        self.deleteTeamBtn.setSizePolicy(sizePolicy)
-        self.deleteTeamBtn.setMinimumSize(QSize(180, 0))
-        self.deleteTeamBtn.setStyleSheet(u"font-weight:bold;font-size:18px;background:darkred;text-align: center;")
-        icon1 = QIcon()
-        icon1.addFile(u":/assets/remove.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.deleteTeamBtn.setIcon(icon1)
-        self.deleteTeamBtn.setIconSize(QSize(18, 18))
-
-        self.horizontalLayout_3.addWidget(self.deleteTeamBtn)
-
-        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_3.addItem(self.horizontalSpacer_4)
-
-
-        self.verticalLayout_3.addLayout(self.horizontalLayout_3)
-
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout_3.addItem(self.verticalSpacer)
@@ -166,8 +165,8 @@ class Ui_TeamWidget(object):
         TeamWidget.setWindowTitle(QCoreApplication.translate("TeamWidget", u"Form", None))
         self.label.setText(QCoreApplication.translate("TeamWidget", u"\u05e9\u05dd:", None))
         self.teamNameLbl.setText("")
+        self.label_3.setText(QCoreApplication.translate("TeamWidget", u"\u05e6\u05d1\u05e2:", None))
         self.editBtn.setText(QCoreApplication.translate("TeamWidget", u"\u05e2\u05e8\u05d5\u05da", None))
         self.label_2.setText(QCoreApplication.translate("TeamWidget", u"\u05d7\u05d1\u05e8\u05d9 \u05e6\u05d5\u05d5\u05ea:", None))
-        self.deleteTeamBtn.setText(QCoreApplication.translate("TeamWidget", u"\u05de\u05d7\u05e7 \u05e6\u05d5\u05d5\u05ea", None))
     # retranslateUi
 

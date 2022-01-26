@@ -101,9 +101,11 @@ class ParticipantTableWidget(QWidget):
     @Slot()
     def remove_participants(self):
         selected_rows = self.ui.participantsTableWidget.selectionModel().selectedRows()
+
         if len(selected_rows) == 0:
             self.alert_text("לא נבחרו משתתפים")
             return
+
         confirmation_box = QtWidgets.QMessageBox()
         if Team:
             confirmation_box.setText("האם אתה בטוח שברצונך להסיר את חברי הצוות שנבחרו?")
@@ -113,32 +115,34 @@ class ParticipantTableWidget(QWidget):
         confirmation_box.setDefaultButton(QtWidgets.QMessageBox.No)
         confirmation_box.setIcon(QtWidgets.QMessageBox.Question)
         confirmation_box.setWindowTitle("אישור מחיקה")
+
         if confirmation_box.exec() == QtWidgets.QMessageBox.Yes:
             for row in sorted(selected_rows, reverse=True):
-                participant_id = row.item(0).data(QtCore.Qt.UserRole)
+                participant_id = row.data(QtCore.Qt.UserRole)
                 self.remove_participant(participant_id)
             self.update_ui_callback()
             self.ui.participantsTableWidget.clearSelection()
 
     @Slot()
     def move_participants(self, team: Team):
-        selected_items = self.ui.participantsTableWidget.selectedItems()
-        selected_rows = set()
-        for item in selected_items:
-            selected_rows.add(item.row())
+        selected_rows = self.ui.participantsTableWidget.selectionModel().selectedRows()
+
         if len(selected_rows) == 0:
             self.alert_text("לא נבחרו משתתפים")
             return
+
         confirmation_box = QtWidgets.QMessageBox()
         confirmation_box.setText("האם אתה בטוח שברצונך להעביר את חברי הצוות שנבחרו?")
         confirmation_box.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
         confirmation_box.setDefaultButton(QtWidgets.QMessageBox.No)
         confirmation_box.setIcon(QtWidgets.QMessageBox.Question)
         confirmation_box.setWindowTitle("אישור העברה")
+
         if confirmation_box.exec() == QtWidgets.QMessageBox.Yes:
             for row in selected_rows:
-                participant_id = row
-                client.move_participant_by_id(participant_id, team)
+                participant_id = row.data(QtCore.Qt.UserRole)
+                participant = client.find_participant(participant_id)
+                client.add_participant_to_team(participant, team)
             self.update_ui_callback()
             self.ui.participantsTableWidget.clearSelection()
 
@@ -146,11 +150,10 @@ class ParticipantTableWidget(QWidget):
     def create_participant(self):
         if not client.has_grades():
             self.open_grades_dialog()
+
         participantCreationDialog = ParticipantCreationDialog()
         if participantCreationDialog.exec() == QtWidgets.QDialog.Accepted:
             self.render_participants_table()
-            if self.ui.participantsFilterLineEdt.text() != "":
-                self.filter_participants()
 
     def open_grades_dialog(self):
         dialog = GradesDialog(self)
@@ -170,11 +173,15 @@ class ParticipantTableWidget(QWidget):
                 self.ui.participantsTableWidget.hideRow(row)
         self.ui.participantsTableWidget.clearSelection()
 
-    def remove_participant(self, participant_id):
+    def remove_participant(self, participant_id: int) -> int:
+        participant = client.find_participant(participant_id)
+        if participant is None:
+            return -1
         if self.team is None:
-            client.remove_participant(participant_id)
+            client.remove_participant(participant)
         else:
-            client.remove_participant_from_team(participant_id, self.team)
+            client.remove_participant_from_team(participant)
+        return 0
 
     def clean_table(self):
         self.ui.participantsTableWidget.clearContents()
@@ -190,6 +197,8 @@ class ParticipantTableWidget(QWidget):
             self.create_participant_row(participant)
 
         self.ui.participantsTableWidget.setSortingEnabled(True)
+        if self.ui.participantsFilterLineEdt.text() != "":
+            self.filter_participants()
 
     def create_participant_row(self, participant):
         name_item = QtWidgets.QTableWidgetItem(participant.name)
@@ -214,8 +223,8 @@ class ParticipantTableWidget(QWidget):
         self.team = team
         self.ui.addParticipantBtn.hide()
         self.ui.assignParticipantBtn.show()
-        self.ui.participantsTableWidget.setColumnCount(3)
-        self.ui.participantsTableWidget.setHorizontalHeaderLabels(["שם", "ממוצע", "מחויבות"])
+        self.ui.participantsTableWidget.setColumnCount(2)
+        self.ui.participantsTableWidget.setHorizontalHeaderLabels(["שם", "ממוצע"])
         self.update_ui()
 
     def update_ui(self):

@@ -109,6 +109,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.teamsTabWidget = QTabWidget(self.centralwidget)
         self.teamsTabWidget.setObjectName(u"teamsTabWidget")
+        self.teamsTabWidget.setTabsClosable(True)
+        self.teamsTabWidget.setMovable(True)
 
         self.verticalLayout_3.addWidget(self.teamsTabWidget)
 

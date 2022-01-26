@@ -1,6 +1,6 @@
 import os
 
-from PySide6 import QtWidgets, QtCore
+from PySide6 import QtWidgets
 from PySide6.QtCore import QSettings, Slot
 from PySide6.QtGui import QAction
 from appdirs import AppDirs
@@ -28,6 +28,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.ui.participantsTableWidget.update_ui_callback = self.update_ui
 
+        self.create_new_tab_button()
         self.assign_buttons()
         self.assign_actions()
         self.create_recent_menu()
@@ -54,6 +55,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.exportExcelAction.triggered.connect(self.export_to_excel)
         self.ui.resetUiAction.triggered.connect(self.reset_ui)
         self.ui.resizeTablesAction.triggered.connect(self.resize_tables)
+        self.ui.teamsTabWidget.tabCloseRequested.connect(lambda i: self.close_team_tab(i))
 
     def reset_ui(self):
         # FIXME: Participant tables should resize headers.
@@ -166,6 +168,25 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.error_text("שגיאה בשמירת קובץ")
         self.statusBar().showMessage("שמירה בוטלה")
         return False
+
+    def close_team_tab(self, index: int):
+        tab = self.ui.teamsTabWidget.widget(index)
+        confirm_dialog = QtWidgets.QMessageBox()
+        confirm_dialog.setWindowTitle("אישור מחיקת צוות")
+        confirm_dialog.setText(f"האם אתה בטוח שברצונך למחוק את צוות {tab.team.name}?")
+        confirm_dialog.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+        confirm_dialog.setDefaultButton(QtWidgets.QMessageBox.No)
+        confirm_dialog.setIcon(QtWidgets.QMessageBox.Warning)
+        if confirm_dialog.exec() == QtWidgets.QMessageBox.Yes:
+            client.delete_team(tab.team)
+            self.update_ui()
+
+    def create_new_tab_button(self):
+        tb = QtWidgets.QToolButton()
+        tb.setText("+")
+        tb.setToolTip("צור צוות חדש")
+        tb.clicked.connect(self.create_team)
+        self.ui.teamsTabWidget.setCornerWidget(tb)
 
     @Slot()
     def create_team(self):

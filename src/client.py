@@ -33,16 +33,18 @@ def create_team(team_name: str, color: Color = None) -> Team:
     return team
 
 
-def add_participant_to_team(team: Team, participant: Participant) -> None:
+def add_participant_to_team(participant: Participant, team: Team) -> None:
     __set_dirty(True)
-    if participant.team is not None:
-        participant.team.remove_participant(participant)
+    remove_participant_from_team(participant)
     team.add_participant(participant)
 
 
-def remove_participant_from_team(participant: Participant, team: Team) -> None:
-    __set_dirty(True)
-    team.remove_participant(participant)
+def remove_participant_from_team(participant: Participant) -> int:
+    if participant.team is not None:
+        __set_dirty(True)
+        participant.team.remove_participant(participant)
+        return 0
+    return -1
 
 
 def update_team(team: Team, name: Optional[str] = None, color: Optional[Color] = None) -> None:
@@ -59,6 +61,13 @@ def delete_team(team: Team) -> None:
     teams.remove(team)
 
 
+def remove_participant(participant: Participant) -> None:
+    __set_dirty(True)
+    if participant.team is not None:
+        participant.team.remove_participant(participant)
+    participants.remove(participant)
+
+
 def assign_to_teams() -> int:
     if len(teams) == 0:
         return -1
@@ -72,7 +81,8 @@ def assign_to_teams() -> int:
         for team in teams_copy:
             if len(participants_copy) == 0:
                 break
-            team.add_participant(participants_copy.pop())
+            participant = participants_copy.pop()
+            add_participant_to_team(participant, team)
     return 0
 
 

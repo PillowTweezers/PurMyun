@@ -17,7 +17,6 @@ class TeamWidget(QWidget):
         self.update_ui_callback = update_ui_callback
 
         self.ui.editBtn.clicked.connect(self.edit_clicked)
-        self.ui.deleteTeamBtn.clicked.connect(self.delete_team_clicked)
 
         self.ui.participantTableWidget.set_team(team)
 
@@ -25,22 +24,13 @@ class TeamWidget(QWidget):
 
     def show_team_data(self):
         self.ui.teamNameLbl.setText(self.team.name)
+        self.ui.colorWidget.setStyleSheet(
+            f"background-color: rgb({self.team.color.r}, {self.team.color.g}, {self.team.color.b})")
 
     def edit_clicked(self):
         teamEditDialog = TeamCreationDialog(parent=self, team=self.team)
         teamEditDialog.exec()
         if teamEditDialog.result() == QDialog.Accepted:
-            self.update_ui_callback()
-
-    def delete_team_clicked(self):
-        confirm_dialog = QtWidgets.QMessageBox()
-        confirm_dialog.setWindowTitle("אישור מחיקת צוות")
-        confirm_dialog.setText(f"האם אתה בטוח שברצונך למחוק את צוות {self.team.name}?")
-        confirm_dialog.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
-        confirm_dialog.setDefaultButton(QtWidgets.QMessageBox.No)
-        confirm_dialog.setIcon(QtWidgets.QMessageBox.Warning)
-        if confirm_dialog.exec() == QtWidgets.QMessageBox.Yes:
-            client.delete_team(self.team)
             self.update_ui_callback()
 
     def resize_table_header(self):
