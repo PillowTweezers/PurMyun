@@ -22,7 +22,7 @@ from PySide6.QtWidgets import (QApplication, QDockWidget, QFrame, QMainWindow,
     QWidget)
 
 from gui.ParticipantTableWidget import ParticipantTableWidget
-import mainwindow_rc
+from  . import mainwindow_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -109,6 +109,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.teamsTabWidget = QTabWidget(self.centralwidget)
         self.teamsTabWidget.setObjectName(u"teamsTabWidget")
+        self.teamsTabWidget.setElideMode(Qt.ElideNone)
         self.teamsTabWidget.setTabsClosable(True)
         self.teamsTabWidget.setMovable(True)
 

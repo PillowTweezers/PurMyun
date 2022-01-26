@@ -13,7 +13,7 @@ participanttablewidget.ui gradedialog.ui fancysliderwidget.ui fancysliderhorizon
 RESOURCES = mainwindow.qrc participantstable.qrc window.qrc
  
 #pyuic4 and pyrcc4 binaries
-PYUIC = pyside6-uic
+PYUIC = pyside6-uic --from-imports
 PYRCC = pyside6-rcc
  
 #################################

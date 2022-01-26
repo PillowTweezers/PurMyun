@@ -18,7 +18,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QHBoxLayout, QHeaderView,
     QLineEdit, QPushButton, QSizePolicy, QTableWidget,
     QTableWidgetItem, QVBoxLayout, QWidget)
-import participantstable_rc
+from  . import participantstable_rc
 
 class Ui_ParticipantTableWidget(object):
     def setupUi(self, ParticipantTableWidget):

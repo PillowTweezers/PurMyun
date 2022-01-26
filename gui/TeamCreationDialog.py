@@ -19,10 +19,7 @@ class TeamCreationDialog(QtWidgets.QDialog):
             self.setWindowTitle("עריכת צוות")
             self.ui.teamNameEdt.setText(team.name)
             self.ui.colorPickerBtn.setStyleSheet(
-                "background-color: rgb({}, {}, {});".format(
-                    team.color.red(), team.color.green(), team.color.blue()
-                )
-            )
+                "background-color: rgb({}, {}, {});".format(team.color.r, team.color.g, team.color.b))
             self.color = team.color
 
     def color_button_clicked(self):
