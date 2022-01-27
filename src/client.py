@@ -2,6 +2,9 @@ import json
 from random import shuffle
 from typing import Optional
 
+import xlsxwriter
+from xlsxwriter import Workbook
+
 from src.clientjsonencoder import ClientJSONEncoder
 from src.color import Color
 from src.participant import Participant
@@ -183,6 +186,85 @@ def new_project() -> None:
     current_file = None
 
 
-def export_to_excel(filename: str = "results.xlsx") -> int:
-    # TODO: Implement this.
-    pass
+def create_mixed_worksheet(workbook: Workbook):
+    worksheet = workbook.add_worksheet(name="משולב")
+    worksheet.right_to_left()
+
+    row = 1
+    col = 0
+    sorted_participants = sorted(participants, key=lambda x: grades.index(x.grade), reverse=False)
+    for participant in sorted_participants:
+        cell_format = workbook.add_format()
+        if participant.team is not None:
+            cell_format.set_bg_color(participant.team.color.to_hex())
+        else:
+            cell_format.set_bg_color('#FFFFFF')
+        worksheet.write(row, col, participant.name, cell_format)
+        worksheet.write(row, col + 1, participant.team.name if participant.team is not None else "", cell_format)
+        worksheet.write(row, col + 2, participant.grade, cell_format)
+        row += 1
+    worksheet.add_table('A1:C' + str(row),
+                        {'autofilter': True, 'columns': [{'header': 'שם'}, {'header': 'צוות'}, {'header': 'שכבה'}]})
+    # Resize the columns to fit the data in the cells
+    max_name = max([len(p.name) for p in participants])
+    max_team = max([len(p.team.name) for p in participants if p.team is not None])
+    max_grade = max([len(p.grade) for p in participants])
+    worksheet.set_column('A:A', max_name + 1)
+    worksheet.set_column('B:B', max_team + 1)
+    worksheet.set_column('C:C', max_grade + 1)
+
+
+def create_teams_worksheet(workbook: Workbook):
+    worksheet = workbook.add_worksheet(name="צוותים")
+    worksheet.right_to_left()
+
+    def sort_participants(participants_list: list[Participant]) -> list[Participant]:
+        return sorted(participants_list, key=lambda par: (grades.index(par.grade), par.name), reverse=False)
+
+    def draw_team_table(row: int, col: int, team: Team = None) -> (int, int):
+        cell_format = workbook.add_format()
+        display_participants = [p for p in participants if p.team is team]
+        bold = workbook.add_format({'bold': True})
+
+        display_name = team.name if team is not None else "מחוסרי צוות"
+        worksheet.write(row, col, display_name, bold)
+        row += 1
+
+        worksheet.add_table(row, col, row + len(display_participants), col + 1,
+                            {'autofilter': True,
+                             'columns': [{'header': 'שם', 'format': bold}, {'header': 'שכבה', 'format': bold}]})
+        row += 1
+
+        if team is not None:
+            cell_format.set_bg_color(team.color.to_hex())
+        else:
+            cell_format.set_bg_color('#FFFFFF')
+        for participant in sort_participants(display_participants):
+            worksheet.write(row, col, participant.name, cell_format)
+            worksheet.write(row, col + 1, participant.grade, cell_format)
+            row += 1
+
+        # Resize the columns to fit the data in the cells
+        if len(display_participants) > 0:
+            max_name = max([len(p.name) for p in display_participants])
+            max_grade = max([len(p.grade) for p in display_participants])
+            worksheet.set_column(col, col, max_name + 1)
+            worksheet.set_column(col + 1, col + 1, max_grade + 1)
+        return row - len(display_participants) - 2, col + 4
+
+    start_row = 0
+    start_col = 0
+    for team in teams:
+        start_row, start_col = draw_team_table(start_row, start_col, team)
+    draw_team_table(start_row, start_col)
+    workbook.close()
+
+
+def export_to_excel(filename: str) -> int:
+    try:
+        workbook = xlsxwriter.Workbook(filename)
+        create_mixed_worksheet(workbook)
+        create_teams_worksheet(workbook)
+    except PermissionError as e:
+        return 1
+    return 0

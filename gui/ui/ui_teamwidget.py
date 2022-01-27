@@ -33,6 +33,7 @@ class Ui_TeamWidget(object):
         self.verticalLayout.setContentsMargins(1, 1, 1, 1)
         self.scrollArea = QScrollArea(TeamWidget)
         self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setStyleSheet(u"")
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")

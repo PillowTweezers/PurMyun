@@ -115,6 +115,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.setContentsMargins(0, 9, 0, 0)
         self.teamsTabWidget = TeamsTabWidget(self.centralwidget)
         self.teamsTabWidget.setObjectName(u"teamsTabWidget")
+        self.teamsTabWidget.setStyleSheet(u"")
         self.teamsTabWidget.setElideMode(Qt.ElideNone)
         self.teamsTabWidget.setTabsClosable(True)
         self.teamsTabWidget.setMovable(True)

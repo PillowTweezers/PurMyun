@@ -29,6 +29,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.settings = QSettings(settings_path + "/settings.ini", QSettings.IniFormat)
 
         self.ui.teamsTabWidget.update_ui_callback = self.update_ui
+        self.ui.participantsTableWidget.update_ui_callback = self.update_ui
         self.assign_buttons()
         self.assign_actions()
         self.create_recent_menu()
@@ -304,10 +305,9 @@ class MainWindow(QtWidgets.QMainWindow):
         if saveDialog.result() == QtWidgets.QDialog.Accepted:
             filename = saveDialog.selectedFiles()[0]
             if filename:
-                if client.export_to_excel(filename=filename):
+                if client.export_to_excel(filename=filename) == 0:
                     self.statusBar().showMessage("קובץ ייוצא בהצלחה")
                     self.alert_text("קובץ ייוצא בהצלחה")
-                    self.update_current_file()
                     return True
                 else:
                     self.error_text("שגיאה בייצוא קובץ")
